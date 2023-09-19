@@ -47,7 +47,7 @@ def upgrade():
     sa.Column('about', sa.String(length=255), nullable=False),
     sa.Column('phone_number', sa.String(length=30), nullable=False),
     sa.Column('type', sa.String(length=255), nullable=False),
-    sa.Column('business_image', sa.String(length=255), nullable=False),
+    sa.Column('business_image_id', sa.String(length=255), nullable=False),
     sa.Column('category_id', sa.Integer(), nullable=False),
     sa.Column('owner_id', sa.Integer(), nullable=False),
     # sa.Column('price', sa.String(length=50), nullable=False),
@@ -59,6 +59,7 @@ def upgrade():
     sa.UniqueConstraint('phone_number'),
     sa.UniqueConstraint('website'),
     sa.ForeignKeyConstraint(['owner_id'],['users.id']),
+    sa.ForeignKeyConstraint(['business_image_id'],['business_images.id']),
     sa.ForeignKeyConstraint(['category_id'],['categories.id']),
     )
 
@@ -85,6 +86,7 @@ def upgrade():
     sa.Column('business_id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('image_url', sa.String(length=255), nullable=False),
+    sa.Column('image_preview', sa.Boolean(), nullable=False),
     sa.Column('create_at', sa.DateTime(), nullable=False),
     sa.Column('updated_at', sa.DateTime(), nullable=False),
     sa.PrimaryKeyConstraint('id'),
