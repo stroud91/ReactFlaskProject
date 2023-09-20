@@ -21,14 +21,14 @@ def seed():
         # Make sure to add all your other model's undo functions below
         undo_users()
         undo_businesses()
+        undo_businesses_images()
         undo_categories()
         undo_reviews()
-        undo_businesses_images()
     seed_users()
     seed_businesses()
+    seed_businesses_images()
     seed_categories()
     seed_reviews()
-    seed_businesses_images()
     # Add other seed functions here
 
 
