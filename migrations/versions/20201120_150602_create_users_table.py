@@ -34,7 +34,11 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
-
+    op.create_table('categories',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
 
     op.create_table('businesses',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -61,11 +65,7 @@ def upgrade():
     # if environment == "production":
     #     op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
 
-    op.create_table('categories',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=40), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
+
 
     # if environment == "production":
     #     op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
