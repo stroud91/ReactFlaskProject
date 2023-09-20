@@ -5,11 +5,11 @@ from sqlalchemy.sql import text
 # Adds a demo user, you can add other users here if you want
 def seed_users():
     demo = User(
-        username='Demo', email='demo@aa.io', first_name='Demo', last_name='Lition', hashed_password='password')
+        username='Demolition', email='demo@aa.io', first_name='Demo', last_name='Lition', hashed_password='password')
     marnie = User(
-        username='marnie', email='marnie@aa.io', first_name='Marnie', last_name='Mornie', hashed_password='password')
+        username='marniemorine', email='marnie@aa.io', first_name='Marnie', last_name='Mornie', hashed_password='password1')
     bobbie = User(
-        username='bobbie', email='bobbie@aa.io',first_name='Bobbie', last_name='Builder', hashed_password='password')
+        username='bobbiebuild', email='bobbie@aa.io',first_name='Bobbie', last_name='Builder', hashed_password='password11')
     nemo = User(
         username='FakeUser1', email='user1@user.io', first_name='Nemo', last_name='Dora', hashed_password='password2')
     john_smith = User(
@@ -189,21 +189,21 @@ def seed_users():
     jenny_rate = User(
         username='create_power', email='energy@machinery.io', first_name='Jenny', last_name='Rate', hashed_password='password101')
 
-    db.session.add_all([demo, marnie, bobbie, nemo, john_smith, john_doe, nemodon, tobe, stu, ali, dee, justin,
-                        anna_lytics, ella_ment, sam_sung,
-                        ava_cado, ben_chmark, perry_scope, maya_rchitecture, artie_choke, elmer_aldente,
-                        max_out, penny_tration, bill_ding, miles_ahead, sandy_beach, terra_byte, will_power,
-                        ivan_idea, luke_warm, sue_shef, dee_signer,tim_ber, elle_vate, gene_pool, mo_tion,
-                        ray_diate, cat_tle, liz_ard, bob_sleigh, colin_all, gail_force,
-                        al_gebra, minnie_mum, pat_tern, jess_ter, sal_mon, rob_in, grace_full, brooke_lyn,
-                        amber_alert, earl_y,mae_flower, will_power, jack_pot, anne_chor, carrie_on,
-                        terri_tory, rocky_mountain, sue_venir, claire_voyant, don_ke,
-                        sandy_beach, guy_dance, ali_mony, jan_uary, rose_garden, elle_ectric,
-                        anita_job, steve_adore, pearl_harbor, ivan_idea,luke_sky, bee_long, sam_wich, rick_roll, rob_bery,
-                        stella_rspace, al_bert, hugh_morous, sue_she, ted_talk,
-                        jed_i, ian_vent, frank_enstein, ella_ment, terry_fic,
-                        bob_wire, eva_luation, art_ist, heidi_seek, jenny_rate])
-
+    # db.session.add_all([demo, marnie, bobbie, nemo, john_smith, john_doe, nemodon, tobe, stu, ali, dee, justin,
+    #                     anna_lytics, ella_ment, sam_sung,
+    #                     ava_cado, ben_chmark, perry_scope, maya_rchitecture, artie_choke, elmer_aldente,
+    #                     max_out, penny_tration, bill_ding, miles_ahead, sandy_beach, terra_byte, will_power,
+    #                     ivan_idea, luke_warm, sue_shef, dee_signer,tim_ber, elle_vate, gene_pool, mo_tion,
+    #                     ray_diate, cat_tle, liz_ard, bob_sleigh, colin_all, gail_force,
+    #                     al_gebra, minnie_mum, pat_tern, jess_ter, sal_mon, rob_in, grace_full, brooke_lyn,
+    #                     amber_alert, earl_y,mae_flower, will_power, jack_pot, anne_chor, carrie_on,
+    #                     terri_tory, rocky_mountain, sue_venir, claire_voyant, don_ke,
+    #                     sandy_beach, guy_dance, ali_mony, jan_uary, rose_garden, elle_ectric,
+    #                     anita_job, steve_adore, pearl_harbor, ivan_idea,luke_sky, bee_long, sam_wich, rick_roll, rob_bery,
+    #                     stella_rspace, al_bert, hugh_morous, sue_she, ted_talk,
+    #                     jed_i, ian_vent, frank_enstein, ella_ment, terry_fic,
+    #                     bob_wire, eva_luation, art_ist, heidi_seek, jenny_rate])
+    db.session.add(demo)
     db.session.commit()
 
 
