@@ -6,7 +6,7 @@ class Category(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoIncrement=True)
     name = db.Column(db.String(length=40), nullable=False)
 
     businesses_category = db.relationship("Business", back_populates="category")

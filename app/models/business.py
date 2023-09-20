@@ -6,7 +6,7 @@ class Business(db.Model):
     if environment == "production":
         __table_args__ = {'schema': SCHEMA}
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, primary_key=True,autoIncrement=True)
     name = db.Column(db.String(length=50), nullable=False)
     address = db.Column(db.String(length=255), nullable=False)
     city = db.Column(db.String(length=50), nullable=False)
