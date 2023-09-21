@@ -34,6 +34,12 @@ def upgrade():
     sa.UniqueConstraint('username')
     )
 
+    op.create_table('categories',
+    sa.Column('id', sa.Integer(), nullable=False),
+    sa.Column('name', sa.String(length=40), nullable=False),
+    sa.PrimaryKeyConstraint('id')
+    )
+
     op.create_table('businesses',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('name', sa.String(length=50), nullable=False),
@@ -56,11 +62,13 @@ def upgrade():
     sa.ForeignKeyConstraint(['category_id'],['categories.id'])
     )
 
-    op.create_table('categories',
-    sa.Column('id', sa.Integer(), nullable=False),
-    sa.Column('name', sa.String(length=40), nullable=False),
-    sa.PrimaryKeyConstraint('id')
-    )
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE businesses SET SCHEMA {SCHEMA};")
+
+
+
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE categories SET SCHEMA {SCHEMA};")
 
     op.create_table('reviews',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -75,6 +83,9 @@ def upgrade():
     sa.ForeignKeyConstraint(['business_id'],['businesses.id'])
     )
 
+    # if environment == "production":
+    #     op.execute(f"ALTER TABLE reviews SET SCHEMA {SCHEMA};")
+
     op.create_table('business_images',
     sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('business_id', sa.Integer(), nullable=False),
@@ -88,6 +99,8 @@ def upgrade():
     sa.ForeignKeyConstraint(['user_id'], ['users.id'])
     )
 
+    # if environment == "production":
+        # op.execute(f"ALTER TABLE business_images SET SCHEMA {SCHEMA};")
 
     if environment == "production":
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")

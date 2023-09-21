@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from .business import Business
 from .user import User
 
@@ -10,8 +10,8 @@ class Review(db.Model):
 
 
     id = db.Column(db.Integer,primary_key=True)
-    user_id = db.Column(db.Integer,db.ForeignKey("users.id"))
-    business_id = db.Column(db.Integer,db.ForeignKey("businesses.id"))
+    user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")))
+    business_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("businesses.id")))
     review_body = db.Column(db.String(255), nullable=False)
     rating = db.Column(db.Integer, nullable=False)
     created_at = db.Column(db.DateTime, default=db.func.now())

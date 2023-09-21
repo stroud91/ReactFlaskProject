@@ -20,13 +20,13 @@ def seed():
         # the schema name (see comment in users.py undo_users function).
         # Make sure to add all your other model's undo functions below
         undo_users()
-        undo_businesses()
         undo_categories()
+        undo_businesses()
         undo_reviews()
         undo_businesses_images()
     seed_users()
-    seed_businesses()
     seed_categories()
+    seed_businesses()
     seed_reviews()
     seed_businesses_images()
     # Add other seed functions here
