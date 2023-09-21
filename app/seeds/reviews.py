@@ -355,7 +355,7 @@ def seed_reviews():
           Review(
             user_id = 4,
             business_id = 21,
-            review_body = "The sushi chef obviously felt most comfortable making his creations by hand. He would sometimes handle the raw fish with a plastic glove, but most of the time he was using his bare hands. The part where I almost walked out was when he sneezed. He had turned from the food and went towards the back wall to sneeze openly, then sneezed again into his hands. He started walking back, looked at me and then went over to the sink to wash his hands. He then put on the plastic glove to his right hand while his left hand was used for positioning the food on the plate (no glove).",
+            review_body = "The sushi chef obviously felt most comfortable making his creations by hand. He would sometimes handle the raw fish with a plastic glove, but most of the time he was using his bare hands. The part where I almost walked out was when he sneezed. He had turned from the food and went towards the back wall to sneeze openly, then sneezed again into his hands.",
             rating = 3
         ),
           Review(
