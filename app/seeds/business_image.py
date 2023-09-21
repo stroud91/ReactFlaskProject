@@ -33,8 +33,8 @@ def seed_businesses_images():
     american_two_previmage = BusinessImage(business_id=28, user_id=2, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
     american_three_previmage = BusinessImage(business_id=29, user_id=3, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
     american_four_previmage = BusinessImage(business_id=30, user_id=4, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
-    american_five_previmage = BusinessImage(business_id=31, user_id=5, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
-    american_six_previmage = BusinessImage(business_id=32, user_id=6, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
+    american_five_previmage = BusinessImage(business_id=30, user_id=5, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
+    american_six_previmage = BusinessImage(business_id=30, user_id=6, image_url="https://www.tasteatlas.com/images/toplistarticles/08c818739e4b48ce96d319c16f4cc0ca.jpg", image_preview=True)
     italian_one_image = BusinessImage(business_id=1, user_id=2, image_url="https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3330&q=80", image_preview=False)
     italian_two_image = BusinessImage(business_id=2, user_id=3, image_url="https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3330&q=80", image_preview=False)
     italian_three_image = BusinessImage(business_id=3, user_id=4, image_url="https://images.unsplash.com/photo-1556761223-4c4282c73f77?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D&auto=format&fit=crop&w=3330&q=80", image_preview=False)
@@ -65,8 +65,8 @@ def seed_businesses_images():
     american_two_image = BusinessImage(business_id=28, user_id=3, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
     american_three_image = BusinessImage(business_id=29, user_id=4, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
     american_four_image = BusinessImage(business_id=30, user_id=5, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
-    american_five_image = BusinessImage(business_id=31, user_id=6, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
-    american_six_image = BusinessImage(business_id=32, user_id=1, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
+    american_five_image = BusinessImage(business_id=30, user_id=6, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
+    american_six_image = BusinessImage(business_id=30, user_id=1, image_url="https://www.corriecooks.com/wp-content/uploads/2023/05/american-food-2.jpg", image_preview=False)
 
     db.session.add_all([
         italian_one_previmage, italian_two_previmage, italian_three_previmage, italian_four_previmage, italian_five_previmage, italian_six_previmage,
