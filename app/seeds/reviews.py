@@ -7,7 +7,7 @@ def seed_reviews():
         Review(
             user_id = 1,
             business_id = 1,
-            review_body = "Great food, excellent service, coming from San Francisco I wanted to try a local Italian joint and everything was great and I couldn't fault a thing. The restaurant was busy and had great family and young people vibes. The servers were all super friendly from my phone call to the staff.",
+            review_body = "Great food, excellent service, coming from San Francisco I wanted to try a local Italian joint and everything was great and I couldn't fault a thing. The restaurant was busy and had great family and young people vibes.",
             rating = 5
         )
           Review(
@@ -307,7 +307,7 @@ def seed_reviews():
           Review(
             user_id = 14,
             business_id = 18,
-            review_body = "Best shwarma around.  I would give it 5 stars but the ordering can be a bit hap hazard.  Sometimes its part of its charm sometimes its annoying.  Either way the shwarma and baklava are always worth it.  If you love garlic get the combo shwarma.",
+            review_body = "Best shwarma around.  I would give it 5 stars but the ordering can be a bit hap hazard.  Sometimes its part of its charm sometimes its annoying.  Either way the shwarma and baklava are always worth it.",
             rating = 4
         )
           Review(
@@ -355,7 +355,7 @@ def seed_reviews():
           Review(
             user_id = 4,
             business_id = 21,
-            review_body = "The sushi chef obviously felt most comfortable making his creations by "hand". He would sometimes handle the raw fish with a plastic glove, but most of the time he was using his bare hands. The part where I almost walked out was when he sneezed. He had turned from the food and went towards the back wall to sneeze openly, then sneezed again into his hands. He started walking back, looked at me and then went over to the sink to wash his hands. He then put on the plastic glove to his right hand while his left hand was used for positioning the food on the plate (no glove).",
+            review_body = "Place looked very dirty to me",
             rating = 3
         )
           Review(
@@ -373,7 +373,7 @@ def seed_reviews():
           Review(
             user_id = 7,
             business_id = 22,
-            review_body = "The sashimi tastes so fresh! Sushi dinner was great too! Also love their miso soup! Sometimes food can come super slow. So before you come to taste the amazing seafood, maybe consider eating something first  last time I went, it was not slow at all.",
+            review_body = "The sashimi tastes so fresh! Sushi dinner was great too! Also love their miso soup! Sometimes food can come super slow.",
             rating = 4
         )
           Review(
@@ -385,13 +385,13 @@ def seed_reviews():
           Review(
             user_id = 9,
             business_id = 22,
-            review_body = "Unfortunately, nowadays with the amount of patrons that file in for dinner, they can't keep up and the food suffers. Service is always friendly, but the food isn't the same. It seems to be slapped together with whatever leftover pieces of fish they have. On busy nights expect to have to wait, and to spend 1-2 hours there for a dinner.",
+            review_body = "Unfortunately nowadays with the amount of patrons that file in for dinner, they can't keep up and the food suffers. Service is always friendly, but the food isn't the same. It seems to be slapped together with whatever leftover piece of fish they have.",
             rating = 3
         )
           Review(
             user_id = 10,
             business_id = 23,
-            review_body = "Definitely worth a 5 star. It is one of the top Japanese restaurants in Massachusetts. All the sushi are very authentic, especially the Dragon roll and Volcano roll (Highly recommended). OMAKASE is another dish recommended. The mixture of different food source is great and shining the wisdom of the Japanese cooking culture. Sushi Miyazawa will provide different delicious deserts, once I tried one green tea ice cream which is also great.",
+            review_body = "Definitely worth a 5 star. It is one of the top Japanese restaurants in Massachusetts. All the sushi are very authentic, especially the Dragon roll and Volcano roll (Highly recommended).",
             rating = 5
         )
           Review(
@@ -409,7 +409,7 @@ def seed_reviews():
           Review(
             user_id = 13,
             business_id = 24,
-            review_body = "my boyfriend and I are new to the area and were looking for a fun place to go on a date night. loving sushi, and with the positive reviews, we felt good about Miyazawa being our first sushi place in the area. We don't regret a thing, and it will honestly be difficult for another restaurant to top our experience here! incredibly fresh sushi and such wonderful staff.  coming back and taking our friends!!",
+            review_body = "Went for date and loved it with my boyfriend. Amazing sushi",
             rating = 4
         )
           Review(
@@ -445,7 +445,7 @@ def seed_reviews():
           Review(
             user_id = 19,
             business_id = 26,
-            review_body = "This is the best sushi in Worcester, end of story. They say they aren't a kid place but we came here the first time because my kid is a sushi fanatic and we wanted him to have an authentic experience. We keep going back at least a couple of times a year. This is a BYOB, small and does not take reservations. That being said we have never had to wait long for a table. We usually order off the specials menu and have never been disappointed. Service is prompt and friendly",
+            review_body = "This is the best sushi in Worcester, end of story.",
             rating = 5
         )
           Review(
@@ -463,7 +463,7 @@ def seed_reviews():
           Review(
             user_id = 3,
             business_id = 28,
-            review_body = "Please note that I've only had takeout orders from here, but both times the food has not been great. First time ordering I got the Cesar salad pizza. When I brought home my food and opened the box, it was a plain pizza crust with all of the toppings having fallen off and into the box. There wasn't any sauce or dressing I could use to "rebuild" it, so I eventually just ate a salad and bread. My second time I ordered a burger, because, if a restaurant can mess up a burger, what can they make? It was so bad. No flavor, the meat wasn't seasoned. I could only take two bites. Fries were the highlight of the meal, that's saying something.",
+            review_body = "Not goood food, dont recommend",
             rating = 2
         )
           Review(
@@ -493,13 +493,13 @@ def seed_reviews():
            Review(
             user_id = 8,
             business_id = 30,
-            review_body = "I've heard a lot about the place so I was excited to try it but honestly we were a little let down. I got pasta and my boyfriend got steak tips. My pasta was relatively good but the sauce was very soupy. One of my boyfriend's steak tips was completely raw. More positively, I will say the bacon wrapped scallops were pretty good and our server was great :)",
+            review_body = "Amazing",
             rating = 3
         )
            Review(
             user_id = 9,
             business_id = 30,
-            review_body = "Iconic spot in Worcester. Expect a bar / grille atmosphere, bar / grille menu options and bar / grille experience! You will get decent service, pay average prices, and get in some good people watching. There is outdoor seating in the summer, and luckily a parking lot in the back. It's not going to be the best meal you've ever had, but you will likely have an enjoyable time with your people in the relaxed atmosphere.",
+            review_body = "It was ok",
             rating = 3
         )
            Review(
@@ -523,7 +523,7 @@ def seed_reviews():
            Review(
             user_id = 13,
             business_id = 32,
-            review_body = "We have been going to the Boynton for more years than I'd like to admit! We just arrived from Washington DC and we are heading to the Boynton for lunch! I don't think I need to say more, but let me just say the food, drinks and service are all great!!",
+            review_body = "We have been going to the Boynton for more years than I'd like to admit! We just arrived from Washington DC and we are heading to the Boynton for lunch! I don't think I need to say more!!",
             rating = 5
         )
            Review(
@@ -535,13 +535,13 @@ def seed_reviews():
            Review(
             user_id = 15,
             business_id = 32,
-            review_body = "We just went a few weeks wand it was pretty good! I started with raw oysters which were fresh and delicious. We got the Poutine for the table. It was ok. Everyone enjoyed their meals, except my husband. He ordered the Caesar Salad Flat Bread which wasn't flat at all. It was a bulky pizza with a ton of romaine and little else. Oh well, he won't order that again. Drinks were good. Waitress was excellent. ( Sorry dark haired girl, very pretty). We'll come back.",
+            review_body = "It was pretty good. Def recommend if in the area",
             rating = 4
         )
            Review(
             user_id = 16,
             business_id = 32,
-            review_body = "We had our first visit here for lunch today, party of five. The service was good and the food was fine, however the smell of cleaning chemicals was strong. It was so strong it was difficult to enjoy the food and I ended up with a headache for the afternoon. Maybe it's because we arrived right when they opened, but they should tone down the smell, and/or air the place out for a few hours before serving, that was bad.",
+            review_body = "Went out for date night with my wife. we both enjoyed the food very much.",
             rating = 4
         )
     ]
