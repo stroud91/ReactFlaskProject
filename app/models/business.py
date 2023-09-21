@@ -13,7 +13,7 @@ class Business(db.Model):
     state = db.Column(db.String(length=25), nullable=False)
     zip_code = db.Column(db.String(length=10), nullable=False)
     website = db.Column(db.String(length=255), nullable=False)
-    about = db.Column(db.String(length=255), nullable=False)
+    about = db.Column(db.String(length=500), nullable=False)
     phone_number = db.Column(db.String(length=30), nullable=False)
     type = db.Column(db.String(length=255), nullable=False)
     category_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("categories.id")), nullable=False)

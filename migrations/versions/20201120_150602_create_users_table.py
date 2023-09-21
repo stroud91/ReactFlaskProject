@@ -48,7 +48,7 @@ def upgrade():
     sa.Column('state', sa.String(length=25), nullable=False),
     sa.Column('zip_code', sa.String(length=10), nullable=False),
     sa.Column('website', sa.String(length=255), nullable=False),
-    sa.Column('about', sa.String(length=255), nullable=False),
+    sa.Column('about', sa.String(length=500), nullable=False),
     sa.Column('phone_number', sa.String(length=30), nullable=False),
     sa.Column('type', sa.String(length=255), nullable=False),
     sa.Column('category_id', sa.Integer(), nullable=False),
