@@ -463,7 +463,7 @@ def seed_reviews():
           Review(
             user_id = 3,
             business_id = 28,
-            review_body = "Please note that I've only had takeout orders from here, but both times the food has not been great. First time ordering I got the Cesar salad pizza. When I brought home my food and opened the box, it was a plain pizza crust with all of the toppings having fallen off and into the box. There wasn't any sauce or dressing I could use to 'rebuild' it, so I eventually just ate a salad and bread. My second time I ordered a burger, because, if a restaurant can mess up a burger, what can they make? It was so bad. No flavor, the meat wasn't seasoned. I could only take two bites. Fries were the highlight of the meal, that's saying something.",
+            review_body = "Please note that I've only had takeout orders from here, but both times the food has not been great. First time ordering I got the Cesar salad pizza. When I brought home my food and opened the box, it was a plain pizza crust with all of the toppings having fallen off and into the box. There wasn't any sauce or dressing I could use to 'rebuild' it, so I eventually just ate a salad and bread.",
             rating = 2
         ),
           Review(
