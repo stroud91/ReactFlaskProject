@@ -504,43 +504,43 @@ def seed_reviews():
         ),
            Review(
             user_id = 10,
-            business_id = 31,
+            business_id = 30,
             review_body = "Food is great service is a little slow ambiance very loud hard to talk to someone across the table all and all good place",
             rating = 4
         ),
            Review(
             user_id = 11,
-            business_id = 31,
+            business_id = 29,
             review_body = "Always good food and great service. I had the Mediterranean bowl and my mother and kids had pepperoni pizza. All excellent! Anytime we're in the Worcester area this is where we stop!",
             rating = 5
         ),
            Review(
             user_id = 12,
-            business_id = 31,
+            business_id = 28,
             review_body = "The pesto, peach and hot honey burrata pizza was amazing! Other things seemed just fine, but this pizza was fantastic.",
             rating = 4
         ),
            Review(
             user_id = 13,
-            business_id = 32,
+            business_id = 28,
             review_body = "We have been going to the Boynton for more years than I'd like to admit! We just arrived from Washington DC and we are heading to the Boynton for lunch! I don't think I need to say more!!",
             rating = 5
         ),
            Review(
             user_id = 14,
-            business_id = 32,
+            business_id = 27,
             review_body = "Covid ruined this one for me. I don't know what exactly changed during or after, but something feels different about this spot. The prices did skyrocket so maybe it is just the value changed?!",
             rating = 3
         ),
            Review(
             user_id = 15,
-            business_id = 32,
+            business_id = 30,
             review_body = "It was pretty good. Def recommend if in the area",
             rating = 4
         ),
            Review(
             user_id = 16,
-            business_id = 32,
+            business_id = 30,
             review_body = "Went out for date night with my wife. we both enjoyed the food very much.",
             rating = 4
         )
