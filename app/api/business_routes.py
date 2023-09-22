@@ -47,3 +47,6 @@ def business_detail(id):
     # business_dict['images'] = image_data
 
     return jsonify(business_dict)
+
+
+#error
