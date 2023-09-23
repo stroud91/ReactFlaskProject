@@ -1,46 +1,63 @@
-from flask import Blueprint, jsonify
-from ..models import BusinessImage
+from flask import Blueprint, jsonify, redirect, render_template, request
+from ..models import BusinessImage, db, Business
+from flask_login import current_user, login_required
+from ..forms import NewImage
+import datetime
 
 images_routes = Blueprint('business', __name__)
 
 
-# Get all Business
-@images_routes.route('/images')
-def images():
-    images = BusinessImage.query.all()
+# Get all Images by Business
+@images_routes.route('/<int:id>/images')
+def images(id):
+    images = BusinessImage.query.filter_by(business_id=id)
+    
+    # find business
+    business = Business.query.get(id)
+    if not business:
+        return jsonify({"error": "Business not found"}), 404
+    
     images_data = []
-    print("look here")
-    print(images)
 
     for image in images:
         img_dict = image.to_dict()
 
         images_data.append(img_dict)
-    
     return jsonify(images_data)
 
+@images_routes.route('/<int:id>/images', methods=["POST"])
+@login_required
+def images_post(id):
+    form = NewImage(request.form)
 
-# @business_routes.route('/<int:id>')
-# def business_detail(id):
-#     business = Business.query.get_or_404(id)
-#     business_dict = business.to_dict()
+    # find business
+    business = Business.query.get(id)
+    if not business:
+        return jsonify({"error": "Business not found"}), 404
+    
+    form['csrf_token'].data = request.cookies['csrf_token']
 
-#     reviews = business.reviews
-#     # review_data = [review.to_dict() for review in reviews]
-
-#     ratings = [review.rating for review in reviews]
-#     avg_rating = sum(ratings) / len(ratings) if ratings else 0
-#     business_dict['avg_rating'] = round(avg_rating, 2)
-
-#     business_dict['category'] = business.category.name if business.category else None
-
-#     # images = business.images
-#     # image_data = [image.to_dict() for image in images]
-
-#     # business_dict['reviews'] = review_data
-#     # business_dict['images'] = image_data
-
-#     return jsonify(business_dict)
+    if form.validate_on_submit():
+        data = form.data
+        new_image = BusinessImage(image_url=data["image_url"],
+                                  image_preview=data["image_preview"],
+                                  business_id=id,
+                                  user_id=current_user.id,
+                                  created_at=datetime.datetime.now(),
+                                  updated_at=datetime.datetime.now())
+        db.session.add(new_image)
+        db.session.commit()
+        return jsonify(new_image.to_dict()), 201
+    else:
+        return jsonify({"errors": form.errors}), 400
 
 
-# #error
+@images_routes.route('/images/<int:id>', methods=["DELETE"])
+def images_delete(id):
+    image = BusinessImage.query.get(id)
+    # find image
+    if not image:
+        return jsonify({"error": "Image not found"}), 404
+    db.session.delete(image)
+    db.session.commit()
+    return "Successfully deleted"
