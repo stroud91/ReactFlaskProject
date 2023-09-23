@@ -1,0 +1,23 @@
+.businessMain__grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    padding: 20px;
+}
+
+.businessMain__item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    border-radius: 10px;
+    position: relative;
+}
+
+.businessMain__item h2 {
+    margin: 0 0 10px 0;
+}
+
+.businessMain__image {
+    height: 100px; 
+    background-color: #eee;
+    margin-bottom: 10px;
+}

@@ -5,6 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import BusinessDetail from "./components/OneBussiness"
+import AddBusiness from "./components/CreateBussinessForm";
+import UpdateBusiness from "./components/UpdateBusinessForm";
+import BusinessMainPage from "./components/Bussiness";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,11 +22,23 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
+          <Route path="/business/all" >
+            <BusinessMainPage/>
+          </Route>
           <Route path="/login" >
             <LoginFormPage />
           </Route>
+          <Route path="/business/:id">
+            <BusinessDetail />
+          </Route>
           <Route path="/signup">
             <SignupFormPage />
+          </Route>
+          <Route path="/business/create">
+              <AddBusiness />
+          </Route>
+          <Route path="/business/:id/edit">
+             <UpdateBusiness />
           </Route>
         </Switch>
       )}
