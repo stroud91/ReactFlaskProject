@@ -80,6 +80,8 @@ def seed_businesses_images():
         jap_one_image, jap_two_image, jap_three_image, jap_four_image, jap_five_image, jap_six_image, jap_seven_image, american_one_image, american_two_image, american_three_image, american_four_image, american_five_image, american_six_image,
         ])
 
+    db.session.commit()
+
 def undo_businesses_images():
     if environment == "production":
         db.session.execute(f"TRUNCATE table {SCHEMA}.business_images RESTART IDENTITY CASCADE;")
