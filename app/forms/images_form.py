@@ -1,9 +1,9 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, BooleanField, SubmitField
 from wtforms.validators import DataRequired, Email, ValidationError
-from app.models import User
+from flask_wtf.file import FileField, FileAllowed, FileRequired
 
-ALLOWED_EXTENSIONS = {'jpg', 'png'}
+ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 # is image extension valid?
 def valid_image_url(form, field):
@@ -12,6 +12,7 @@ def valid_image_url(form, field):
         raise ValidationError("Invalid Image File Extension")
 
 class NewImage(FlaskForm):
-    image_url = StringField('image_url', validators=[DataRequired(), valid_image_url])
-    image_preview = BooleanField('image_preview', validators=[DataRequired()])
+    # image_url = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
+    image_url = StringField("image_url", validators=[DataRequired()])
+    image_preview = StringField('image_preview', validators=[DataRequired()])
     submit = SubmitField('submit')
