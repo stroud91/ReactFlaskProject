@@ -8,22 +8,26 @@ function UpdateBusiness() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
-  const business = useSelector(state => state.business.list.find(b => b.id === parseInt(id)));
+  const business = useSelector(state =>
+    state.business.list
+      ? state.business.list.find(b => b.id === parseInt(id))
+      : null
+  );
 
   const [name, setName] = useState(business ? business.name : '');
   const [address, setAddress] = useState(business ? business.address : '');
   const [city, setCity] = useState(business ? business.city : '');
   const [state, setState] = useState(business ? business.state : '');
-  const [zipCode, setZipCode] = useState(business ? business.zipCode : '');
-  const [phoneNumber, setPhoneNumber] = useState(business ? business.phoneNumber : '');
-  const [categoryId, setCategoryId] = useState(business ? business.categoryId : '');
+  const [zip_code, setZipCode] = useState(business ? business.zipCode : '');
+  const [phone_number, setPhoneNumber] = useState(business ? business.phoneNumber : '');
+  const [category_id, setCategoryId] = useState(business ? business.categoryId : '');
   const [website, setWebsite] = useState(business ? business.website : '');
   const [about, setAbout] = useState(business ? business.about : '');
   const [type, setType] = useState(business ? business.type : '');
   const [validationErrors, setValidationErrors] = useState([]);
 
   const currentUser = useSelector(state => state.session.user);
-  const ownerId = currentUser ? currentUser.id : null;
+  const owner_id = currentUser ? currentUser.id : null;
 
   const categories = [
     { id: 1, name: 'Italian' },
@@ -90,10 +94,10 @@ function UpdateBusiness() {
       address,
       city,
       state,
-      zipCode,
-      phoneNumber,
-      categoryId,
-      ownerId,
+      zip_code,
+      phone_number,
+      category_id,
+      owner_id,
       website,
       about,
       type
@@ -106,10 +110,10 @@ function UpdateBusiness() {
       address,
       city,
       state,
-      zipCode,
-      phoneNumber,
-      categoryId,
-      ownerId,
+      zip_code,
+      phone_number,
+      category_id,
+      owner_id,
       website,
       about,
       type
@@ -179,7 +183,7 @@ function UpdateBusiness() {
             <label>ZIP Code</label>
             <input
               type="text"
-              value={zipCode}
+              value={zip_code}
               onChange={(e) => setZipCode(e.target.value)}
               required
               placeholder='Enter the ZIP code'
@@ -189,7 +193,7 @@ function UpdateBusiness() {
             <label>Phone Number</label>
             <input
               type="text"
-              value={phoneNumber}
+              value={phone_number}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
               placeholder='Enter the phone number'
@@ -198,7 +202,7 @@ function UpdateBusiness() {
           <div className='form__input'>
             <label>Category</label>
             <select
-              value={categoryId}
+              value={category_id}
               onChange={(e) => setCategoryId(e.target.value)}
               required
             >

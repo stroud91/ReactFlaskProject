@@ -90,7 +90,7 @@ def add_business():
 @business_routes.route('/<int:b_id>/edit', methods=['POST'])
 @login_required
 def edit_business(b_id):
-    form = BusinessForm(request.form)
+    form = BusinessForm()
 
     business = Business.query.get(b_id)
 
@@ -120,9 +120,9 @@ def edit_business(b_id):
         else:
             b_dict = business.to_dict()
 
-        return jsonify(b_dict), 200
+        return b_dict
     else:
-        return jsonify({"errors": form.errors}), 400
+        return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 

@@ -96,6 +96,7 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
 
 
 export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
+  console.log('This is the create Bussiness:', updatedBusiness)
   const response = await fetch(`/api/business/${id}/edit`, {
     method: 'POST',
     headers: {
@@ -106,7 +107,9 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
+    console.log("This is the updated data:", data)
     dispatch(updateBusiness(data));
+    return data;
   } else {
     console.error("Thunk Error: Failed to edit business");
   }
@@ -114,7 +117,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 
   const initialState = {
     list: [],
-    current: null,
+    current: {},
     selectedBusiness: null
   };
 
@@ -135,14 +138,14 @@ const businessReducer = (state = initialState, action) => {
         return { ...state, current: null, selectedBusiness: null };
       case ADD_BUSINESS:
         return { ...state, list: [...state.list, action.payload] };
-      case UPDATE_BUSINESS:
-        return {
-          ...state,
-          list: state.list.map((business) =>
-             business.id === action.payload.id ? action.payload : business
-          ),
-          current: action.payload.id === state.current.id ? action.payload : state.current,
-        };
+        case UPDATE_BUSINESS:
+          return {
+            ...state,
+            list: state.list.map((business) =>
+              business.id === action.payload.id ? action.payload : business
+            ),
+            current: action.payload.id === state.current?.id ? action.payload : state.current,
+          };
       default:
         return state;
     }
