@@ -5,41 +5,48 @@ import * as imageActions from "../../store/images";
 import "./ImagesForm.css";
 
 
-function ImagesModal({ bus_id }) {
+function ImagesModal({ bus_data }) {
     const dispatch = useDispatch();
     const images = useSelector(state => state.images);
-    const business = useSelector(state => state.business)
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
+    const normalizedImages = Object.values(images)
+
+    normalizedImages.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
 
     useEffect(() => {
-        dispatch(imageActions.images(bus_id))
-        dispatch()
+        dispatch(imageActions.images(bus_data.id))
         setShowMenu(false)
     }, [dispatch, setShowMenu]);
 
+    let show
+
+    if (normalizedImages[0]) {
+        if (normalizedImages[0].id) {
+            show = normalizedImages.map((image) => {
+                const { id, image_url } = image
+                return (
+                    <img src={image_url}
+                        style={{ color: 'black' }}
+                        className='business_images'
+                        alt={`image_${id}`}
+                        key={id}
+                    />
+                )
+            })
+        }
+    } else {
+        show = `${bus_id.name} has no images`
+    }
+
     return (
         <>
-            <h1>Upload Image</h1>
-            <h3>Upload an image of your business</h3>
-            <input
-                type="text"
-                placeholder="Image URL"
-                value={image_url}
-                onChange={(e) => setImgUrl({ url: e.target.value }
-                )}
-            />
-            <input
-                type="checkbox"
-                id="checkbox"
-                value={image_preview}
-                onChange={(e) => setPrev(!image_preview)}
-            />
-            <button onClick={postImage} className='deleteButtonYes'>{`Yes (Delete Image)`}</button>
-            <button onClick={closeModal()} className='deleteButtonNo'>{`Cancel`}</button>
-
+            <button onClick={closeModal()} className='closeModal'>{`Close`}</button>
+            <h1>Photos for {bus_data.name}</h1>
+            {show}
+            end of results
         </>
     );
 }
 
-export default NewImageModal;
+export default ImagesModal;
