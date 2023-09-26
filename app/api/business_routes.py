@@ -3,7 +3,7 @@ from ..models import Business, Review, db , Category
 from ..forms.bussiness_form import BusinessForm
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
-
+from .auth_routes import validation_errors_to_error_messages
 
 business_routes = Blueprint('businesses', __name__)
 
@@ -58,7 +58,7 @@ def business_detail(id):
 @business_routes.route('/new-business', methods=['POST'])
 @login_required
 def add_business():
-    form = BusinessForm(request.form)
+    form = BusinessForm()
 
     form['csrf_token'].data = request.cookies['csrf_token']
 
@@ -82,9 +82,9 @@ def add_business():
         db.session.add(business)
         db.session.commit()
 
-        return jsonify(business.to_dict()), 201
+        return business.to_dict()
     else:
-        return jsonify({"errors": form.errors}), 400
+        return {"errors": validation_errors_to_error_messages(form.errors)}
 
 
 @business_routes.route('/<int:b_id>/edit', methods=['POST'])

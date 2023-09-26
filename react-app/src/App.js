@@ -5,6 +5,10 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import BusinessDetail from "./components/OneBussiness"
+import AddBusiness from "./components/CreateBussinessForm";
+import UpdateBusiness from "./components/UpdateBusinessForm";
+import BusinessMainPage from "./components/Bussiness";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +28,19 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/business/all" >
+            <BusinessMainPage/>
+          </Route>
+          <Route path="/business/:id/edit">
+             <UpdateBusiness />
+          </Route>
+          <Route path="/business/:id">
+            <BusinessDetail />
+          </Route>
+          <Route path="/create-new-business">
+             <AddBusiness />
+          </Route>
+
         </Switch>
       )}
     </>
