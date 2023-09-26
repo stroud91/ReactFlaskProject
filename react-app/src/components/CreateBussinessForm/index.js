@@ -14,111 +14,94 @@ const [name, setName] = useState('');
 const [address, setAddress] = useState('');
 const [city, setCity] = useState('');
 const [state, setState] = useState('');
-const [zipCode, setZipCode] = useState('');
-const [phoneNumber, setPhoneNumber] = useState('');
-const [categoryId, setCategoryId] = useState('');
+const [zip_code, setZipCode] = useState('');
+const [phone_number, setPhoneNumber] = useState('');
+const [category_id, setCategoryId] = useState(1);
 const [website, setWebsite] = useState('');
 const [about, setAbout] = useState('');
 const [type, setType] = useState('');
+
 const [validationErrors, setValidationErrors] = useState([]);
 
 const currentUser = useSelector(state => state.session.user);
-const ownerId = currentUser ? currentUser.id : null;
+const owner_id = currentUser ? currentUser.id : null;
 
-const categories = [
-    {id: 1, name: 'Italian'},
-    {id: 2, name: 'Mexican'},
-    {id: 3, name: 'Middle Eastern'},
-    {id: 4, name: 'Japanese'},
-    {id: 5, name: 'American'}
-  ];
-
-
-const validate = (values) => {
+  const validate = () => {
     const errors = [];
 
-    if (!values.zip_code || !/^\d{5}$/.test(values.zip_code)) {
-      errors.push("Invalid ZIP Code.");
-    }
-
-    if (!values.phone_number || !/^\d{10}$/.test(values.phone_number)) {
-      errors.push("Invalid phone number.");
-    }
-
-    if (!values.name || values.name.length > 50) {
+    if (!name || name.length > 50) {
       errors.push("Invalid business name.");
     }
 
-    if (!values.address || values.address.length > 255) {
+    if (!address || address.length > 255) {
       errors.push("Invalid address.");
     }
 
-    if (!values.city || values.city.length > 50) {
+    if (!city || city.length > 50) {
       errors.push("Invalid city.");
     }
 
-    if (!values.state || values.state.length > 25) {
+    if (!state || state.length > 25) {
       errors.push("Invalid state.");
     }
 
-    if (!values.category_id) {
-      errors.push("Category ID is required.");
+    if (!zip_code || !/^\d{5}$/.test(zip_code)) {
+      errors.push("Invalid ZIP Code.");
     }
 
-    if (!values.owner_id) {
-      errors.push("Owner ID is required.");
+    if (!phone_number || !/^\d{10}$/.test(phone_number)) {
+      errors.push("Invalid phone number.");
     }
 
-    if (!values.website || values.website.length > 255) {
+    if (!category_id) {
+      errors.push("Category is required.");
+    }
+
+    if (!website || website.length > 255) {
       errors.push("Invalid website URL.");
     }
 
-    if (!values.about || values.about.length > 500) {
+    if (!about || about.length > 500) {
       errors.push("Invalid about text.");
     }
 
-    if (!values.type || values.type.length > 255) {
+    if (!type || type.length > 255) {
       errors.push("Invalid type.");
     }
 
     return errors;
-};
+  };
 
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const errors = validate();
 
-    if(errors.length > 0) return setValidationErrors(errors);
-
-
-    // const businessExists = await checkBusinessName(name);
-    // if (businessExists) {
-    //   return setValidationErrors(["Business with this name already exists."]);
-    // }
+    if (errors.length > 0) return setValidationErrors(errors);
 
     const businessData = {
-      name,
-      address,
-      city,
-      state,
-      zipCode,
-      phoneNumber,
-      categoryId,
-      ownerId,
-      website,
-      about,
-      type
-    };
-
-    await dispatch(businessActions.addBusiness(businessData));
+                name,
+                address,
+                city,
+                state,
+                zip_code,
+                phone_number,
+                category_id,
+                owner_id,
+                website,
+                about,
+                type
+              };
+    console.log("This is Business Data:", businessData)
+    await dispatch(businessActions.createNewBusiness(businessData));
     history.push(`/business/all`);
   }
 
 
+
   useEffect(() => {
     async function fetchData() {
-      await dispatch(businessActions.getAllBusinesses());
+     await dispatch(businessActions.getAllBusinesses());
     }
     fetchData();
   }, [dispatch]);
@@ -182,7 +165,7 @@ const validate = (values) => {
             <p>The postal code for the area where your business is located.</p>
             <input
               type="text"
-              value={zipCode}
+              value={zip_code}
               onChange={(e) => setZipCode(e.target.value)}
               required
               placeholder='Enter the ZIP code'
@@ -193,27 +176,23 @@ const validate = (values) => {
             <p>This number will be used by customers to contact your business.</p>
             <input
               type="text"
-              value={phoneNumber}
+              value={phone_number}
               onChange={(e) => setPhoneNumber(e.target.value)}
               required
               placeholder='Enter the phone number'
             />
           </div>
           <div className='form__input'>
-            <label>Category</label>
-            <p>Select the category that best describes the nature of your business.</p>
-            <select
-              value={categoryId}
-              onChange={(e) => setCategoryId(e.target.value)}
-              required
-            >
-              {categories.map(category => (
-                <option key={category.id} value={category.id}>
-                  {category.name}
-                </option>
-              ))}
-            </select>
-          </div>
+        <label>Category</label>
+        <p>Select the category that best describes the nature of your business.</p>
+        <select value={category_id} onChange={(e) => setCategoryId(e.target.value)}>
+                                    <option value={1}>Italian</option>
+                                    <option value={2}>Mexican</option>
+                                    <option value={3}>Middle Eastern</option>
+                                    <option value={4}>Japanese</option>
+                                    <option value={4}>American</option>
+        </select>
+      </div>
           <div className='form__input'>
             <label>Website</label>
             <p>If your business has a website, enter the URL here.</p>
@@ -253,9 +232,6 @@ const validate = (values) => {
       </form>
     </div>
   );
-
-
-
 }
 
 export default AddBusiness;

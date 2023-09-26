@@ -7,29 +7,30 @@ import './Business.css';
 
 function BusinessMainPage() {
     const dispatch = useDispatch();
-
+    const businesses = useSelector(state => state.business.list);
+    console.log("BUSSINES:", businesses)
     useEffect(() => {
         dispatch(businessActions.getAllBusinesses());
     }, [dispatch]);
 
-    const businesses = useSelector(state => state.business.list);
+
 
     return (
-        <div className='businessMain__grid'>
+        <ul className='businessMain__grid'>
             {businesses && businesses.map((business) => (
-                <div key={business.id} className='businessMain__item'>
-                    <div className="businessMain__image">
+                <li key={business.id} className='businessMain__item'>
+                    <li className="businessMain__image">
                         {/* Image will go here */}
-                    </div>
-                    <h2>{business.name}</h2>
+                    </li>
+                    <li>Name: {business.name}</li>
                     <p>Category: {business.category}</p>
                     <p>Rating: {business.avg_rating}</p>
                     <p>{business.address}, {business.city}, {business.state} {business.zip_code}</p>
                     <p>{business.phone_number}</p>
                     <Link to={`/business/${business.id}`}>View More</Link>
-                </div>
+                </li>
             ))}
-        </div>
+        </ul>
     );
 }
 

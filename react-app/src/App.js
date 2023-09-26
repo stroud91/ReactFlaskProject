@@ -22,24 +22,25 @@ function App() {
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
-          <Route path="/business/all" >
-            <BusinessMainPage/>
-          </Route>
           <Route path="/login" >
             <LoginFormPage />
-          </Route>
-          <Route path="/business/:id">
-            <BusinessDetail />
           </Route>
           <Route path="/signup">
             <SignupFormPage />
           </Route>
-          <Route path="/business/create">
-              <AddBusiness />
+          <Route path="/business/all" >
+            <BusinessMainPage/>
           </Route>
           <Route path="/business/:id/edit">
              <UpdateBusiness />
           </Route>
+          <Route path="/business/:id">
+            <BusinessDetail />
+          </Route>
+          <Route path="/create-new-business">
+             <AddBusiness />
+          </Route>
+
         </Switch>
       )}
     </>

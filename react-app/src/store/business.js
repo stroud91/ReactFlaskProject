@@ -63,6 +63,7 @@ export const getAllBusinesses = () => async (dispatch) => {
 };
 
 export const createNewBusiness = (business) => async (dispatch) => {
+  console.log('This is the create Bussiness:', business)
   const response = await fetch(`/api/business/new-business`, {
     method: 'POST',
     headers: {
@@ -73,7 +74,8 @@ export const createNewBusiness = (business) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    dispatch({ type: 'ADD_BUSINESS', payload: data });
+    console.log("This is the data:", data)
+    dispatch(addBusiness(data));
     return data;
   } else {
     console.error("Thunk Error: Failed to add business");
@@ -85,9 +87,9 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
   if (response.ok) {
     const business = await response.json();
     dispatch(setOneBusiness(business));
-    return business
+
   }else {
-      const errorData = await response.json(); 
+      const errorData = await response.json();
       console.error("Thunk Error: Failed to add business", errorData);
     }
 };

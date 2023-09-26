@@ -5,15 +5,38 @@ import { useParams } from 'react-router-dom';
 import './OneBussiness.css';
 
 function BusinessDetail() {
+    // const history = useHistory();
     const dispatch = useDispatch();
     const { id } = useParams();
     const business = useSelector(state => state.business.selectedBusiness);
-
+    // const currentUser = useSelector(state => state.session.user);
     useEffect(() => {
         dispatch(fetchOneBusiness(id));
     }, [dispatch, id]);
 
     if (!business) return <div>Loading...</div>;
+
+    // function handleEdit(businessId) {
+
+    //     history.push(`/business/${business.id}/edit`);
+    // }
+
+    // function handleDelete(businessId) {
+
+    //     history.push(`/business/${business.id}/edit`);
+    // }
+    // let buttons;
+
+    // if (currentUser) {
+    //     buttons = (
+    //         <div className='business-buttons-conditional'>
+    //             <button className='general-button' onClick={() => handleEdit(business.id)}>Edit</button>
+    //             <button className='general-button' onClick={() => handleDelete(business.id)}>Delete</button>
+    //         </div>
+    //     );
+    // } else {
+    //     buttons = null;
+    // }
 
     return (
         <div>
