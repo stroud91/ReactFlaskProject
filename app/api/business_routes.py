@@ -1,11 +1,30 @@
 from flask import Blueprint, jsonify, request
 from ..models import Business, Review, db , Category
 from ..forms.bussiness_form import BusinessForm
+from ..forms.search_form import SearchForm
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
 from .auth_routes import validation_errors_to_error_messages
 
 business_routes = Blueprint('businesses', __name__)
+
+
+#Search business by name
+@business_routes.route('/search', methods=['POST'])
+def search_business():
+    form = SearchForm()
+    form['csrf_token'].data = request.cookies['csrf_token']
+    #business_list =[]
+    if form.validate():
+        searchTerm = form.search.data
+        businesses = Business.query.filter(Business.name.ilike(f'%{searchTerm}%')).all()
+        business_list = [business.to_dict() for business in businesses]
+    
+    return {"queried businesses": business_list}
+
+
+
+
 
 
 # Get all Business
