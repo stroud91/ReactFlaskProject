@@ -2,17 +2,13 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import * as businessActions from '../../store/business';
-import './Business.css';
+import '../Bussiness/Business.css';
 
 
-function BusinessMainPage() {
+function QueryBusiness() {
     const dispatch = useDispatch();
-    const businesses = useSelector(state => state.business.list);
-    console.log("BUSSINES:", businesses)
-    console.log( typeof businesses)
-    useEffect(() => {
-        dispatch(businessActions.getAllBusinesses());
-    }, [dispatch]);
+    let businesses = useSelector(state => state.business.search);
+    businesses = businesses["queried businesses"]
 
 
 
@@ -35,4 +31,4 @@ function BusinessMainPage() {
     );
 }
 
-export default BusinessMainPage;
+export default QueryBusiness;

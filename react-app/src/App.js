@@ -9,6 +9,9 @@ import BusinessDetail from "./components/OneBussiness"
 import AddBusiness from "./components/CreateBussinessForm";
 import UpdateBusiness from "./components/UpdateBusinessForm";
 import BusinessMainPage from "./components/Bussiness";
+import MainPage from "./components/MainPageView";
+import TestComponent from "./components/TestComponent";
+import QueryBusiness from "./components/QueryBusinesses"
 
 function App() {
   const dispatch = useDispatch();
@@ -31,6 +34,9 @@ function App() {
           <Route path="/business/all" >
             <BusinessMainPage/>
           </Route>
+          <Route path="/business/search" >
+            <QueryBusiness />
+          </Route>
           <Route path="/business/:id/edit">
              <UpdateBusiness />
           </Route>
@@ -40,7 +46,9 @@ function App() {
           <Route path="/create-new-business">
              <AddBusiness />
           </Route>
-
+          <Route path =''>
+            <MainPage/>
+          </Route>
         </Switch>
       )}
     </>

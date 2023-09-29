@@ -1,0 +1,45 @@
+.deleteSpotContainer {
+    margin: 100px auto;
+    display: grid;
+    grid-auto-flow: row;
+    grid-row-gap: 15px;
+    width: 350px;
+    align-items: center;
+    padding: 20px;
+    font-family: "Manrope", sans-serif;
+    margin: 20px auto;
+  }
+  
+  .deleteHeader {
+    font-size: 18pt;
+    font-weight: bold;
+    text-align: center;
+  }
+  
+  .deleteText {
+    text-align: center;
+  }
+  
+  #yesDelete, #noDelete {
+    width: 100%;
+    padding: 10px;
+    margin-top: 20px;
+  }
+  
+  #yesDelete {
+    background-color: #ff0000;
+    color: #fff; 
+  }
+  
+  #yesDelete:hover {
+    background-color: #cc0000; 
+  }
+  
+  #noDelete {
+    background-color: #4287f5; 
+    color: #fff; 
+  }
+  
+  #noDelete:hover {
+    background-color: #3064c6; 
+  }
