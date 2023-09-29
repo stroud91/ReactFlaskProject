@@ -1,7 +1,127 @@
-.profile-dropdown {
-  position: absolute;
+/* General Styling */
+ul {
+  list-style-type: none;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  align-items: center;
 }
 
-.hidden {
+li {
+  margin: 0 15px;
+}
+
+/* NavLink Styling */
+.view-business-button, .logout-red-button {
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  margin: 0 5px;
+  min-width: 100px;
+  max-width: 150px;
+  display: inline-block;
+  text-align: center;
+}
+
+.view-business-button:hover, .logout-red-button:hover {
+  background-color: darkred;
+}
+
+/* Profile Button Styling */
+button, .logout-red-button, .button, .button.profile-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.fas.fa-user-circle {
+  font-size: 1.5rem;
+}
+
+/* Profile Dropdown Menu Styling */
+.profile-dropdown {
+  position: absolute;
+  top: 89px;
+  right: 25px;
+  background-color: white;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  width: 200px;
+  display: block;
+}
+
+.profile-dropdown.hidden {
   display: none;
+}
+
+.profile-dropdown li {
+  padding: 10px;
+  border-bottom: 1px solid #eee;
+}
+
+.profile-dropdown li:last-child {
+  border-bottom: none;
+}
+
+.profile-dropdown button {
+  width: 100%;
+  text-align: left;
+  padding-left: 10px;
+}
+
+/* Modal Button Styling */
+.open-modal-button {
+  background-color: #007bff;
+  color: white;
+  padding: 10px 15px;
+}
+
+.open-modal-button:hover {
+  background-color: #0056b3;
+}
+
+/* Navigation Container */
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px;
+  background-color: #f9f9f9;
+  border-bottom: 1px solid #e1e1e1;
+}
+
+.nav-left {
+  display: flex;
+  align-items: center;
+}
+
+.small-logo {
+  height: 30px;
+  width: auto;
+  margin-right: 15px;
+}
+
+/* New Button Styling */
+.view-business-button {
+  background-color: red;
+  margin-right: 10px;
+}
+
+.view-business-button:hover {
+  background-color: darkred;
+}
+
+.logout-red-button {
+  background-color: red;
+}
+
+.logout-red-button:hover {
+  background-color: darkred;
+}
+
+.button.profile-button:hover {
+  background-color: #f2f2f2;
 }

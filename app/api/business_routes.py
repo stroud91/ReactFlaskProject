@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from ..models import Business, Review, db , Category
+from ..models import Business, Review, db , Category, BusinessImage
 from ..forms.bussiness_form import BusinessForm
 from datetime import datetime
 from flask_login import current_user, login_user, logout_user, login_required
@@ -130,6 +130,7 @@ def edit_business(b_id):
 @business_routes.route('/<int:b_id>/delete', methods=['DELETE'])
 def delete_business(b_id):
     business = Business.query.get(b_id)
+    images = BusinessImage.query.filter_by(business_id = b_id).all()
 
     if not business:
         return jsonify({"error": "Business not found"}), 404
@@ -142,14 +143,15 @@ def delete_business(b_id):
     try:
         for review in business.reviews:
             db.session.delete(review)
-
+        for image in images:
+            db.session.delete(image)
         db.session.delete(business)
         db.session.commit()
 
 
         response = {
             "message": "Business successfully deleted.",
-            "business": temp
+            # "business": temp
         }
 
         return jsonify(response)

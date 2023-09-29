@@ -9,7 +9,8 @@ import BusinessDetail from "./components/OneBussiness"
 import AddBusiness from "./components/CreateBussinessForm";
 import UpdateBusiness from "./components/UpdateBusinessForm";
 import BusinessMainPage from "./components/Bussiness";
-
+import { ModalProvider } from './context/Modal';
+import OwnedBusinesses from "./components/OwnedBusiness";
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -18,7 +19,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <>
+    <ModalProvider>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -34,16 +35,20 @@ function App() {
           <Route path="/business/:id/edit">
              <UpdateBusiness />
           </Route>
+          <Route path="/business/create-new-business">
+             <AddBusiness />
+          </Route>
           <Route path="/business/:id">
             <BusinessDetail />
           </Route>
-          <Route path="/create-new-business">
-             <AddBusiness />
+          <Route path="/owned">
+            <OwnedBusinesses />
           </Route>
+
 
         </Switch>
       )}
-    </>
+    </ModalProvider>
   );
 }
 

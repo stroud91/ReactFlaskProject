@@ -15,8 +15,9 @@ export const setBusiness = (business) => ({
   payload: business,
 });
 
-export const removeAllBusinesses = () => ({
+export const removeBusiness = (id) => ({
   type: REMOVE_BUSINESS,
+  payload: id,
 });
 
 export const setAllBusinesses = (businesses) => ({
@@ -115,6 +116,22 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
   }
 };
 
+export const deleteBusiness = (id) => async (dispatch) => {
+  console.log("id", id)
+  const response = await fetch(`/api/business/${id}/delete`, {
+    method: 'DELETE',
+  });
+
+  if (response.ok) {
+    const data = await response.json();
+    dispatch(removeBusiness(id));
+    return data;
+  } else {
+    const error = await response.json();
+    throw error;
+  }
+};
+
   const initialState = {
     list: [],
     current: {},
@@ -135,7 +152,8 @@ const businessReducer = (state = initialState, action) => {
       case SET_ONE_BUSINESS:
           return { ...state, selectedBusiness: action.payload };
       case REMOVE_BUSINESS:
-        return { ...state, current: null, selectedBusiness: null };
+          const newBusinessList = state.list.filter(business => business.id !== action.payload);
+          return { ...state, list: newBusinessList };
       case ADD_BUSINESS:
         return { ...state, list: [...state.list, action.payload] };
         case UPDATE_BUSINESS:
