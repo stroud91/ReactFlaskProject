@@ -9,6 +9,10 @@ import BusinessDetail from "./components/OneBussiness"
 import AddBusiness from "./components/CreateBussinessForm";
 import UpdateBusiness from "./components/UpdateBusinessForm";
 import BusinessMainPage from "./components/Bussiness";
+import OwnedBusinesses from "./components/OwnedBusiness";
+import QueryBusiness from "./components/QueryBusinesses";
+import { ModalProvider } from "./context/Modal";
+import MainPage from "./components/MainPageView";
 
 function App() {
   const dispatch = useDispatch();
@@ -18,7 +22,7 @@ function App() {
   }, [dispatch]);
 
   return (
-    <ModalProvider>
+    <>
       <Navigation isLoaded={isLoaded} />
       {isLoaded && (
         <Switch>
@@ -46,10 +50,13 @@ function App() {
           <Route path="/owned">
             <OwnedBusinesses />
           </Route>
+           <Route path =''>
+            <MainPage/>
+          </Route>
 
         </Switch>
       )}
-    </ModalProvider>
+    </>
   );
 }
 
