@@ -1,0 +1,39 @@
+.main-search-section {
+    display: flex;
+    align-items: center;
+  }
+  
+  .search-info {
+    flex: 1;
+    padding: 10px;
+  }
+  
+  .main-search-form {
+    display: flex;
+    align-items: center;
+  }
+  
+  .main-search-input {
+    padding: 10px;
+    width: 100%;
+  }
+  
+  .search-button {
+    padding: 11px 11px;
+    background-color: red;
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+  
+
+  .search-button[type='submit'] {
+    appearance: none;
+  }
+  
+
+  .search-button[type='submit']::before {
+    content: "\1F50D"; 
+    font-size: 1em;
+    margin-right: 5px;
+  }

@@ -9,8 +9,7 @@ import BusinessDetail from "./components/OneBussiness"
 import AddBusiness from "./components/CreateBussinessForm";
 import UpdateBusiness from "./components/UpdateBusinessForm";
 import BusinessMainPage from "./components/Bussiness";
-import { ModalProvider } from './context/Modal';
-import OwnedBusinesses from "./components/OwnedBusiness";
+
 function App() {
   const dispatch = useDispatch();
   const [isLoaded, setIsLoaded] = useState(false);
@@ -32,6 +31,9 @@ function App() {
           <Route path="/business/all" >
             <BusinessMainPage/>
           </Route>
+          <Route path="/business/search" >
+            <QueryBusiness />
+          </Route>
           <Route path="/business/:id/edit">
              <UpdateBusiness />
           </Route>
@@ -44,7 +46,6 @@ function App() {
           <Route path="/owned">
             <OwnedBusinesses />
           </Route>
-
 
         </Switch>
       )}

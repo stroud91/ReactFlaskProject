@@ -1,0 +1,21 @@
+.review-container {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-gap: 20px;
+  }
+  
+  .review-item {
+    border: 1px solid #ccc;
+    padding: 20px;
+    margin-bottom: 20px;
+  }
+  
+  .review-item strong {
+    font-weight: bold;
+    margin-right: 5px;
+  }
+
+  .review-item .business-name {
+    color: #3498db; 
+    font-size: 1.2em; 
+  }
