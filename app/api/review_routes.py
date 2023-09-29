@@ -19,6 +19,8 @@ def all_reviews():
         #print(all_reviews)
     return {"Reviews": all_reviews}
 
+
+
 @review_routes.route('/current')
 @login_required
 def get_user_reviews():
@@ -31,16 +33,32 @@ def get_user_reviews():
     
     return jsonify({"User_reviews": user_reviews})
 
-@review_routes.route('/<int:id>/reviews', methods=["POST"])
+
+@review_routes.route('/<int:id>/reviews')
+def single_business_reviews(id):
+    business = Business.query.get(id)
+    reviews = Review.query.filter_by(business_id=id).all()
+    
+    # Create a list of review dictionaries
+    review_list = [review.to_dict() for review in reviews]
+    
+    return {"restaurant_reviews": review_list}
+
+@review_routes.route('/<int:id>/reviews', methods=['POST'])
 @login_required
 def create_review(id):
-    form = ReviewForm(request.form)
+    form = ReviewForm()
     # Check if the restaurant exists
     business = Business.query.get(id)
     form['csrf_token'].data = request.cookies['csrf_token']
     #print(business)
     if not business:
-        return jsonify({"error": "Business not found"}), 404
+        return {"error": "Business not found"}
+    #query reviews by user id, if there are any, throw err msg saying user can't post more than once
+    user_reviews = Review.query.filter_by(business_id = id).filter_by(user_id = current_user.id).all()
+
+    if user_reviews:
+        return {"error": "Can't post more than one review per business!"}
 
     # Create a new review using the form data
     if form.validate():
@@ -55,10 +73,10 @@ def create_review(id):
         db.session.add(new_review)
         db.session.commit()
 
-        return jsonify({"review": new_review.to_dict()}), 201
+        return {"review": new_review.to_dict()}
 
     # If form validation fails, return errors
-    return jsonify({"errors": form.errors}), 400
+    return {"errors": form.errors}
 
 
 @review_routes.route('/<int:id>', methods=["PUT"])
@@ -67,13 +85,13 @@ def edit_review(id):
     # Check if the review exists
     review = Review.query.get(id)
     if not review:
-        return jsonify({"error": "Review not found"}), 404
+        return {"error": "Review not found"}, 404
 
     # Check if the logged-in user is the owner of the review
     if review.user_id != current_user.id:
-        return jsonify({"error": "You are not authorized to edit this review"}), 403
+        return {"error": "You are not authorized to edit this review"}, 403
 
-    form = ReviewForm(request.form)
+    form = ReviewForm()
     form['csrf_token'].data = request.cookies['csrf_token']
 
     if form.validate():
@@ -84,9 +102,9 @@ def edit_review(id):
         # Commit the changes to the database
         db.session.commit()
 
-        return jsonify({"review": review.to_dict()}), 200
+        return {"review": review.to_dict()}, 200
 
-    return jsonify({"errors": form.errors}), 400
+    return {"errors": form.errors}, 400
 
 
 @review_routes.route('/<int:id>', methods=["DELETE"])
@@ -98,7 +116,7 @@ def delete_review(id):
         return {"error": "Review not found"}, 404
 
     if review.user_id != current_user.id:
-        return jsonify({"error": "Forbidden"}), 403
+        return ({"error": "Forbidden"}), 403
 
     db.session.delete(review)
     db.session.commit()
