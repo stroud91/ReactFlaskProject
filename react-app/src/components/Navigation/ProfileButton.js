@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="button profile-button">
+      <button onClick={openMenu} className=" profile-button">
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -52,16 +52,16 @@ function ProfileButton({ user }) {
             <li>Welcome, {user.username}</li>
             <li>{user.first_name} {user.last_name}</li>
             <li>{user.email}</li>
-            <li>
-            <div>
-            <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
-            </div>
-            <div>
-            <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
-            </div>
-            <div>
-            <button onClick={handleLogout} className="logout-red-button">Log Out</button>
-            </div>
+            <li className="view-logout-container">
+              <div>
+                <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
+              </div>
+              <div>
+                <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
+              </div>
+              <div>
+                <button onClick={handleLogout} className="logout-red-button">Log Out</button>
+              </div>
             </li>
           </>
         ) : (

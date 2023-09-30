@@ -296,3 +296,131 @@ a {
     transition: background-color 0.3s ease;
     margin-right: 20px;
 }
+
+
+/* Business Info Styling */
+.info {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Business Address, Website, Category, Type, City Styling */
+.address, .website, .category, .type, .city {
+    font-size: 1rem;
+    color: #555;
+    background: #f2f2f2;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+.website a {
+    color: #2B273C;
+}
+
+/* Average Rating Styling */
+.average-rating {
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+/* Reviews Section Styling */
+.individualReview {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .reviewUser, .createdAt, .reviewDescription, .user-id {
+    margin-bottom: 10px;
+  }
+
+  .reviewUser {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .createdAt {
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  .reviewDescription {
+    font-size: 1rem;
+  }
+
+  /* Edit and Delete Button Styling */
+  .buttonContainer {
+    margin-top: 10px;
+  }
+
+  .editButtons, .deleteButtons {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+  }
+
+  .editButton:hover {
+    background-color: #0056b3;
+  }
+
+  .deleteButton {
+    background-color: #dc3545;
+  }
+
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+
+
+  .business-buttons-conditional {
+    margin-top: 20px;
+}
+
+.general-button {
+    background-color: #2B273C;
+    color: white;
+    padding: 12px 24px;
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.general-button:hover {
+    background-color: #565056;
+    transform: scale(1.05);
+}
+.reviewButtons{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+}
+
+.edit-delete-modals{
+    margin-left: 0;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.scroll-gallery{
+    margin: 0;
+}

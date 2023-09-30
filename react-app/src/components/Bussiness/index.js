@@ -42,7 +42,7 @@ function BusinessMainPage() {
                             key={business.id}
                         />
                     </div>
-                    <div>Name: {business.name}</div>
+                    <p>Name: {business.name}</p>
                     <p>Category: {business.category}</p>
                     <p>Rating: {business.avg_rating}</p>
                     <p>{business.address}, {business.city}, {business.state} {business.zip_code}</p>

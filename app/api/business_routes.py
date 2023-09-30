@@ -17,8 +17,26 @@ def search_business():
     #business_list =[]
     if form.validate():
         searchTerm = form.search.data
+        
         businesses = Business.query.filter(Business.name.ilike(f'%{searchTerm}%')).all()
-        business_list = [business.to_dict() for business in businesses]
+# gar's portion
+        business_list = []
+        for business in businesses:
+            business_dict = business.to_dict()
+            imgs_list = []
+            images = business.images
+            for image in images:
+                img_dic = image.to_dict()
+                imgs_list.append(img_dic)
+            reviews = business.reviews
+            ratings = [review.rating for review in reviews]
+            avg_rating = sum(ratings) / len(ratings) if ratings else 0
+            business_dict['avg_rating'] = round(avg_rating, 2)
+            business_dict['images'] = imgs_list
+            business_dict['category'] = business.category.name if business.category else None
+
+            business_list.append(business_dict)
+        # business_list = [business.to_dict() for business in businesses]
     
     return {"queried businesses": business_list}
 

@@ -1,4 +1,4 @@
-import React, { useEffect,useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import PostReviewModal from "../PostReviewModal";
 import OpenModalButton from "../OpenModalButton";
@@ -7,7 +7,7 @@ import DeleteReviewModal from "../DeleteReviewModal";
 import EditReviewModal from "../EditReviewModal";
 import ImagesModal from '../Image/GetImagesModal';
 import { fetchOneBusiness } from '../../store/business';
-import { useParams, useHistory  } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import { useModal } from '../../context/Modal';
 import * as imageActions from "../../store/images";
 import noImage from "../../images/no-image.png"
@@ -45,10 +45,10 @@ function BusinessDetail() {
     setShowConfirmModal(true);
   };
 
-const handleEdit = (e) => {
+  const handleEdit = (e) => {
     e.preventDefault();
     history.push(`/business/${business.id}/edit`);
-}
+  }
 
 
   let image_gallery
@@ -86,29 +86,29 @@ const handleEdit = (e) => {
         </span>
       </div>
       <div className='business-detail-container'>
-            {/* Side Panel for Contact Info */}
-            <div className='business-side-panel'>
-                <h2>Contact Information</h2>
-                <p>Address: {business.address}</p>
-                <p>Phone Number: {business.phone_number}</p>
-                <p>City: {business.city}, {business.state} {business.zip_code}</p>
-                <p>Website: <a href={business.website} target="_blank" rel="noopener noreferrer">{business.website}</a></p>
-            </div>
-
-            {/* Main Business Info */}
-            <div className='business-info'>
-                <h1>{business.name}</h1>
-                <p>Category: {business.category}</p>
-                <p>Type: {business.type}</p>
-                <div>Average Rating: {business.avg_rating}</div>
-
-                {currentUser.id === business.id &&
-                <div className='business-buttons-conditional'>
-                    <button className='general-button' onClick={() => handleEdit(business.id)}>Edit</button>
-                    <button className='general-button' onClick={() => handleDelete(business.id)}>Delete</button>
-                </div>}
-            </div>
+        {/* Side Panel for Contact Info */}
+        <div className='business-side-panel'>
+          <h2>Contact Information</h2>
+          <p>Address: {business.address}</p>
+          <p>Phone Number: {business.phone_number}</p>
+          <p>City: {business.city}, {business.state} {business.zip_code}</p>
+          <p>Website: <a href={business.website} target="_blank" rel="noopener noreferrer">{business.website}</a></p>
         </div>
+
+        {/* Main Business Info */}
+        <div className='business-info'>
+          <h1>{business.name}</h1>
+          <p>Category: {business.category}</p>
+          <p>Type: {business.type}</p>
+          <div>Average Rating: {business.avg_rating}</div>
+
+          {currentUser.id === business.id &&
+            <div className='business-buttons-conditional'>
+              <button className='general-button' onClick={() => handleEdit(business.id)}>Edit</button>
+              <button className='general-button' onClick={() => handleDelete(business.id)}>Delete</button>
+            </div>}
+        </div>
+      </div>
       <div className="postYourReview">
         {user &&
           user.id !== business.owner_id &&
@@ -130,38 +130,38 @@ const handleEdit = (e) => {
             //   <div className="createdAt">{(review.created_At)}</div>
             //   <div className="reviewDescription">{review.review_body}</div>
             <div key={review.id} className="individualReview">
-  <p className="user-id">
+              <p className="user-id">
                 {" "}
                 {review.user_first_name} {review.user_last_name}
               </p>
-  <p className="reviewDescription">{review.review_body}</p>
-  <p className="rating">
+              <p className="reviewDescription">{review.review_body}</p>
+              <p className="rating">
                 {[...Array(review.rating)].map((_, index) => (
                   <i key={index} className="fa-solid fa-star"></i>
                 ))}
               </p>
-  <p className="createdAt">Created At: {new Date(review.created_at).toLocaleString()}</p>
-  <p className="updatedAt">Updated At: {new Date(review.updated_at).toLocaleString()}</p>
-  {user && review.user_id === user.id && (
-    <div className="buttonContainer">
-      <div className='reviewButtons'>
-      <OpenModalButton
-        buttonText="Edit"
-        modalComponent={
-                      <EditReviewModal business_id={id} review={review} />
-                    }
+              <p className="createdAt">Created At: {new Date(review.created_at).toLocaleString()}</p>
+              <p className="updatedAt">Updated At: {new Date(review.updated_at).toLocaleString()}</p>
+              {user && review.user_id === user.id && (
+                <div className="buttonContainer">
+                  <div className='edit-delete-modals'>
+                    <OpenModalButton
+                      buttonText="Edit"
+                      modalComponent={
+                        <EditReviewModal business_id={id} review={review} />
+                      }
 
-      />
-      <OpenModalButton
-        buttonText="Delete"
-        modalComponent={
-                      <DeleteReviewModal id={id} review={review.id} />
-                    }
-      />
-      </div>
-    </div>
-  )}
-</div>
+                    />
+                    <OpenModalButton
+                      buttonText="Delete"
+                      modalComponent={
+                        <DeleteReviewModal id={id} review={review.id} />
+                      }
+                    />
+                  </div>
+                </div>
+              )}
+            </div>
           ))
           .reverse()}
     </div>

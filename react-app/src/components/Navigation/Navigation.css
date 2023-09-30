@@ -25,8 +25,23 @@ li {
   background-color: blue;
 }
 
-.button.profile-button:hover {
-  background-color: #f2f2f2;
+/* Profile Button Styling */
+button, .logout-red-button, .button, .button.profile-button, .view-business-button {
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.fas.fa-user-circle {
+  font-size: 1.5rem;
+  color: rgb(67, 67, 67)
+}
+
+.fas.fa-user-circle:hover {
+  font-size: 1.5rem;
+  color: darkred
 }
 
 /* Profile Dropdown Menu Styling */
@@ -38,10 +53,8 @@ li {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 200px;
-  overflow: auto;
-  transition: all 0.3s ease-out;
+  width: fit-content;
+  display: block;
 }
 
 .profile-dropdown.hidden {
@@ -80,8 +93,8 @@ li {
 
 .profile-dropdown button {
   width: 100%;
-  text-align: left;
-  padding-left: 10px;
+  text-align: center;
+  /* padding-left: 10px; */
 }
 
 /* Modal Button Styling */
@@ -117,10 +130,12 @@ li {
 }
 
 /* New Button Styling */
-.view-business-button {
+.view-business-button, .logout-red-button {
   background-color: red;
-  margin-right: 10px;
-  
+  margin-right: 5px;
+  text-decoration: none;
+  margin-bottom: 5px;
+  width: 100%;
 }
 
 .view-business-button:hover {
@@ -174,6 +189,12 @@ li {
   background-color: #f2f2f2;
 }
 
+.view-logout-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
 /* Searchbar Style */
 .searchbar {
   flex-grow: 1;
@@ -181,6 +202,3 @@ li {
   margin-bottom: -20px;
 }
 
-.fas fa-user-circle{
-  color: black;
-}
