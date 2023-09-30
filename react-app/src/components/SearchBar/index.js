@@ -15,15 +15,14 @@ function SearchBar() {
         setSearchTerm(e.target.value)
     };
 
-    const handleSubmit = async (e) => {
-        e.preventDefault()
-        if (searchTerm !== '') {
-        await dispatch(searchBusinessByName(searchTerm));
-        setSearched(true);
-        history.push('/business/search')
-
-      }
-    };
+const handleSubmit = async (e) => {
+  e.preventDefault();
+  if (searchTerm !== '') {
+    await dispatch(searchBusinessByName(searchTerm));
+    setSearched(true);
+    history.push('/business/search');
+  }
+};
     useEffect(() => {
         dispatch(searchBusinessByName(searchTerm))
       }, [dispatch]);

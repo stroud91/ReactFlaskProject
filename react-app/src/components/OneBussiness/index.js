@@ -123,7 +123,7 @@ function BusinessDetail() {
         </div> */}
       <div className="postYourReview">
         {user &&
-          user.id !== business.owner_Id &&
+          user.id !== business.owner_id &&
           !reviews.restaurant_reviews.some(
             (review) => review.user_id === user.id
           ) && (
@@ -142,21 +142,32 @@ function BusinessDetail() {
             //   <div className="createdAt">{(review.created_At)}</div>
             //   <div className="reviewDescription">{review.review_body}</div>
             <div key={review.id}>
-              <p>User id: {review.user_id}</p>
+              <p>
+                {" "}
+                {review.user_first_name} {review.user_last_name}
+              </p>
               <p>{review.review_body}</p>
-              <p>Rating: {review.rating}</p>
+              <p>
+                {[...Array(review.rating)].map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
+              </p>
               <p>Created At: {new Date(review.created_at).toLocaleString()}</p>
               <p>Updated At: {new Date(review.updated_at).toLocaleString()}</p>
               {user && review.user_id === user.id && (
                 <div>
                   <OpenModalButton
                     buttonText="Edit"
-                    modalComponent={<EditReviewModal business_id={id} review={review} />}
+                    modalComponent={
+                      <EditReviewModal business_id={id} review={review} />
+                    }
                   />
 
                   <OpenModalButton
                     buttonText="Delete"
-                    modalComponent={<DeleteReviewModal id={id} review={review.id} />}
+                    modalComponent={
+                      <DeleteReviewModal id={id} review={review.id} />
+                    }
                   />
                 </div>
               )}

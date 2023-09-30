@@ -25,10 +25,22 @@ function LoginFormModal() {
     }
   };
 
+  const demoUser = async (e) => {
+    e.preventDefault()
+    let email = "demo@aa.io"
+    let password = "password"
+    const data = await dispatch(login(email, password));
+    if (data) {
+      setErrors(data);
+    } else {
+      history.push("/business/all")
+      closeModal()
+    }
+  }
 
 
   return (
-    <>
+    <div className="login-form-container">
       <h1>Log In</h1>
       <form onSubmit={handleSubmit}>
         <ul>
@@ -36,27 +48,33 @@ function LoginFormModal() {
             <li key={idx}>{error}</li>
           ))}
         </ul>
-        <label>
-          Email
+        <div className="form-group">
+          <label>Email</label>
           <input
             type="text"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             required
           />
-        </label>
-        <label>
-          Password
+        </div>
+        <div className="form-group">
+          <label>Password</label>
           <input
             type="password"
             value={password}
             onChange={(e) => setPassword(e.target.value)}
             required
           />
-        </label>
-        <button type="submit">Log In</button>
+        </div>
+        <button type="submit" className="btn-login">
+          Log In
+        </button>
       </form>
-    </>
+      <p className="or">or</p>
+      <button onClick={demoUser} className="btn-demo">
+        Log In as Demo User
+      </button>
+    </div>
   );
 }
 
