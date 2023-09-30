@@ -35,14 +35,13 @@ function ImagesModal({ bus_data }) {
             const { id, image_url } = image
             return (
                 <>
-                    <div className="image-box">
-                        <img src={image_url}
-                            className={(imgId === id && showDel) && currentUser ? "cursor business_images withBorder" : "cursor business_images noBorder"}
-                            alt={`image_${id}`}
-                            key={`bus-image-${id}`}
-                            onClick={(e) => handleClick(e, id)}
-                        />
-                    </div>
+
+                    <img src={image_url}
+                        className={(imgId === id && showDel) && currentUser ? "cursor business_images withBorder" : "cursor business_images noBorder"}
+                        alt={`image_${id}`}
+                        key={`bus-image-${id}`}
+                        onClick={(e) => handleClick(e, id)}
+                    />
                 </>
             )
         })

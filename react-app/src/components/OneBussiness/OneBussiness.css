@@ -179,3 +179,15 @@ a {
     padding: 5px 10px;
     border-radius: 20px;
 }
+
+
+.edit-delete-modals{
+    margin-left: 0;
+    width: 120px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.scroll-gallery{
+    margin: 0;
+}

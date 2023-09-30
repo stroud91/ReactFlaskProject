@@ -148,7 +148,7 @@ function BusinessDetail() {
               <p>Created At: {new Date(review.created_at).toLocaleString()}</p>
               <p>Updated At: {new Date(review.updated_at).toLocaleString()}</p>
               {user && review.user_id === user.id && (
-                <div>
+                <div className='edit-delete-modals'>
                   <OpenModalButton
                     buttonText="Edit"
                     modalComponent={<EditReviewModal business_id={id} review={review} />}

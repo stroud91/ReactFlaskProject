@@ -43,7 +43,7 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="button profile-button">
+      <button onClick={openMenu} className=" profile-button">
         <i className="fas fa-user-circle" />
       </button>
       <ul className={ulClassName} ref={ulRef}>
@@ -52,7 +52,7 @@ function ProfileButton({ user }) {
             <li>Welcome, {user.username}</li>
             <li>{user.first_name} {user.last_name}</li>
             <li>{user.email}</li>
-            <li>
+            <li className="view-logout-container">
               <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
               <button onClick={handleLogout} className="logout-red-button">Log Out</button>
             </li>

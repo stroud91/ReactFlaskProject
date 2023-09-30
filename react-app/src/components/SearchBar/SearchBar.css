@@ -20,7 +20,15 @@
   
   .search-button {
     padding: 11px 11px;
-    background-color: red;
+    background-color: rgb(244,7,7);
+    color: white;
+    border: none;
+    cursor: pointer;
+  }
+
+  .search-button:hover {
+    padding: 11px 11px;
+    background-color: darkred;
     color: white;
     border: none;
     cursor: pointer;
