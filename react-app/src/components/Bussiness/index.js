@@ -9,7 +9,7 @@ function BusinessMainPage() {
     const dispatch = useDispatch();
     const businesses = useSelector(state => state.business.list);
     console.log("BUSSINES:", businesses)
-    console.log( typeof businesses)
+    console.log(typeof businesses)
     useEffect(() => {
         dispatch(businessActions.getAllBusinesses());
     }, [dispatch]);
@@ -19,7 +19,7 @@ function BusinessMainPage() {
     return (
         <ul className='businessMain__grid'>
             {businesses && businesses.map((business) => (
-                <li key={business.id} className='businessMain__item'>
+                <ul key={business.id} className='businessMain__item'>
                     <li className="businessMain__image">
                         {/* Image will go here */}
                     </li>
@@ -29,7 +29,7 @@ function BusinessMainPage() {
                     <p>{business.address}, {business.city}, {business.state} {business.zip_code}</p>
                     <p>{business.phone_number}</p>
                     <Link to={`/business/${business.id}`}>View More</Link>
-                </li>
+                </ul>
             ))}
         </ul>
     );
