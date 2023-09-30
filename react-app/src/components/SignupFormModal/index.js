@@ -19,7 +19,7 @@ function SignupFormModal() {
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password));
+			const data = await dispatch(signUp(username, email, password, first_name, last_name));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -41,14 +41,14 @@ function SignupFormModal() {
 				/>
 			</div>
 			<div className="signup_container">
-				<div className="title">Sign Up for Yelping</div>
+				<div className="signup_title">Sign Up for Yelping</div>
 				<form onSubmit={handleSubmit}>
 					<div className="business-error__container">
 						{errors.map((error, idx) => (
-							<div className="error" key={idx}>{error}</div>
+							<div className="signup-error" key={idx}>{(error)}</div>
 						))}
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* <label>Username</label> */}
 						<input
 							type="text"
@@ -58,7 +58,7 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* Email */}
 						<input
 							type="text"
@@ -68,7 +68,7 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* First Name */}
 						<input
 							type="text"
@@ -78,7 +78,7 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* Last Name */}
 						<input
 							type="text"
@@ -88,7 +88,7 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* Password */}
 						<input
 							type="password"
@@ -98,7 +98,7 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input'>
+					<div className='signup__input'>
 						{/* Confirm Password */}
 						<input
 							type="password"
@@ -108,8 +108,8 @@ function SignupFormModal() {
 							required
 						/>
 					</div>
-					<div className='form__input button_container'>
-						<button className="form__button" type="submit">Sign Up</button>
+					<div className='signup__input_button_container'>
+						<button className="signup__button" type="submit">Sign Up</button>
 					</div>
 				</form>
 			</div >
