@@ -131,7 +131,7 @@ export  const editReviewThunk =(reviewId, editedReview) => async dispatch => {
     })
     if (res.ok) {
         const editReviewRes = await res.json()
-        console.log("😅 THIS IS EDITED REVIEW FROM THUNK", editReviewRes)
+        //console.log("😅 THIS IS EDITED REVIEW FROM THUNK", editReviewRes)
         dispatch(editReview(editReviewRes))
         return editReview
     } else {
