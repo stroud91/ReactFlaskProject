@@ -33,25 +33,25 @@ function App() {
             <SignupFormPage />
           </Route>
           <Route path="/business/all" >
-            <BusinessMainPage/>
-          </Route>
-          <Route path="/business/search" >
-            <QueryBusiness />
-          </Route>
-          <Route path="/business/:id/edit">
-             <UpdateBusiness />
-          </Route>
-          <Route path="/business/create-new-business">
-             <AddBusiness />
+            <BusinessMainPage />
           </Route>
           <Route path="/business/:id">
             <BusinessDetail />
           </Route>
+          <Route path="/business/search" exact>
+            <QueryBusiness />
+          </Route>
+          <Route path="/business/:id/edit">
+            <UpdateBusiness />
+          </Route>
+          <Route path="/business/create-new-business">
+            <AddBusiness />
+          </Route>
           <Route path="/owned">
             <OwnedBusinesses />
           </Route>
-           <Route path =''>
-            <MainPage/>
+          <Route path=''>
+            <MainPage />
           </Route>
 
         </Switch>

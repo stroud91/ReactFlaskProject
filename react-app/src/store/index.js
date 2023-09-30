@@ -7,7 +7,7 @@ import { persistStore, persistReducer } from 'redux-persist'
 import storage from 'redux-persist/lib/storage'
 import bus_images from './images';
 const rootReducer = combineReducers({
-  session, 
+  session,
   business: businessReducer,
   reviews: reviewReducer,
   bus_images
@@ -37,9 +37,9 @@ if (process.env.NODE_ENV === 'production') {
 }
 
 const configureStore = (preloadedState) => {
-  let store =  createStore(persistedReducer, preloadedState, enhancer);
+  let store = createStore(persistedReducer, preloadedState, enhancer);
   let persistor = persistStore(store)
-  return { store , persistor}
+  return { store, persistor }
 };
 
 

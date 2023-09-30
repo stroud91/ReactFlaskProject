@@ -5,7 +5,7 @@ const SET_ALL_BUSINESSES = "business/SET_ALL_BUSINESSES";
 const SET_ONE_BUSINESS = "business/SET_ONE_BUSINESS";
 const UPDATE_BUSINESS = "business/UPDATE_BUSINESS";
 const ADD_BUSINESS = "business/ADD_BUSINESS";
-const SEARCH_BUSINESS = "business/search";
+const SEARCH_BUSINESS = "business/QUERY";
 // Initial State
 
 // Action Creators
@@ -46,7 +46,7 @@ export const searchBusiness = (search) => ({
 
 // Thunks
 export const searchBusinessByName = (search) => async (dispatch) => {
-  const response = await fetch(`api/business/search`, {
+  const response = await fetch(`/api/business/search`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
