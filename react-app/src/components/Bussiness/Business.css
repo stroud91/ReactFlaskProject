@@ -46,3 +46,12 @@
   .businessMain__item a:hover {
     background-color: #0056b3;
   }
+
+.busImg{
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    width: 50%;
+    z-index: 0;
+    grid-area:header;
+}

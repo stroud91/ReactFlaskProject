@@ -1,16 +1,19 @@
-import React, { useEffect } from "react";
-import { useSelector, useDispatch } from "react-redux";
-import { fetchOneBusiness } from "../../store/business";
-import { useParams } from "react-router-dom";
-import "./OneBussiness.css";
+import React, { useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
 import PostReviewModal from "../PostReviewModal";
 import OpenModalButton from "../OpenModalButton";
 import { allReviewsThunk, oneBussinessReviewsThunk } from "../../store/review";
 import DeleteReviewModal from "../DeleteReviewModal";
 import EditReviewModal from "../EditReviewModal";
+import ImagesModal from '../Image/GetImagesModal';
+import { fetchOneBusiness } from '../../store/business';
+import { useParams } from 'react-router-dom';
+import * as imageActions from "../../store/images";
+import noImage from "../../images/no-image.png"
+import './OneBussiness.css';
+import '../Image/ImagesForm.css'
 
 function BusinessDetail() {
-  // const history = useHistory();
   const dispatch = useDispatch();
   const { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
@@ -23,6 +26,7 @@ function BusinessDetail() {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
     dispatch(allReviewsThunk())
+    dispatch(imageActions.images(id))
   }, [dispatch, id]);
 
   if (!business) return <div>Loading...</div>;
@@ -51,33 +55,42 @@ function BusinessDetail() {
   // } else {
   //     buttons = null;
   // }
-  // const postReviewButton = (user, business) => {
-  //     if (user === null || user === undefined) return false; //=> Need to log in to post a review
-  //     for (let review of reviews) {
-  //         if (review.userId === user.id) return false; // =>Can't post a second review
-  //       }
 
-  //     if (user.id === business.ownerId) return false; // => You can't write a review for your own restaurant
-  //     return true;
-  // }
 
-  // const deleteReviewButton = (user) => {
-  //     if (user === null || user === undefined) return false;
-  //     for (let review of reviews) {
-  //         if (review.userId === user.id) return true;
-  //       }
-  //     return false;
-  // }
-//   console.log(
-//     "Condition met:",
-//     reviews["restaurant_reviews"].user_Id === user.id
-//   );
-//   console.log("user:", user.id);
-//   console.log("review.user_Id:", reviews.restaurant_reviews.user_id);
-//   console.log("this is reviews.restaurant.reviews", reviews.restaurant_reviews);
+  let image_gallery
+
+  console.log(business.images)
+
+  if (business.images.length) {
+    image_gallery = business.images.map((image) => {
+      const { id, image_url } = image
+      return (
+        <img src={image_url} alt={`imageId_${id}`}></img>
+      )
+    })
+  } else {
+    image_gallery = (
+      <img src={noImage} alt={`imageId_${id}`}></img>
+    )
+  }
+
   return (
     <div>
       <h1>{business.name}</h1>
+      <div className='scroll-gallery'>
+        <div className='scroll-container'>
+          {image_gallery}
+        </div>
+        <span
+          className="see-images">
+          <OpenModalButton
+            buttonText={`See all ${business.images.length} photos`}
+            modalComponent={<ImagesModal
+              bus_data={business} />}
+            id={'see-img'}
+          />
+        </span>
+      </div>
       <p>Address: {business.address}</p>
       <p>Phone Number: {business.phone_number}</p>
       <p>
@@ -88,10 +101,10 @@ function BusinessDetail() {
       </p>
       <p>Category: {business.category}</p>
       <p>Type: {business.type}</p>
-      <p>
-        City: {business.city}, {business.state} {business.zip_code}
-      </p>
-      <div>Average Rating: {business.avg_rating}</div>
+      <p>City: {business.city}, {business.state} {business.zip_code}</p>
+      <div>
+        Average Rating: {business.avg_rating}
+      </div>
 
       {/* {business?.reviews?.map(review => (
                 <div key={review.id}>
@@ -135,17 +148,17 @@ function BusinessDetail() {
               <p>Created At: {new Date(review.created_at).toLocaleString()}</p>
               <p>Updated At: {new Date(review.updated_at).toLocaleString()}</p>
               {user && review.user_id === user.id && (
-                 <div>
+                <div>
                   <OpenModalButton
                     buttonText="Edit"
                     modalComponent={<EditReviewModal business_id={id} review={review} />}
                   />
-            
+
                   <OpenModalButton
                     buttonText="Delete"
                     modalComponent={<DeleteReviewModal id={id} review={review.id} />}
                   />
-               </div>
+                </div>
               )}
             </div>
           ))

@@ -26,7 +26,7 @@ export const setAllBusinesses = (businesses) => ({
 
 export const setOneBusiness = (business) => ({
   type: SET_ONE_BUSINESS,
-  payload: business,
+  payload: business
 });
 
 export const addBusiness = (business) => ({
@@ -75,7 +75,7 @@ export const getBusiness = (id) => async (dispatch) => {
 
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/business`);
-  console.log("response", response);
+  console.log("response", response)
   if (response.ok) {
     const data = await response.json();
     console.log("data", data);
@@ -110,6 +110,7 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
   if (response.ok) {
     const business = await response.json();
     dispatch(setOneBusiness(business));
+
   } else {
     const errorData = await response.json();
     console.error("Thunk Error: Failed to add business", errorData);

@@ -14,6 +14,7 @@ from .api.categories_routes import categories_routes
 from .seeds import seed_commands
 from .config import Config
 
+
 app = Flask(__name__, static_folder='../react-app/build', static_url_path='/')
 
 # Setup login manager
@@ -33,7 +34,7 @@ app.config.from_object(Config)
 app.register_blueprint(user_routes, url_prefix='/api/users')
 app.register_blueprint(auth_routes, url_prefix='/api/auth')
 app.register_blueprint(business_routes, url_prefix='/api/business')
-app.register_blueprint(images_routes, url_prefix='/api/images')
+app.register_blueprint(images_routes, url_prefix='/api/business')
 app.register_blueprint(review_routes, url_prefix='/api/reviews')
 app.register_blueprint(categories_routes, url_prefix='/api/categories')
 db.init_app(app)
