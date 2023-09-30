@@ -18,7 +18,7 @@ function QueryBusiness() {
 
 
   useEffect(() => {
-    dispatch(searchBusinessByName());
+    // dispatch(searchBusinessByName());
   }, [dispatch]);
 
   let getPrev = (business) => {

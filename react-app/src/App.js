@@ -38,9 +38,9 @@ function App() {
           <Route path="/business/:id">
             <BusinessDetail />
           </Route>
-          <Route path="/business/search" exact>
+          {/* <Route path="/business/search" exact>
             <QueryBusiness />
-          </Route>
+          </Route> */}
           <Route path="/business/:id/edit">
             <UpdateBusiness />
           </Route>

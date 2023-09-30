@@ -30,10 +30,10 @@ function BusinessDetail() {
   // console.log("THIS IS USER", user);
   // console.log("THIS IS REVIEWS", reviews);
   useEffect(() => {
-    dispatch(fetchOneBusiness(id));
-    dispatch(oneBussinessReviewsThunk(id));
-    dispatch(allReviewsThunk())
-    dispatch(imageActions.images(id))
+    // dispatch(fetchOneBusiness(id));
+    // dispatch(oneBussinessReviewsThunk(id));
+    // dispatch(allReviewsThunk())
+    // dispatch(imageActions.images(id))
   }, [dispatch, id]);
 
   if (!business) return <div>Loading...</div>;

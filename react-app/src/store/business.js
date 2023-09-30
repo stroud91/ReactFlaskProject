@@ -45,23 +45,23 @@ export const searchBusiness = (search) => ({
 });
 
 // Thunks
-export const searchBusinessByName = (search) => async (dispatch) => {
-  const response = await fetch(`/api/business/search`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ search }),
-  });
-  if (response.ok) {
-    const results = await response.json();
-    console.log("YOOOO SEARCH THUNK ", results);
-    dispatch(searchBusiness(results));
-  } else {
-    const errorData = await response.json();
-    return errorData;
-  }
-};
+// export const searchBusinessByName = (search) => async (dispatch) => {
+//   const response = await fetch(`/api/business/search`, {
+//     method: "POST",
+//     headers: {
+//       "Content-Type": "application/json",
+//     },
+//     body: JSON.stringify({ search }),
+//   });
+//   if (response.ok) {
+//     const results = await response.json();
+//     console.log("YOOOO SEARCH THUNK ", results);
+//     dispatch(searchBusiness(results));
+//   } else {
+//     const errorData = await response.json();
+//     return errorData;
+//   }
+// };
 
 export const getBusiness = (id) => async (dispatch) => {
   const response = await fetch(`/api/business/${id}`);

@@ -4,7 +4,7 @@ import { getBusinesses } from '../../store/business'
 import React, { useState, useEffect } from "react";
 import RecentActivity from "../RecentActivity"
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import SearchBar from "../SearchBar"
+// import SearchBar from "../SearchBar"
 
 function MainPage() {
 
