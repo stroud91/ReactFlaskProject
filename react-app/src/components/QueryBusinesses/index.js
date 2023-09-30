@@ -4,6 +4,7 @@ import { Link } from "react-router-dom";
 import * as businessActions from "../../store/business";
 import "../Bussiness/Business.css";
 import MainPage from "../MainPageView";
+import { searchBusinessByName } from "../../store/business";
 
 function QueryBusiness() {
   const dispatch = useDispatch();
@@ -11,16 +12,18 @@ function QueryBusiness() {
   businesses = businesses["queried businesses"];
   console.log("This is the result of the search bar", businesses);
 
- 
+  useEffect(() => {
+    dispatch(searchBusinessByName());
+  }, [dispatch]);
 
   return (
     <div>
       {businesses.length === 0 ? (
         <div>
-        <p> No restaurants found. Please try a different search.</p>
-        <Link to="/">
-        <button>Go back to main page</button>
-        </Link>
+          <p> No restaurants found. Please try a different search.</p>
+          <Link to="/">
+            <button>Go back to main page</button>
+          </Link>
         </div>
       ) : (
         <ul className="businessMain__grid">

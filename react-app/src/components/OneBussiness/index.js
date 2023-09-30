@@ -22,7 +22,7 @@ function BusinessDetail() {
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
-    dispatch(allReviewsThunk())
+    dispatch(allReviewsThunk());
   }, [dispatch, id]);
 
   if (!business) return <div>Loading...</div>;
@@ -68,13 +68,13 @@ function BusinessDetail() {
   //       }
   //     return false;
   // }
-//   console.log(
-//     "Condition met:",
-//     reviews["restaurant_reviews"].user_Id === user.id
-//   );
-//   console.log("user:", user.id);
-//   console.log("review.user_Id:", reviews.restaurant_reviews.user_id);
-//   console.log("this is reviews.restaurant.reviews", reviews.restaurant_reviews);
+  //   console.log(
+  //     "Condition met:",
+  //     reviews["restaurant_reviews"].user_Id === user.id
+  //   );
+  //   console.log("user:", user.id);
+  //   console.log("review.user_Id:", reviews.restaurant_reviews.user_id);
+  //   console.log("this is reviews.restaurant.reviews", reviews.restaurant_reviews);
   return (
     <div>
       <h1>{business.name}</h1>
@@ -129,23 +129,34 @@ function BusinessDetail() {
             //   <div className="createdAt">{(review.created_At)}</div>
             //   <div className="reviewDescription">{review.review_body}</div>
             <div key={review.id}>
-              <p>User id: {review.user_id}</p>
+              <p>
+                {" "}
+                {review.user_first_name} {review.user_last_name}
+              </p>
               <p>{review.review_body}</p>
-              <p>Rating: {review.rating}</p>
+              <p>
+                {[...Array(review.rating)].map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
+              </p>
               <p>Created At: {new Date(review.created_at).toLocaleString()}</p>
               <p>Updated At: {new Date(review.updated_at).toLocaleString()}</p>
               {user && review.user_id === user.id && (
-                 <div>
+                <div>
                   <OpenModalButton
                     buttonText="Edit"
-                    modalComponent={<EditReviewModal business_id={id} review={review} />}
+                    modalComponent={
+                      <EditReviewModal business_id={id} review={review} />
+                    }
                   />
-            
+
                   <OpenModalButton
                     buttonText="Delete"
-                    modalComponent={<DeleteReviewModal id={id} review={review.id} />}
+                    modalComponent={
+                      <DeleteReviewModal id={id} review={review.id} />
+                    }
                   />
-               </div>
+                </div>
               )}
             </div>
           ))
