@@ -35,12 +35,10 @@ function MainPage() {
       <header className='main-header'>
         <h1>Welcome to Our Business Directory</h1>
       </header>
-    
+      < RecentActivity />
       <footer className='main-footer'>
         <p>&copy; 2023 Business Directory</p>
       </footer>
-      < SearchBar />
-      < RecentActivity />
     </div>
   ) : (
     <div>Loading...</div>

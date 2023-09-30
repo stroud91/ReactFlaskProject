@@ -53,8 +53,15 @@ function ProfileButton({ user }) {
             <li>{user.first_name} {user.last_name}</li>
             <li>{user.email}</li>
             <li>
-              <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
-              <button onClick={handleLogout} className="logout-red-button">Log Out</button>
+            <div>
+            <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
+            </div>
+            <div>
+            <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
+            </div>
+            <div>
+            <button onClick={handleLogout} className="logout-red-button">Log Out</button>
+            </div>
             </li>
           </>
         ) : (
