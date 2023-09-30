@@ -5,6 +5,14 @@ import SignupFormPage from "./components/SignupFormPage";
 import LoginFormPage from "./components/LoginFormPage";
 import { authenticate } from "./store/session";
 import Navigation from "./components/Navigation";
+import BusinessDetail from "./components/OneBussiness"
+import AddBusiness from "./components/CreateBussinessForm";
+import UpdateBusiness from "./components/UpdateBusinessForm";
+import BusinessMainPage from "./components/Bussiness";
+import OwnedBusinesses from "./components/OwnedBusiness";
+import QueryBusiness from "./components/QueryBusinesses";
+import { ModalProvider } from "./context/Modal";
+import MainPage from "./components/MainPageView";
 
 function App() {
   const dispatch = useDispatch();
@@ -24,6 +32,28 @@ function App() {
           <Route path="/signup">
             <SignupFormPage />
           </Route>
+          <Route path="/business/all" >
+            <BusinessMainPage/>
+          </Route>
+          <Route path="/business/search" >
+            <QueryBusiness />
+          </Route>
+          <Route path="/business/:id/edit">
+             <UpdateBusiness />
+          </Route>
+          <Route path="/business/create-new-business">
+             <AddBusiness />
+          </Route>
+          <Route path="/business/:id">
+            <BusinessDetail />
+          </Route>
+          <Route path="/owned">
+            <OwnedBusinesses />
+          </Route>
+           <Route path =''>
+            <MainPage/>
+          </Route>
+
         </Switch>
       )}
     </>

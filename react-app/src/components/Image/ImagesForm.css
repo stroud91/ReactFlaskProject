@@ -1,0 +1,207 @@
+
+.button {
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    /* margin-top: 10px; */
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content
+}
+
+.modal-container{
+    display: flex;
+    flex-direction: row;
+    flex-direction: column;
+    margin-left: 5%;
+    margin-right: 5%;
+    margin-top: 2%;
+    /* background-color: red; */
+
+}
+
+.title{
+    margin-top: 0%;
+    margin-bottom: 2%;
+    font-size: 3.2vw;
+    font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif;
+    /* background-color: green; */
+}
+
+.upload-title{
+    display: flex;
+    justify-content: center;
+    margin-right: 40px;
+    margin-top: 40px;
+    margin-bottom: 20px;
+    font-size: 30px;
+    font-weight: 425;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+    color: rgb(52, 52, 52);
+    width: 250px;
+}
+
+.images-scroll{
+    display: grid;
+
+    /* background-color: aqua; */
+}
+
+.images-container{
+    display: grid;
+    overflow: scroll;
+    height: min-content;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 10px;
+    margin-bottom: 5px;
+    /* background-color: blueviolet; */
+    /* margin-bottom: 50%; */
+    /* background-color: yellow */
+}
+
+.ending{
+    text-align: center;
+    font-size: 14px;
+    font-family: 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: brown;
+}
+
+.business_images{
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    float: left;
+    width: 100%;
+    border-radius: 5px;
+}
+
+.withBorder {
+    text-align: center;
+    padding: 5px;
+    background-color: red;
+    /* padding: 12px 12px 12px 12px; */
+    /* margin: 0px 0px 0px 0px; */
+}
+
+.add-delete-button {
+display: flex;
+justify-content: space-between;
+}
+
+.cursor {
+    cursor:pointer
+}
+
+.imgurl-input {
+    width: 95%;
+    background-color: rgb(232, 243, 246);
+    margin-bottom: 20px;
+}
+
+.preview-img-desc{
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    margin-bottom: 20px;
+}
+
+#checkbox{
+    margin-right: 10px;
+}
+
+.delete-desc {
+    display: flex;
+    justify-content: center;
+    /* margin-right: 40px; */
+    margin-bottom: 20px;
+    font-size: 12px;
+    font-weight: 425;
+    font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif, sans-serif;
+    color: rgb(52, 52, 52);
+    width: 250px;
+}
+
+div.scroll-container {
+    background-color: #333;
+    overflow: auto;
+    white-space: nowrap;
+    padding: 5px;
+}
+
+div.scroll-container img {
+    padding: 5px;
+    height: 100%;
+    /* width: 100%; */
+    width: auto;
+    /* height: auto; */
+    max-height: 25vw;
+    object-fit: cover;
+    object-position: center;
+    aspect-ratio: 1/1;
+    z-index: 5;
+}
+
+.see-images {
+    display: flex;
+    justify-content: end;
+    position: relative;
+    top: -100px;
+    right: 5%;
+    height: 10px;
+    /* z-index: 2 ; */
+}
+
+.see-img {
+    width: 100%;
+    max-width: 200px;
+    min-width: fit-content;
+    min-height: fit-content;
+    max-height: 75px;
+    overflow: hidden;
+    align-content: center;
+    font-size: 2vw;
+    padding: 1%;
+}
+
+.upload-cancel {
+    margin-bottom: 40px;
+}
+
+.upload {
+width: 100%;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-bottom: 20px;
+}
+
+.cancel {
+    width: 100%;
+    color: black;
+    background-color: whitesmoke;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}
+
+.delete-cancel {
+    margin-bottom: 40px;
+}
+
+.upload {
+width: 100%;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-bottom: 20px;
+}
+
+.cancel {
+    width: 100%;
+    color: black;
+    background-color: whitesmoke;
+    border: none;
+    padding-top: 10px;
+    padding-bottom: 10px;
+    margin-bottom: 20px;
+}

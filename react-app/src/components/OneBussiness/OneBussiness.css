@@ -1,0 +1,298 @@
+/* General Styling */
+div {
+    margin: 8px;
+    transition: all 0.3s ease-in-out;
+}
+
+h1 {
+    font-size: 2rem;
+    margin-bottom: 16px;
+}
+
+p, a {
+    font-size: 16px;
+    margin-bottom: 8px;
+}
+
+a {
+    color: #2B273C;
+    text-decoration: underline;
+}
+
+/* Layout Styling */
+.business-detail-container {
+    display: flex;
+    flex-direction: row;
+    background-size: cover;
+}
+
+.business-info {
+    flex: 2;
+    padding: 16px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+.business-side-panel {
+    flex: 1;
+    padding: 16px;
+    border-left: 1px solid #ccc;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* Button Styling */
+.business-buttons-conditional {
+    margin-top: 20px;
+}
+
+.general-button {
+    background-color: #2B273C;
+    color: white;
+    padding: 12px 24px;
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.general-button:hover {
+    background-color: #565056;
+    transform: scale(1.05);
+}
+
+/* Review Styling */
+.review {
+    border-top: 1px solid #EBEBEB;
+    padding-top: 20px;
+    margin-top: 20px;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+}
+
+/* New CSS Styles */
+
+.link-to-group {
+    display: flex;
+    flex-direction: column;
+    text-decoration: none;
+    color: black;
+    padding: 2%;
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    transition: box-shadow 0.3s ease-in-out;
+    margin-bottom: 60px;
+    position: relative;
+}
+
+.link-to-group:hover {
+    box-shadow: 0px 0px 10px lightgray;
+}
+
+.main-group-listing {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 0px;
+}
+
+.listing-image {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    height: 125px;
+    width: 160px;
+    padding: 2%;
+    border-radius: 10px;
+    overflow: hidden;
+}
+
+.img {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    max-height: 100%;
+    max-width: 100%;
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+.group-details {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    flex-grow: 1;
+}
+
+.group-name, .group-title, .numMembers {
+    font-weight: bold;
+}
+
+.group-location, .about-text, .private {
+    font-size: 0.9em;
+    color: rgba(0, 0, 0, 0.6);
+}
+
+.group-about {
+    margin-bottom: 10px;
+}
+
+.group-members {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.navigate-button {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -30px;
+    padding: 10px 20px;
+    text-decoration: none;
+    color: #000;
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    box-shadow: 0px 10px 20px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s ease-in-out;
+}
+
+.navigate-button:hover {
+    background-color: #e2e6ea;
+}
+
+.numMembers {
+    background-color: teal;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+.private {
+    background-color: grey;
+    color: white;
+    padding: 5px 10px;
+    border-radius: 20px;
+}
+
+
+/* Business Info Styling */
+.info {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Business Address, Website, Category, Type, City Styling */
+.address, .website, .category, .type, .city {
+    font-size: 1rem;
+    color: #555;
+    background: #f2f2f2;
+    padding: 8px 12px;
+    border-radius: 4px;
+    margin: 4px 0;
+}
+
+.website a {
+    color: #2B273C;
+}
+
+/* Average Rating Styling */
+.average-rating {
+    font-size: 1.2rem;
+    color: #fff;
+    background-color: #4CAF50;
+    padding: 10px;
+    border-radius: 6px;
+    margin-top: 10px;
+    width: fit-content;
+}
+
+/* Reviews Section Styling */
+.individualReview {
+    background-color: #f8f9fa;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  }
+
+  .reviewUser, .createdAt, .reviewDescription, .user-id {
+    margin-bottom: 10px;
+  }
+
+  .reviewUser {
+    font-weight: bold;
+    font-size: 1.2rem;
+  }
+
+  .createdAt {
+    font-size: 0.8rem;
+    color: #555;
+  }
+
+  .reviewDescription {
+    font-size: 1rem;
+  }
+
+  /* Edit and Delete Button Styling */
+  .buttonContainer {
+    margin-top: 10px;
+  }
+
+  .editButtons, .deleteButtons {
+    background-color: #007BFF;
+    color: #fff;
+    padding: 8px 12px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+  }
+
+  .editButton:hover {
+    background-color: #0056b3;
+  }
+
+  .deleteButton {
+    background-color: #dc3545;
+  }
+
+  .deleteButton:hover {
+    background-color: #c82333;
+  }
+
+
+  .business-buttons-conditional {
+    margin-top: 20px;
+}
+
+.general-button {
+    background-color: #2B273C;
+    color: white;
+    padding: 12px 24px;
+    margin-right: 8px;
+    border: none;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+.general-button:hover {
+    background-color: #565056;
+    transform: scale(1.05);
+}
+.reviewButtons{
+    padding: 5px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
+}

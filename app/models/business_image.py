@@ -11,8 +11,8 @@ class BusinessImage(db.Model):
     user_id = db.Column(db.Integer,db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     image_url = db.Column(db.String(255), nullable=False)
     image_preview = db.Column(db.Boolean(), nullable=False)
-    # created_at = db.Column(db.DateTime(), nullable=False)
-    # updated_at = db.Column(db.DateTime(), nullable=False)
+    created_at = db.Column(db.DateTime(), nullable=False)
+    updated_at = db.Column(db.DateTime(), nullable=False)
 
     business = db.relationship("Business", back_populates='images')
     user = db.relationship("User", back_populates='business_image')
@@ -24,6 +24,6 @@ class BusinessImage(db.Model):
             'user_id': self.user_id,
             'image_url': self.image_url,
             'image_preview': self.image_preview,
-            # 'created_at': self.created_at,
-            # 'updated_at': self.updated_at
+            'created_at': self.created_at,
+            'updated_at': self.updated_at
         }
