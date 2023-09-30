@@ -77,6 +77,7 @@ def businesses():
 @business_routes.route('/<int:id>')
 def business_detail(id):
     business = Business.query.get_or_404(id)
+    print(f'LOOK HERE ${business}')
     business_dict = business.to_dict()
 
     reviews = business.reviews
