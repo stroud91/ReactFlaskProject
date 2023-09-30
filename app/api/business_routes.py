@@ -19,9 +19,16 @@ def businesses():
 
         reviews = business.reviews
         ratings = [review.rating for review in reviews]
+        imgs_list = []
+        images = business.images
+        for image in images:
+            img_dic = image.to_dict()
+            imgs_list.append(img_dic)
 
         avg_rating = sum(ratings) / len(ratings) if ratings else 0
         business_dict['avg_rating'] = round(avg_rating, 2)
+
+        business_dict['images'] = imgs_list
 
         business_dict['category'] = business.category.name if business.category else None
 

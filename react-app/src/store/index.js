@@ -1,13 +1,13 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-import imagesReducer from './images';
+import bus_images from './images';
 import business from './business'
 
 const rootReducer = combineReducers({
   session,
   business,
-  imagesReducer
+  bus_images
 });
 
 

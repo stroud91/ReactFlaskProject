@@ -8,6 +8,7 @@ from app.s3_helper import (
 
 images_routes = Blueprint('business', __name__)
 
+ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 
 # Get all Images by Business
 @images_routes.route('/<int:id>/images')
@@ -33,18 +34,18 @@ def images(id):
 @images_routes.route('/<int:id>/images', methods=["POST"])
 @login_required
 def images_post(id):
-    form = NewImage(request.form)
-
+    form = NewImage()
     # find business
     business = Business.query.get(id)
     if not business:
         return jsonify({"error": "Business not found"}), 404
     
     form['csrf_token'].data = request.cookies['csrf_token']
-
+    # print(form.data)
     if form.validate_on_submit():
         data = form.data
-
+        
+        # print(data)
         # Update 
         if data['image_preview'] == "true":
             data['image_preview'] = True
@@ -53,7 +54,6 @@ def images_post(id):
 
         if data["image_preview"] == True:
             images = db.session.query(BusinessImage).filter(BusinessImage.business_id == id).all()
-            print(images)
             for image in images:
                 image.image_preview=False
                 image.updated_at=datetime.utcnow()
@@ -67,7 +67,7 @@ def images_post(id):
         db.session.add(new_image)
         db.session.commit()
 
-        return jsonify(new_image.to_dict()), 201
+        return new_image.to_dict(), 201
     else:
         return jsonify({"errors": form.errors}), 400
 
@@ -93,9 +93,10 @@ def images_delete(id):
     db.session.delete(image)
     db.session.commit()
 
-    if image.image_preview == True:
-            last_img = BusinessImage.query.filter(
+    last_img = BusinessImage.query.filter(
                 BusinessImage.business_id == image.business_id).order_by(BusinessImage.created_at.desc()).first()
+
+    if last_img:
             last_img.image_preview=True
             last_img.updated_at=datetime.utcnow()
 

@@ -1,7 +1,9 @@
 import React, { useState } from "react";
-import { useParams } from 'react-router-dom'
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useModal } from "../../context/Modal";
+import OpenModalButton from "../OpenModalButton";
+import ImagesModal from '../Image/GetImagesModal';
+import { fetchOneBusiness } from '../../store/business';
 import * as imageActions from "../../store/images";
 import "./ImagesForm.css";
 
@@ -9,23 +11,40 @@ function DeleteImageModal({ id }) {
     const dispatch = useDispatch();
     const [errors, setErrors] = useState([]);
     const { closeModal } = useModal();
+    const business = useSelector(state => state.business.selectedBusiness);
 
     const deleteImage = async (e) => {
         const data = await dispatch(imageActions.deleteImage(id));
-        if (data.errors) {
-            setErrors(data);
+        if (data) {
+            setErrors(data.error);
         } else {
             closeModal()
+            await dispatch(fetchOneBusiness(business.id));
+            await dispatch(imageActions.images(business.id))
         }
     };
-
     let showConfirmDelete = (
         <>
-            <h1>Confirm Delete</h1>
-            <h3>Are you sure you want to delete this image?</h3>
-            <button onClick={deleteImage} className='deleteButtonYes'>{`Yes (Delete Image)`}</button>
-            <button onClick={closeModal()} className='deleteButtonNo'>{`No (Keep Image)`}</button>
+            <div className="modal-container">
+                <div className="upload-title">Confirm Delete</div>
+                <div className="delete-desc">Are you sure you want to delete this image?</div>
+                <div
+                    style={{ color: "red" }}>
+                    {errors}
+                </div>
+                <div className="delete-cancel">
+                    <button className='upload button cursor' onClick={deleteImage} >{`Yes (Delete Image)`}</button>
 
+                    <div>
+                        <OpenModalButton
+                            buttonText="Cancel"
+                            modalComponent={<ImagesModal
+                                bus_data={business} />}
+                            id='cancel'
+                        />
+                    </div>
+                </div>
+            </div>
         </>
     )
 

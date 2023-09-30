@@ -25,8 +25,8 @@ export const setAllBusinesses = (businesses) => ({
 });
 
 export const setOneBusiness = (business) => ({
-    type: SET_ONE_BUSINESS,
-    payload: business
+  type: SET_ONE_BUSINESS,
+  payload: business
 });
 
 export const addBusiness = (business) => ({
@@ -35,8 +35,8 @@ export const addBusiness = (business) => ({
 });
 
 export const updateBusiness = (business) => ({
-    type: UPDATE_BUSINESS,
-    payload: business,
+  type: UPDATE_BUSINESS,
+  payload: business,
 });
 
 // Thunks
@@ -52,7 +52,7 @@ export const getBusiness = (id) => async (dispatch) => {
 
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/business`);
-  console.log("response",response)
+  console.log("response", response)
   if (response.ok) {
     const data = await response.json();
     console.log("data", data)
@@ -88,10 +88,10 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
     const business = await response.json();
     dispatch(setOneBusiness(business));
 
-  }else {
-      const errorData = await response.json();
-      console.error("Thunk Error: Failed to add business", errorData);
-    }
+  } else {
+    const errorData = await response.json();
+    console.error("Thunk Error: Failed to add business", errorData);
+  }
 };
 
 
@@ -112,41 +112,41 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
   }
 };
 
-  const initialState = {
-    list: [],
-    current: null,
-    selectedBusiness: null
-  };
+const initialState = {
+  list: [],
+  current: null,
+  selectedBusiness: null
+};
 
 
 // Reducer
 const businessReducer = (state = initialState, action) => {
-    switch (action.type) {
-      case SET_ALL_BUSINESSES:
-            return {
-                ...state,
-                list: action.payload
-            };
-      case SET_BUSINESS:
-        return { ...state, current: action.payload };
-      case SET_ONE_BUSINESS:
-          return { ...state, selectedBusiness: action.payload };
-      case REMOVE_BUSINESS:
-        return { ...state, current: null, selectedBusiness: null };
-      case ADD_BUSINESS:
-        return { ...state, list: [...state.list, action.payload] };
-      case UPDATE_BUSINESS:
-        return {
-          ...state,
-          list: state.list.map((business) =>
-             business.id === action.payload.id ? action.payload : business
-          ),
-          current: action.payload.id === state.current.id ? action.payload : state.current,
-        };
-      default:
-        return state;
-    }
+  switch (action.type) {
+    case SET_ALL_BUSINESSES:
+      return {
+        ...state,
+        list: action.payload
+      };
+    case SET_BUSINESS:
+      return { ...state, current: action.payload };
+    case SET_ONE_BUSINESS:
+      return { ...state, selectedBusiness: action.payload };
+    case REMOVE_BUSINESS:
+      return { ...state, current: null, selectedBusiness: null };
+    case ADD_BUSINESS:
+      return { ...state, list: [...state.list, action.payload] };
+    case UPDATE_BUSINESS:
+      return {
+        ...state,
+        list: state.list.map((business) =>
+          business.id === action.payload.id ? action.payload : business
+        ),
+        current: action.payload.id === state.current.id ? action.payload : state.current,
+      };
+    default:
+      return state;
   }
+}
 
 
 export default businessReducer

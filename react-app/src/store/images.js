@@ -15,8 +15,9 @@ const addImage = ({ data }) => {
     }
 }
 
-const removeImage = () => ({
+const removeImage = (img_id) => ({
     type: REMOVE_IMAGE,
+    img_id
 });
 
 
@@ -27,10 +28,12 @@ export const images = (busId) => async (dispatch) => {
     return data
 }
 
-export const createImage = ({ bus_id, imageData }) => async (dispatch) => {
+export const createImage = (bus_id, imageData) => async (dispatch) => {
     const response = await fetch(`/api/business/${bus_id}/images`, {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: {
+            "Content-Type": "application/json"
+        },
         body: JSON.stringify(imageData)
     })
 
@@ -53,15 +56,21 @@ export const deleteImage = (img_id) => async (dispatch) => {
         method: "DELETE"
     })
     if (response.ok) {
-        const data = await response.json()
         dispatch(removeImage(img_id))
-        return data
+        console.log("successfully deleted")
+        return null
+    }
+    else {
+        const data = await response.json();
+        if (data) {
+            return data;
+        }
     }
 }
 
 const initialState = { images: null };
 
-const imagesReducer = (state = initialState, action) => {
+const bus_images = (state = initialState, action) => {
     let newState = {};
     switch (action.type) {
         case GET_IMAGES:
@@ -76,10 +85,11 @@ const imagesReducer = (state = initialState, action) => {
             return newState;
         case REMOVE_IMAGE:
             newState = { ...state }
+            delete newState[action.img_id]
             return newState
         default:
             return state
     }
 }
 
-export default imagesReducer;
+export default bus_images;
