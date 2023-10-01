@@ -38,14 +38,12 @@ function DeleteReviewModal({ id, review }) {
       <div className="deleteText">Are you sure you want to delete this review?</div>
       <div>
         <button
-          // id="yesDelete"
           onClick={handleSubmit}
           className='confirm-yes'
         >
           Yes (Delete Review)
         </button>
         <button
-          // id="noDelete"
           onClick={((e) => {
             closeModal();
           })}

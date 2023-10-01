@@ -40,7 +40,7 @@ function QueryBusiness() {
         <div>
           <p> No restaurants found. Please try a different search.</p>
           <Link to="/">
-            <button>Go back to main page</button>
+            <button className="noResultButton">Go back to main page</button>
           </Link>
         </div>
       ) : (

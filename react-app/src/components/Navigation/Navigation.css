@@ -200,8 +200,6 @@ li {
 /* Searchbar Style */
 .searchbar {
   flex-grow: 1;
-  margin-top: -45px;
-  margin-bottom: -20px;
 }
 
 .fas.fa-user-circle {

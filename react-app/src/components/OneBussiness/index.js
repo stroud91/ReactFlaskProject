@@ -59,7 +59,7 @@ function BusinessDetail() {
   if (normalizedImages[0]) {
     image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
-      return <img src={image_url} alt={`imageId_${id}`}></img>;
+      return <img src={image_url} alt={`imageId_${id}`} key={`imageId_${id}`}></img>;
     });
   } else {
     image_gallery = <img src={noImage} alt={`imageId_${id}`}></img>;
@@ -104,7 +104,7 @@ function BusinessDetail() {
           <h1>{business.name}</h1>
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
-          <div>Average Rating: {business.avg_rating}</div>
+          <p>Average Rating: {business.avg_rating}</p>
           {currentUser &&
             currentUser.id === business.owner_id && (
               <div className="business-buttons-conditional">

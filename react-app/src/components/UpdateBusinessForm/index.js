@@ -9,7 +9,7 @@ function UpdateBusiness() {
   const history = useHistory();
   const { id } = useParams();
   const businesses = useSelector((state) => state.business.list)
-//   console.log("😇", businesses)
+  //   console.log("😇", businesses)
   const business = useSelector(state =>
     state.business.list
       ? state.business.list.find(b => b.id === parseInt(id))
@@ -18,10 +18,10 @@ function UpdateBusiness() {
 
   useEffect(() => {
     dispatch(businessActions.getAllBusinesses());
-}, [dispatch]);
-// const business = useSelector((state) => state.business.list[id])
+  }, [dispatch]);
+  // const business = useSelector((state) => state.business.list[id])
 
-//   console.log("🥰 this is the business that needs to be edited", business)
+  //   console.log("🥰 this is the business that needs to be edited", business)
 
   const [name, setName] = useState(business ? business.name : '');
   const [address, setAddress] = useState(business ? business.address : '');
@@ -94,7 +94,7 @@ function UpdateBusiness() {
     }
 
     return errors;
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -128,18 +128,17 @@ function UpdateBusiness() {
       about,
       type
     };
-    console.log("BUSSINESS DATA", businessData)
-    await dispatch(businessActions.editBusiness(id, businessData)).then(() => {
-        dispatch(businessActions.fetchOneBusiness(id));
-        dispatch(businessActions.getAllBusinesses())
-        history.push(`/business/${id}`);
-    })
+    // console.log("BUSSINESS DATA", businessData)
+    await dispatch(businessActions.editBusiness(id, businessData))
+    await dispatch(businessActions.fetchOneBusiness(id));
+    await dispatch(businessActions.getAllBusinesses())
+    await history.push(`/business/${id}`);
   };
 
-//   useEffect(() => {
-//       dispatch(businessActions.fetchOneBusiness(id));
-//       console.log("IDDDDDDD", id)
-//   }, [dispatch, id]);
+  //   useEffect(() => {
+  //       dispatch(businessActions.fetchOneBusiness(id));
+  //       console.log("IDDDDDDD", id)
+  //   }, [dispatch, id]);
 
   return (
     <div className='form__container business-update__form'>

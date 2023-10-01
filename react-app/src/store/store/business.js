@@ -55,7 +55,7 @@ export const searchBusinessByName = (search) => async (dispatch) => {
   });
   if (response.ok) {
     const results = await response.json();
-    console.log("YOOOO SEARCH THUNK ", results);
+    // console.log("YOOOO SEARCH THUNK ", results);
     dispatch(searchBusiness(results));
   } else {
     const errorData = await response.json();
@@ -75,10 +75,10 @@ export const getBusiness = (id) => async (dispatch) => {
 
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/business`);
-  console.log("response", response)
+  // console.log("response", response)
   if (response.ok) {
     const data = await response.json();
-    console.log("data", data);
+    // console.log("data", data);
     dispatch(setAllBusinesses(data));
   } else {
     console.error("Thunk Error: Bad Req");
@@ -86,7 +86,7 @@ export const getAllBusinesses = () => async (dispatch) => {
 };
 
 export const createNewBusiness = (business) => async (dispatch) => {
-  console.log("This is the create Bussiness:", business);
+  // console.log("This is the create Bussiness:", business);
   const response = await fetch(`/api/business/new-business`, {
     method: "POST",
     headers: {
@@ -97,7 +97,7 @@ export const createNewBusiness = (business) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("This is the data:", data);
+    // console.log("This is the data:", data);
     dispatch(addBusiness(data));
     return data;
   } else {
@@ -118,7 +118,7 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
 };
 
 export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
-  console.log('This is the create Bussiness:', updatedBusiness)
+  // console.log('This is the create Bussiness:', updatedBusiness)
   const response = await fetch(`/api/business/${id}/edit`, {
     method: "POST",
     headers: {
@@ -129,7 +129,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("This is the updated data:", data)
+    // console.log("This is the updated data:", data)
     dispatch(updateBusiness(data));
     return data;
   } else {
@@ -138,7 +138,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 };
 
 export const deleteBusiness = (id) => async (dispatch) => {
-  console.log("id", id)
+  // console.log("id", id)
   const response = await fetch(`/api/business/${id}/delete`, {
     method: 'DELETE',
   });

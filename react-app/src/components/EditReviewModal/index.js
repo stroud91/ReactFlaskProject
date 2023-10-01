@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import { useParams } from "react-router-dom";
-import "./EditReviewModal.css"; 
+import "./EditReviewModal.css";
 import StarsRating from "./StarsRating";
-import { editReviewThunk } from "../../store/review"; 
+import { editReviewThunk } from "../../store/review";
 import { fetchOneBusiness } from "../../store/business";
 import { oneBussinessReviewsThunk } from "../../store/review";
 
@@ -15,18 +15,18 @@ function EditReviewModal({ business_id, review }) {
   const history = useHistory();
   const business = useSelector((state) => state.business.selectedBusiness);
   const user = useSelector((state) => state.session.user);
- const reviews= useSelector((state) => state.reviews.reviews);
- console.log('THIS IS THE REVIEW FROM EDIT REVIEW MODAL', reviews)
+  const reviews = useSelector((state) => state.reviews.reviews);
+  //  console.log('THIS IS THE REVIEW FROM EDIT REVIEW MODAL', reviews)
   const [errors, setErrors] = useState({});
   const [stars, setStars] = useState(review.rating);
   const [comment, setComment] = useState(review.review_body);
   const [formDisabled, setFormDisabled] = useState(true);
   const { closeModal } = useModal();
 
-//   useEffect(() => {
-//     //dispatch(fetchOneBusiness(id));
-//     dispatch(oneBussinessReviewsThunk(business_id));
-//   }, [dispatch, review_id]);
+  //   useEffect(() => {
+  //     //dispatch(fetchOneBusiness(id));
+  //     dispatch(oneBussinessReviewsThunk(business_id));
+  //   }, [dispatch, review_id]);
 
   useEffect(() => {
     const errors = {};
@@ -56,8 +56,8 @@ function EditReviewModal({ business_id, review }) {
     setErrors({});
     const userId = user ? user.id : null;
     //const reviewId = review ? review.id : null; // Check if review exists and has an id
-    const editedReview = { comment, stars};
-    console.log("THIS IS EDITED REVIEW",editedReview)
+    const editedReview = { comment, stars };
+    // console.log("THIS IS EDITED REVIEW",editedReview)
 
     dispatch(editReviewThunk(review.id, editedReview))
       .then(() => {

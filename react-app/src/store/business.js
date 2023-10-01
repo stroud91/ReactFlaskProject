@@ -86,7 +86,7 @@ export const getAllBusinesses = () => async (dispatch) => {
 };
 
 export const createNewBusiness = (business) => async (dispatch) => {
-  console.log("This is the create Bussiness:", business);
+  // console.log("This is the create Bussiness:", business);
   const response = await fetch(`/api/business/new-business`, {
     method: "POST",
     headers: {
@@ -97,7 +97,7 @@ export const createNewBusiness = (business) => async (dispatch) => {
 
   if (response) {
     const data = await response.json();
-    console.log("This is the data for create business:", data);
+    // console.log("This is the data for create business:", data);
     dispatch(addBusiness(data));
     return data;
   } else {

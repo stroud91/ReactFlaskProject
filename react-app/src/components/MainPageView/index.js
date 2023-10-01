@@ -33,7 +33,6 @@ function MainPage() {
   return businesses ? (
     <div className='main-container'>
       <header className='main-header'>
-        <h1>Welcome to Our Business Directory</h1>
       </header>
       < RecentActivity />
       <footer className='main-footer'>

@@ -31,13 +31,13 @@ export default function DeleteModal({ bus_data }) {
       <div className="deleteText">Are you sure you want to delete this business?</div>
       <div>
         <button
-          id="yesDelete"
+          class="confirm-yes cursor"
           onClick={handleSubmit}
         >
           Yes (Delete Business)
         </button>
         <button
-          id="noDelete"
+          className="cancel"
           onClick={((e) => {
             closeModal();
           })}

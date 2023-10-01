@@ -1,15 +1,19 @@
-.main-search-section {
+/* .main-search-section {
     display: flex;
     align-items: center;
     border: none;
     border-radius: 30px;
-  }
+  } */
   
   .search-info {
     flex: 1;
-    padding: 10px;
+    padding: 0px;
   }
   
+  .search-title{
+    margin:0;
+  }
+
   .main-search-form {
     display: flex;
     align-items: center;

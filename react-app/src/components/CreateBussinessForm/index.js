@@ -6,25 +6,25 @@ import './CreateBussinessForm.css';
 
 function AddBusiness() {
 
-const dispatch = useDispatch();
-const history = useHistory();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
 
-const [name, setName] = useState('');
-const [address, setAddress] = useState('');
-const [city, setCity] = useState('');
-const [state, setState] = useState('');
-const [zip_code, setZipCode] = useState('');
-const [phone_number, setPhoneNumber] = useState('');
-const [category_id, setCategoryId] = useState(1);
-const [website, setWebsite] = useState('');
-const [about, setAbout] = useState('');
-const [type, setType] = useState('');
+  const [name, setName] = useState('');
+  const [address, setAddress] = useState('');
+  const [city, setCity] = useState('');
+  const [state, setState] = useState('');
+  const [zip_code, setZipCode] = useState('');
+  const [phone_number, setPhoneNumber] = useState('');
+  const [category_id, setCategoryId] = useState(1);
+  const [website, setWebsite] = useState('');
+  const [about, setAbout] = useState('');
+  const [type, setType] = useState('');
 
-const [validationErrors, setValidationErrors] = useState([]);
+  const [validationErrors, setValidationErrors] = useState([]);
 
-const currentUser = useSelector(state => state.session.user);
-const owner_id = currentUser ? currentUser.id : null;
+  const currentUser = useSelector(state => state.session.user);
+  const owner_id = currentUser ? currentUser.id : null;
 
   const validate = () => {
     const errors = [];
@@ -80,22 +80,22 @@ const owner_id = currentUser ? currentUser.id : null;
     if (errors.length > 0) return setValidationErrors(errors);
 
     const businessData = {
-                name,
-                address,
-                city,
-                state,
-                zip_code,
-                phone_number,
-                category_id,
-                owner_id,
-                // images,
-                website,
-                about,
-                type
-              };
-    console.log("This is Business Data:", businessData)
+      name,
+      address,
+      city,
+      state,
+      zip_code,
+      phone_number,
+      category_id,
+      owner_id,
+      // images,
+      website,
+      about,
+      type
+    };
+    // console.log("This is Business Data:", businessData)
     await dispatch(businessActions.createNewBusiness(businessData));
-    
+
     history.push(`/owned`);
   }
 
@@ -103,7 +103,7 @@ const owner_id = currentUser ? currentUser.id : null;
 
   useEffect(() => {
     async function fetchData() {
-     await dispatch(businessActions.getAllBusinesses());
+      await dispatch(businessActions.getAllBusinesses());
     }
     fetchData();
   }, [dispatch]);
@@ -185,16 +185,16 @@ const owner_id = currentUser ? currentUser.id : null;
             />
           </div>
           <div className='form__input'>
-        <label>Category</label>
-        <p>Select the category that best describes the nature of your business.</p>
-        <select value={category_id} onChange={(e) => setCategoryId(e.target.value)}>
-                                    <option value={1}>Italian</option>
-                                    <option value={2}>Mexican</option>
-                                    <option value={3}>Middle Eastern</option>
-                                    <option value={4}>Japanese</option>
-                                    <option value={4}>American</option>
-        </select>
-      </div>
+            <label>Category</label>
+            <p>Select the category that best describes the nature of your business.</p>
+            <select value={category_id} onChange={(e) => setCategoryId(e.target.value)}>
+              <option value={1}>Italian</option>
+              <option value={2}>Mexican</option>
+              <option value={3}>Middle Eastern</option>
+              <option value={4}>Japanese</option>
+              <option value={4}>American</option>
+            </select>
+          </div>
           <div className='form__input'>
             <label>Website</label>
             <p>If your business has a website, enter the URL here.</p>

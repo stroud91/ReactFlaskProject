@@ -34,16 +34,16 @@ function ImagesModal({ bus_data }) {
         show = normalizedImages.map((image) => {
             const { id, image_url } = image
             return (
-                <>
-                    <div className="image-box">
-                        <img src={image_url}
-                            className={(imgId === id && showDel) && currentUser ? "cursor business_images withBorder" : "cursor business_images noBorder"}
-                            alt={`image_${id}`}
-                            key={`bus-image-${id}`}
-                            onClick={(e) => handleClick(e, id)}
-                        />
-                    </div>
-                </>
+
+                <div className="image-box">
+                    <img src={image_url}
+                        className={(imgId === id && showDel) && currentUser ? "cursor business_images withBorder" : "cursor business_images noBorder"}
+                        alt={`image_${id}`}
+                        key={`bus-image-${id}`}
+                        onClick={(e) => handleClick(e, id)}
+                    />
+                </div>
+
             )
         })
 

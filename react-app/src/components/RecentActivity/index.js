@@ -6,7 +6,7 @@ import "./RecentActivity.css";
 function RecentActivity() {
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.all);
-  
+
   useEffect(() => {
     dispatch(allReviewsThunk())
   }, [dispatch]);
@@ -14,11 +14,11 @@ function RecentActivity() {
   if (!reviews) return null;
 
   const last12Reviews = reviews["Reviews"].slice(-12);
-  console.log(last12Reviews);
+  // console.log(last12Reviews);
 
   return (
     <div>
-      <h1>Recent Activity</h1>
+      <h1 className="recent_title">Recent Activities</h1>
       <div className="review-container">
         {reviews &&
           last12Reviews.map((review) => (

@@ -75,7 +75,7 @@ export const deleteImage = (img_id) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(removeImage(img_id))
-        console.log("successfully deleted")
+        // console.log("successfully deleted")
         return null
     }
     else {

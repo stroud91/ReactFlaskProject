@@ -20,21 +20,3 @@
     text-align: center;
   }
   
-  
-  #yesDelete {
-    background-color: #ff0000;
-    color: #fff; 
-  }
-  
-  #yesDelete:hover {
-    background-color: #cc0000; 
-  }
-  
-  #noDelete {
-    background-color: #4287f5; 
-    color: #fff; 
-  }
-  
-  #noDelete:hover {
-    background-color: #3064c6; 
-  }

@@ -15,7 +15,7 @@ function PostReviewModal({ id, user }) {
   const history = useHistory();
   const business = useSelector(state => state.business.selectedBusiness);
 
-  console.log(business)
+  // console.log(business)
   //const user = useSelector(state => state.session.user)
   //console.log(user)
 
