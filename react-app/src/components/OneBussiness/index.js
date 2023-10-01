@@ -105,24 +105,24 @@ function BusinessDetail() {
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
           <div>Average Rating: {business.avg_rating}</div>
-
-          {currentUser.id === business.owner_id && (
-            <div className="business-buttons-conditional">
-              <button
-                className="general-button"
-                onClick={() => handleEdit(business.id)}
-              >
-                Edit
-              </button>
-              <button>
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={<DeleteModal bus_data={business} />}
-                // id={"see-img"}
-                />
-              </button>
-            </div>
-          )}
+          {currentUser &&
+            currentUser.id === business.owner_id && (
+              <div className="business-buttons-conditional">
+                <button
+                  className="general-button"
+                  onClick={() => handleEdit(business.id)}
+                >
+                  Edit
+                </button>
+                <button>
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={<DeleteModal bus_data={business} />}
+                  // id={"see-img"}
+                  />
+                </button>
+              </div>
+            )}
         </div>
       </div>
       <div className="postYourReview">

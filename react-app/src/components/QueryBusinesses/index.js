@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 import * as businessActions from "../../store/business";
+import * as imageActions from "../../store/images";
 import "../Bussiness/Business.css";
 import MainPage from "../MainPageView";
 import noImage from "../../images/no-image.png"
@@ -12,17 +13,19 @@ function QueryBusiness() {
   let businesses = useSelector((state) => state.business.search);
 
   businesses = businesses["queried businesses"];
-  console.log("This is the result of the search bar", businesses);
+  // console.log("This is the result of the search bar", businesses);
 
   useEffect(() => {
     dispatch(searchBusinessByName());
   }, [dispatch]);
 
   let getPrev = (business) => {
+    const image_list = dispatch(imageActions.images(business.id));
+    let normalizedImages = Object.values(image_list)
+    console.log(`prev formula ${normalizedImages}`)
     let res
-    if (business.images.length) {
-      let arr = business.images
-      arr.forEach((bus) => {
+    if (normalizedImages[0]) {
+      normalizedImages.forEach((bus) => {
         if (bus.image_preview) {
           res = bus.image_url
         }

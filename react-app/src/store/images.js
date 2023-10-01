@@ -26,7 +26,7 @@ export const images = (busId) => async (dispatch) => {
     if (response.ok) {
         const data = await response.json()
         dispatch(getImage(data))
-        return data
+        return data.images
     }
     else {
         const data = await response.json()
