@@ -4,17 +4,34 @@ import { Link } from "react-router-dom";
 import * as businessActions from "../../store/business";
 import "../Bussiness/Business.css";
 import MainPage from "../MainPageView";
+import noImage from "../../images/no-image.png"
 import { searchBusinessByName } from "../../store/business";
 
 function QueryBusiness() {
   const dispatch = useDispatch();
   let businesses = useSelector((state) => state.business.search);
+
   businesses = businesses["queried businesses"];
   console.log("This is the result of the search bar", businesses);
 
   useEffect(() => {
     dispatch(searchBusinessByName());
   }, [dispatch]);
+
+  let getPrev = (business) => {
+    let res
+    if (business.images.length) {
+      let arr = business.images
+      arr.forEach((bus) => {
+        if (bus.image_preview) {
+          res = bus.image_url
+        }
+      })
+    } else {
+      res = noImage
+    }
+    return res
+  }
 
   return (
     <div>
@@ -26,15 +43,19 @@ function QueryBusiness() {
           </Link>
         </div>
       ) : (
-        
+
         <ul className="businessMain__grid">
           {businesses &&
             businesses.map((business) => (
               <li key={business.id} className="businessMain__item">
-                <li className="businessMain__image">
-                  {/* Image will go here */}
-                </li>
-                <li>Name: {business.name}</li>
+                <div className="businessMain__image">
+                  <img src={getPrev(business)}
+                    className='busImg'
+                    alt={business.name}
+                    key={business.id}
+                  />
+                </div>
+                <li>{business.name}</li>
                 <p>Category: {business.category}</p>
                 <p>Rating: {business.avg_rating}</p>
                 <p>

@@ -9,8 +9,8 @@ import './Business.css';
 function BusinessMainPage() {
     const dispatch = useDispatch();
     const businesses = useSelector(state => state.business.list);
-    console.log("BUSSINES:", businesses)
-    console.log(typeof businesses)
+    // console.log("BUSSINES:", businesses)
+    // console.log(typeof businesses)
     useEffect(() => {
         dispatch(businessActions.getAllBusinesses());
     }, [dispatch]);
@@ -42,7 +42,7 @@ function BusinessMainPage() {
                             key={business.id}
                         />
                     </div>
-                    <div>Name: {business.name}</div>
+                    <div>{business.name}</div>
                     <p>Category: {business.category}</p>
                     <p>Rating: {business.avg_rating}</p>
                     <p>{business.address}, {business.city}, {business.state} {business.zip_code}</p>

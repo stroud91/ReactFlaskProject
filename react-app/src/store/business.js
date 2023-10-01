@@ -55,7 +55,7 @@ export const searchBusinessByName = (search) => async (dispatch) => {
   });
   if (response.ok) {
     const results = await response.json();
-    console.log("YOOOO SEARCH THUNK ", results);
+    // console.log("YOOOO SEARCH THUNK ", results);
     dispatch(searchBusiness(results));
   } else {
     const errorData = await response.json();
@@ -75,10 +75,10 @@ export const getBusiness = (id) => async (dispatch) => {
 
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/business`);
-  console.log("response", response)
+  // console.log("response", response)
   if (response.ok) {
     const data = await response.json();
-    console.log("data", data);
+    // console.log("data", data);
     dispatch(setAllBusinesses(data));
   } else {
     console.error("Thunk Error: Bad Req");
@@ -119,8 +119,8 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
 };
 
 export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
-  console.log("This ID:", id)
-  console.log('This is the update Bussiness:', updatedBusiness)
+  // console.log("This ID:", id)
+  // console.log('This is the update Bussiness:', updatedBusiness)
   const response = await fetch(`/api/business/${id}/edit`, {
     method: "POST",
     headers: {
@@ -131,7 +131,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    console.log("This is the updated data:", data)
+    // console.log("This is the updated data:", data)
     dispatch(updateBusiness(data));
     return data;
   } else {
@@ -169,6 +169,7 @@ const businessReducer = (state = initialState, action) => {
       return {
         ...state,
         list: action.payload,
+        selectedBusiness: action.payload
       };
     case SEARCH_BUSINESS:
       return {

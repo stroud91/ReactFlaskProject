@@ -23,9 +23,15 @@ const removeImage = (img_id) => ({
 
 export const images = (busId) => async (dispatch) => {
     const response = await fetch(`/api/business/${busId}/images`)
-    const data = await response.json()
-    dispatch(getImage(data))
-    return data
+    if (response.ok) {
+        const data = await response.json()
+        dispatch(getImage(data))
+        return data
+    }
+    else {
+        const data = await response.json()
+        return (data.error)
+    }
 }
 
 export const createImage = (bus_id, imageData) => async (dispatch) => {

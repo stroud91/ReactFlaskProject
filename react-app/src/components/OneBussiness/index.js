@@ -13,7 +13,7 @@ import * as imageActions from "../../store/images";
 import noImage from "../../images/no-image.png";
 import "./OneBussiness.css";
 import "../Image/ImagesForm.css";
-import DeleteModal from "../DeleteBusinessModal"; 
+import DeleteModal from "../DeleteBusinessModal";
 
 function BusinessDetail() {
   const history = useHistory();
@@ -21,14 +21,17 @@ function BusinessDetail() {
 
   const { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
+  const bus_images = useSelector((state) => state.bus_images.images)
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
-  const { setModalContent, closeModal } = useModal();
-  const [showConfirmModal, setShowConfirmModal] = useState(false);
-  console.log("THIS IS BUSINESS", business);
-  console.log("THIS IS USER", user);
-  console.log("THIS IS REVIEWS", reviews);
+  const normalizedImages = Object.values(bus_images)
+  // const { setModalContent, closeModal } = useModal();
+  // const [showConfirmModal, setShowConfirmModal] = useState(false);
+  // console.log("THIS IS BUSINESS", business);
+  // console.log("THIS IS USER", user);
+  // console.log("THIS IS REVIEWS", reviews);
+
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
@@ -51,10 +54,10 @@ function BusinessDetail() {
 
   let image_gallery;
 
-  console.log("this is images on this part", business.images);
+  // console.log("this is images on this part", business.images);
 
-  if (business.images.length) {
-    image_gallery = business.images.map((image) => {
+  if (normalizedImages[0]) {
+    image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
       return <img src={image_url} alt={`imageId_${id}`}></img>;
     });
@@ -69,7 +72,7 @@ function BusinessDetail() {
         <div className="scroll-container">{image_gallery}</div>
         <span className="see-images">
           <OpenModalButton
-            buttonText={`See all ${business.images.length} photos`}
+            buttonText={`See all ${normalizedImages.length} photos`}
             modalComponent={<ImagesModal bus_data={business} />}
             id={"see-img"}
           />
@@ -112,11 +115,11 @@ function BusinessDetail() {
                 Edit
               </button>
               <button>
-              <OpenModalButton
-                buttonText="Delete"
-                modalComponent={<DeleteModal bus_data={business} />}
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteModal bus_data={business} />}
                 // id={"see-img"}
-              />
+                />
               </button>
             </div>
           )}
