@@ -42,6 +42,7 @@ function SearchBar() {
             onChange={handleChange}
           />
           <button className='search-button' type='submit'>
+          <i class="fas fa-search"></i>
           </button>
         </form>
       </div>

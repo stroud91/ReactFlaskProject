@@ -24,3 +24,14 @@
     text-align: center;
     
   }
+
+  .user-info-review {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-weight: 400;
+  }
+
+body {
+    font-family: Arial, Helvetica, sans-serif;
+}

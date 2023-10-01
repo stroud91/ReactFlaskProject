@@ -29,8 +29,8 @@ function AddBusiness() {
   const validate = () => {
     const errors = [];
 
-    if (!name || name.length > 50) {
-      errors.push("Invalid business name.");
+    if (!name || name.length < 5 || name.length > 50)  {
+      errors.push("Business name must be between 5 and 50 characters.");
     }
 
     if (!address || address.length > 255) {
@@ -41,7 +41,7 @@ function AddBusiness() {
       errors.push("Invalid city.");
     }
 
-    if (!state || state.length > 25) {
+    if (!state || state.length != 2) {
       errors.push("Invalid state.");
     }
 

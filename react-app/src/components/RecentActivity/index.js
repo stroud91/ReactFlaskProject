@@ -8,13 +8,13 @@ function RecentActivity() {
   const reviews = useSelector((state) => state.reviews.all);
 
   useEffect(() => {
-    dispatch(allReviewsThunk())
+    dispatch(allReviewsThunk());
   }, [dispatch]);
 
   if (!reviews) return null;
 
   const last12Reviews = reviews["Reviews"].slice(-12);
-  // console.log(last12Reviews);
+  console.log(last12Reviews);
 
   return (
     <div>
@@ -24,7 +24,10 @@ function RecentActivity() {
           last12Reviews.map((review) => (
             <div className="review-item" key={review.id}>
               <div className="item-property">
-                <strong></strong> {review.user_first_name}
+                <div className="user-info-review">
+                  <i className="far fa-user-circle" /> 
+                  <div>{review.user_first_name}</div>
+                </div>
               </div>
               <div className="item-property">
                 <strong className="business-name">

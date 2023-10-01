@@ -128,6 +128,7 @@ li {
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: fit-content;
   display: block;
+  z-index: 999;
 }
 
 .profile-dropdown.hidden {

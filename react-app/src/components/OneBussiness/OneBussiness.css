@@ -382,3 +382,8 @@ a {
 .post-review-button:hover{
     background-color: darkred;
 }
+
+.user-individual-review {
+    color: rgb(99, 99, 99);
+    font-size: 10pt;
+}

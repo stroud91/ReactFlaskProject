@@ -21,14 +21,14 @@ function BusinessDetail() {
 
   const { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
-  const bus_images = useSelector((state) => state.bus_images.images)
+  const bus_images = useSelector((state) => state.bus_images.images);
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
-  const normalizedImages = Object.values(bus_images)
+  const normalizedImages = Object.values(bus_images);
   // const { setModalContent, closeModal } = useModal();
   // const [showConfirmModal, setShowConfirmModal] = useState(false);
-  // console.log("THIS IS BUSINESS", business);
+  console.log("THIS IS BUSINESS", business);
   // console.log("THIS IS USER", user);
   // console.log("THIS IS REVIEWS", reviews);
 
@@ -59,11 +59,20 @@ function BusinessDetail() {
   if (normalizedImages[0]) {
     image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
-      return <img src={image_url} alt={`imageId_${id}`} key={`imageId_${id}`}></img>;
+      return (
+        <img src={image_url} alt={`imageId_${id}`} key={`imageId_${id}`}></img>
+      );
     });
   } else {
     image_gallery = <img src={noImage} alt={`imageId_${id}`}></img>;
   }
+
+  const changeDate = (date) => {
+    let newDate = new Date(date)
+    let options = { day: 'numeric', month: 'long', year: 'numeric' };
+    let changedDate = newDate.toLocaleString('en-US', options);
+    return changedDate
+}
 
   return (
     <div>
@@ -104,23 +113,23 @@ function BusinessDetail() {
           <h1>{business.name}</h1>
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
+          <p>About: {business.about}</p>
           <p>Average Rating: {business.avg_rating}</p>
-          {currentUser &&
-            currentUser.id === business.owner_id && (
-              <div className="business-buttons-conditional">
-                <button
-                  className="edit-business-button"
-                  onClick={() => handleEdit(business.id)}
-                >
-                  Edit
-                </button>
-                <OpenModalButton
-                  buttonText="Delete"
-                  modalComponent={<DeleteModal bus_data={business} />}
-                  id={"delete-business-button"}
-                />
-              </div>
-            )}
+          {currentUser && currentUser.id === business.owner_id && (
+            <div className="business-buttons-conditional">
+              <button
+                className="edit-business-button"
+                onClick={() => handleEdit(business.id)}
+              >
+                Edit
+              </button>
+              <OpenModalButton
+                buttonText="Delete"
+                modalComponent={<DeleteModal bus_data={business} />}
+                id={"delete-business-button"}
+              />
+            </div>
+          )}
         </div>
       </div>
       <div className="postYourReview">
@@ -132,7 +141,7 @@ function BusinessDetail() {
             <OpenModalButton
               buttonText="Post Your Review"
               modalComponent={<PostReviewModal id={id} user={user} />}
-              id={'post-review-button'}
+              id={"post-review-button"}
             />
           )}
       </div>
@@ -145,14 +154,15 @@ function BusinessDetail() {
             //   <div className="createdAt">{(review.created_At)}</div>
             //   <div className="reviewDescription">{review.review_body}</div>
             <div key={review.id} className="individualReview">
-              <p className="user-id">User id: {review.user_id}</p>
-              <p className="reviewDescription">{review.review_body}</p>
-              <p className="rating">Rating: {review.rating}</p>
-              <p className="createdAt">
-                Created At: {new Date(review.created_at).toLocaleString()}
+              <p className="user-individual-review">
+                
+                {review.user_first_name} {review.user_last_name} posted on {changeDate(review.created_at)}:
               </p>
-              <p className="updatedAt">
-                Updated At: {new Date(review.updated_at).toLocaleString()}
+              <p>{review.review_body}</p>
+              <p>
+                {[...Array(review.rating)].map((_, index) => (
+                  <i key={index} className="fa-solid fa-star"></i>
+                ))}
               </p>
               {user && review.user_id === user.id && (
                 <div className="reviewButtons">
