@@ -41,17 +41,19 @@ function BusinessDetail() {
   }
 
   const handleDelete = () => {
+
     setShowConfirmModal(true);
   };
 
 const handleEdit = () => {
+
     history.push(`/business/${business.id}/edit`);
 }
 
 
   let image_gallery
 
-  console.log(business.images)
+  console.log("this is images on this part",business.images)
 
   if (business.images.length) {
     image_gallery = business.images.map((image) => {

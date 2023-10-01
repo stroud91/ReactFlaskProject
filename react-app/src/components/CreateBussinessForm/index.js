@@ -88,12 +88,14 @@ const owner_id = currentUser ? currentUser.id : null;
                 phone_number,
                 category_id,
                 owner_id,
+                // images,
                 website,
                 about,
                 type
               };
     console.log("This is Business Data:", businessData)
     await dispatch(businessActions.createNewBusiness(businessData));
+    
     history.push(`/business/all`);
   }
 

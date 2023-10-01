@@ -19,11 +19,8 @@ def search_business():
         searchTerm = form.search.data
         businesses = Business.query.filter(Business.name.ilike(f'%{searchTerm}%')).all()
         business_list = [business.to_dict() for business in businesses]
-    
+
     return {"queried businesses": business_list}
-
-
-
 
 
 
@@ -107,8 +104,9 @@ def add_business():
 
         db.session.add(business)
         db.session.commit()
-
-        return business.to_dict()
+        business_to_dict = business.to_dict()
+        business_to_dict["images"]=[]
+        return business_to_dict
     else:
         return {"errors": validation_errors_to_error_messages(form.errors)}
 

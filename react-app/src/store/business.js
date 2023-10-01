@@ -95,12 +95,13 @@ export const createNewBusiness = (business) => async (dispatch) => {
     body: JSON.stringify(business),
   });
 
-  if (response.ok) {
+  if (response) {
     const data = await response.json();
-    console.log("This is the data:", data);
+    console.log("This is the data for create business:", data);
     dispatch(addBusiness(data));
     return data;
   } else {
+
     console.error("Thunk Error: Failed to add business");
   }
 };
@@ -181,7 +182,7 @@ const businessReducer = (state = initialState, action) => {
     case REMOVE_BUSINESS:
       return { ...state, current: null, selectedBusiness: null };
     case ADD_BUSINESS:
-      return { ...state, list: [...state.list, action.payload] };
+      return { ...state, selectedBusiness: action.payload };
     case UPDATE_BUSINESS:
       return {
         ...state,
