@@ -3,8 +3,8 @@ from ..models import BusinessImage, db, Business
 from flask_login import current_user, login_required
 from ..forms import NewImage
 from datetime import datetime
-from app.s3_helper import (
-    upload_file_to_s3, get_unique_filename)
+# from app.s3_helper import (
+#     upload_file_to_s3, get_unique_filename)
 
 images_routes = Blueprint('business', __name__)
 
