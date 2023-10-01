@@ -13,6 +13,7 @@ import OwnedBusinesses from "./components/OwnedBusiness";
 import QueryBusiness from "./components/QueryBusinesses";
 import { ModalProvider } from "./context/Modal";
 import MainPage from "./components/MainPageView";
+import SearchBar from "./components/SearchBar";
 
 function App() {
   const dispatch = useDispatch();

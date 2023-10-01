@@ -96,7 +96,7 @@ const owner_id = currentUser ? currentUser.id : null;
     console.log("This is Business Data:", businessData)
     await dispatch(businessActions.createNewBusiness(businessData));
     
-    history.push(`/business/all`);
+    history.push(`/owned`);
   }
 
 
