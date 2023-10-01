@@ -188,10 +188,10 @@ const businessReducer = (state = initialState, action) => {
         list: state.list.map((business) =>
           business.id === action.payload.id ? action.payload : business
         ),
-        current:
-          action.payload.id === state.current.id
-            ? action.payload
-            : state.current,
+        // current:
+        //   action.payload.id === state.current.id
+        //     ? action.payload
+        //     : state.current,
       };
     default:
       return state;

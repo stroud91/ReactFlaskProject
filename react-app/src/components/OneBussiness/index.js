@@ -109,7 +109,7 @@ const handleEdit = () => {
         </div>
       <div className="postYourReview">
         {user &&
-          user.id !== business.owner_Id &&
+          user.id !== business.owner_id &&
           !reviews.restaurant_reviews.some(
             (review) => review.user_id === user.id
           ) && (
