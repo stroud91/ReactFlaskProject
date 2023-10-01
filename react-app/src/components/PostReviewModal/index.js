@@ -10,24 +10,24 @@ import StarsRating from "./StarsRating";
 import { fetchOneBusiness } from '../../store/business';
 import { oneBussinessReviewsThunk } from "../../store/review";
 
-function PostReviewModal({id, user}) {
-    const dispatch = useDispatch();
-    const history = useHistory();  
-   const business = useSelector(state => state.business.selectedBusiness);
+function PostReviewModal({ id, user }) {
+  const dispatch = useDispatch();
+  const history = useHistory();
+  const business = useSelector(state => state.business.selectedBusiness);
 
-    console.log(business)
-    //const user = useSelector(state => state.session.user)
-    //console.log(user)
+  console.log(business)
+  //const user = useSelector(state => state.session.user)
+  //console.log(user)
 
   const [errors, setErrors] = useState({});
   const [stars, setStars] = useState(0);
   const [comment, setComment] = useState("");
   const [formDisabled, setFormDisabled] = useState(true);
   const { closeModal } = useModal();
- 
+
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
-}, [dispatch]);
+  }, [dispatch]);
 
   useEffect(() => {
     const errors = {};
@@ -59,14 +59,14 @@ function PostReviewModal({id, user}) {
     setErrors({});
 
     // Check if the user has already posted a review
-//   const hasUserPostedReview =
-//   business.reviews.some((review) => review.user_id === (user ? user.id : null));
+    //   const hasUserPostedReview =
+    //   business.reviews.some((review) => review.user_id === (user ? user.id : null));
 
-// if (hasUserPostedReview) {
-//   // User has already posted a review, handle accordingly (e.g., display an error message)
-//   setErrors({ review: "You have already posted a review for this business." });
-//   return;
-// }
+    // if (hasUserPostedReview) {
+    //   // User has already posted a review, handle accordingly (e.g., display an error message)
+    //   setErrors({ review: "You have already posted a review for this business." });
+    //   return;
+    // }
     const userId = user ? user.id : null;
     const businessId = business && business.id ? business.id : null;
     const submittedReview = { userId, review_body: comment, rating: stars };
@@ -89,6 +89,9 @@ function PostReviewModal({id, user}) {
   return (
     <div id="postReviewContainer">
       <div className="postReviewHeading">How was your stay?</div>
+      <div className="post-review-errors">
+        {errors.comment && errors.comment ? <>{errors.comment}</> : <div className="empty-space"> </div>}
+      </div>
       <label>
         <input
           type="text"
@@ -98,7 +101,6 @@ function PostReviewModal({id, user}) {
           placeholder="Leave your review here..."
         />
       </label>
-      {errors.comment && <p>{errors.comment}</p>}
       <div className="rating-input">
         <StarsRating disabled={false} stars={stars} onChange={onChange} />
         <div>Stars</div>
@@ -114,6 +116,6 @@ function PostReviewModal({id, user}) {
       </button>
     </div>
   );
- }
+}
 
 export default PostReviewModal;

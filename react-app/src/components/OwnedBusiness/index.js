@@ -43,7 +43,7 @@ function OwnedBusinesses() {
         <ul className='businessMain__grid'>
             {ownedBusinesses && ownedBusinesses.map((business) => (
                 <li key={business.id} className='businessMain__item'>
-                    <p>{business.name}</p>
+                    <p className="businessMain_name">{business.name}</p>
                     <div className="businessMain__image">
                         <img src={getPrev(business)}
                             className='busImg'

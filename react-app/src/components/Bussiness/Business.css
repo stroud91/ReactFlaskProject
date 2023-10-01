@@ -19,14 +19,17 @@
     align-items: center;
     margin: 20px;
   }
-
+/* Gar changes */
   .businessMain__image {
-    width: 100%;
+    width: fit-content;
     height: 200px;
     background-color: #ccc; /* temporary */
     border-radius: 4px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
   }
+
 
   .businessMain__item p {
     margin: 5px 0;
@@ -46,12 +49,16 @@
   .businessMain__item a:hover {
     background-color: #0056b3;
   }
-
+  /* Gar changes */
 .busImg{
     object-fit: cover;
     object-position: center;
     aspect-ratio: 1/1;
-    width: 50%;
+    height: 100%;
     z-index: 0;
     grid-area:header;
+}
+  /* Gar changes */
+.businessMain_name {
+  font-weight: bold;
 }

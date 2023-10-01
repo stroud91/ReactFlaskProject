@@ -9,23 +9,111 @@ li {
   margin: 0 15px;
 }
 
-/* NavLink and Button Styling */
-.view-business-button, .logout-red-button {
+.view-login-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.log-in-button{
   width: calc(100% - 20px);
   background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: white;
   padding: 8px 12px;
-  margin: 10px;
+  margin-bottom: 10px;
+  font-size: medium;
+  border: none;
   text-align: center;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
 
-.view-business-button:hover, .logout-red-button:hover {
-  background-color: blue;
+.log-in-button:hover {
+  background-color: darkred;
 }
 
-.button.profile-button:hover {
+.sign-up-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  padding: 8px 12px;
+  font-size: medium;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.sign-up-button:hover {
+  background-color: darkred;
+}
+
+/* NavLink and Button Styling */
+.view-business-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  text-decoration: none;
+  font-size: medium;
+  padding: 8px 12px;  /* margin: 10px; */
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.view-business-button:hover {
+  background-color: darkred;
+}
+
+.logout-red-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  padding: 8px 12px;
+  font-size: medium;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.logout-red-button:hover {
+  background-color: darkred;
+}
+
+.create-business-button {
+  width: calc(100% - 20px);
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: medium;
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+
+.create-business-button:hover {
+  background-color: darkred;
+}
+
+
+.profile-button{
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 10px;
+}
+
+.profile-button:hover {
+  border: 0;
   background-color: #f2f2f2;
 }
 
@@ -38,10 +126,8 @@ li {
   border: 1px solid #ccc;
   border-radius: 10px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  padding: 10px;
-  width: 200px;
-  overflow: auto;
-  transition: all 0.3s ease-out;
+  width: fit-content;
+  display: block;
 }
 
 .profile-dropdown.hidden {
@@ -54,21 +140,16 @@ li {
   min-width: 150px;
   box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
   margin: 5px;
-  padding: 10px 5px;
+  padding: 10px 10px;
   z-index: 1;
   flex-direction: column;
   row-gap: 5px;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-bottom: 15px;
   background-color: white;
   border-radius: 5px;
   font-size: small;
   box-shadow: 0px 0px 10px lightgray;
   top: 80px;
   right: 8px;
-  /* transition: all 0.3s ease-out; */
-  /* transform: scaleY(0); */
   transform-origin: top;
   list-style-type: none;
   transition: background-color 0.3s ease-in-out;
@@ -80,8 +161,8 @@ li {
 
 .profile-dropdown button {
   width: 100%;
-  text-align: left;
-  padding-left: 10px;
+  text-align: center;
+  /* padding-left: 10px; */
 }
 
 /* Modal Button Styling */
@@ -116,64 +197,6 @@ li {
   margin-right: 15px;
 }
 
-/* New Button Styling */
-.view-business-button {
-  background-color: red;
-  margin-right: 10px;
-  
-}
-
-.view-business-button:hover {
-  background-color: darkred;
-  color: white;
-  border: none;
-  width: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-
-.create-business-button {
-  background-color: red;
-  color: white;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: 1px;
-  padding: 1px;
-  padding-top: 10px;
-}
-
-.create-business-button:hover {
-  background-color: darkred;
-  color: white;
-  border: none;
-  width: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.logout-red-button {
-  background-color: red;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  width: calc(100% - 20px)!important;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.logout-red-button:hover {
-  background-color: darkred;
-}
-
-
-.button.profile-button:hover {
-  background-color: #f2f2f2;
-}
-
 /* Searchbar Style */
 .searchbar {
   flex-grow: 1;
@@ -181,6 +204,19 @@ li {
   margin-bottom: -20px;
 }
 
-.fas fa-user-circle{
-  color: black;
+.fas.fa-user-circle {
+  font-size: 1.5rem;
+  color: rgb(67, 67, 67)
+}
+
+.fas.fa-user-circle:hover {
+  font-size: 1.5rem;
+  color: darkred
+}
+
+.view-logout-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-width: 100px;
 }

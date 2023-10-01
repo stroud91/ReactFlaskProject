@@ -20,12 +20,10 @@ function QueryBusiness() {
   }, [dispatch]);
 
   let getPrev = (business) => {
-    const image_list = dispatch(imageActions.images(business.id));
-    let normalizedImages = Object.values(image_list)
-    console.log(`prev formula ${normalizedImages}`)
     let res
-    if (normalizedImages[0]) {
-      normalizedImages.forEach((bus) => {
+    if (business.images.length) {
+      let arr = business.images
+      arr.forEach((bus) => {
         if (bus.image_preview) {
           res = bus.image_url
         }
@@ -58,7 +56,7 @@ function QueryBusiness() {
                     key={business.id}
                   />
                 </div>
-                <li>{business.name}</li>
+                <p className="businessMain_name">{business.name}</p>
                 <p>Category: {business.category}</p>
                 <p>Rating: {business.avg_rating}</p>
                 <p>
@@ -66,7 +64,7 @@ function QueryBusiness() {
                   {business.zip_code}
                 </p>
                 <p>{business.phone_number}</p>
-                <Link to={`/business/${business.id}`}>View More</Link>
+                <Link to={`/business/${business.id} `}>View More</Link>
               </li>
             ))}
         </ul>

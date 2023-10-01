@@ -289,10 +289,96 @@ a {
     transform: scale(1.05);
 }
 .reviewButtons{
+    margin-left: 0;
     padding: 5px;
+    padding-left: 0;
     border: none;
     border-radius: 5px;
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 20px;
+}
+
+.review-edit-button, .review-delete-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+.review-edit-button:hover, .review-delete-button:hover{
+    background-color: darkred;
+}
+
+
+
+.edit-business-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+    cursor: pointer;
+}
+
+.edit-business-button:hover{
+    background-color: darkred;
+}
+
+.delete-business-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+}
+
+.delete-business-button:hover{
+    background-color: darkred;
+}
+
+.post-review-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+}
+
+.post-review-button:hover{
+    background-color: darkred;
 }

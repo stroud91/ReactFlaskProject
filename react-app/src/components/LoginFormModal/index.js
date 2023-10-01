@@ -5,6 +5,7 @@ import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
 import * as sessionActions from "../../store/session";
 import { useHistory } from "react-router-dom/";
+import userIcon from "../../images/user-icon.png"
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -21,7 +22,7 @@ function LoginFormModal() {
     if (data) {
       setErrors(data);
     } else {
-        closeModal()
+      closeModal()
     }
   };
 
@@ -40,41 +41,49 @@ function LoginFormModal() {
 
 
   return (
-    <div className="login-form-container">
-      <h1>Log In</h1>
-      <form onSubmit={handleSubmit}>
-        <ul>
-          {errors.map((error, idx) => (
-            <li key={idx}>{error}</li>
-          ))}
-        </ul>
-        <div className="form-group">
-          <label>Email</label>
-          <input
-            type="text"
-            value={email}
-            onChange={(e) => setEmail(e.target.value)}
-            required
-          />
-        </div>
-        <div className="form-group">
-          <label>Password</label>
-          <input
-            type="password"
-            value={password}
-            onChange={(e) => setPassword(e.target.value)}
-            required
-          />
-        </div>
-        <button type="submit" className="btn-login">
-          Log In
+    <>
+      <div className="icon-container">
+        <img src={userIcon}
+          className="icon"
+          alt=""
+        />
+      </div>
+      <div className="login-form-container">
+        <h1>Log In</h1>
+        <form onSubmit={handleSubmit}>
+          <ul style={{ color: 'red' }}>
+            {errors.map((error, idx) => (
+              <li key={idx}>{error}</li>
+            ))}
+          </ul>
+          <div className="form-group">
+            <input
+              type="text"
+              value={email}
+              placeholder="Email"
+              onChange={(e) => setEmail(e.target.value)}
+              required
+            />
+          </div>
+          <div className="form-group">
+            <input
+              type="password"
+              value={password}
+              placeholder="Password"
+              onChange={(e) => setPassword(e.target.value)}
+              required
+            />
+          </div>
+          <button type="submit" className="btn-login">
+            Log In
+          </button>
+        </form>
+        <p className="or">or</p>
+        <button onClick={demoUser} className="btn-demo">
+          Log In as Demo User
         </button>
-      </form>
-      <p className="or">or</p>
-      <button onClick={demoUser} className="btn-demo">
-        Log In as Demo User
-      </button>
-    </div>
+      </div>
+    </>
   );
 }
 

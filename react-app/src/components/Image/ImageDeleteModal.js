@@ -33,7 +33,7 @@ function DeleteImageModal({ id }) {
                     {errors}
                 </div>
                 <div className="delete-cancel">
-                    <button className='upload button cursor' onClick={deleteImage} >{`Yes (Delete Image)`}</button>
+                    <button className='confirm-yes cursor' onClick={deleteImage} >{`Yes (Delete Image)`}</button>
 
                     <div>
                         <OpenModalButton

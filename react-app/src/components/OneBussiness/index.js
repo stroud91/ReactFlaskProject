@@ -109,18 +109,16 @@ function BusinessDetail() {
             currentUser.id === business.owner_id && (
               <div className="business-buttons-conditional">
                 <button
-                  className="general-button"
+                  className="edit-business-button"
                   onClick={() => handleEdit(business.id)}
                 >
                   Edit
                 </button>
-                <button>
-                  <OpenModalButton
-                    buttonText="Delete"
-                    modalComponent={<DeleteModal bus_data={business} />}
-                  // id={"see-img"}
-                  />
-                </button>
+                <OpenModalButton
+                  buttonText="Delete"
+                  modalComponent={<DeleteModal bus_data={business} />}
+                  id={"delete-business-button"}
+                />
               </div>
             )}
         </div>
@@ -134,6 +132,7 @@ function BusinessDetail() {
             <OpenModalButton
               buttonText="Post Your Review"
               modalComponent={<PostReviewModal id={id} user={user} />}
+              id={'post-review-button'}
             />
           )}
       </div>
@@ -156,21 +155,21 @@ function BusinessDetail() {
                 Updated At: {new Date(review.updated_at).toLocaleString()}
               </p>
               {user && review.user_id === user.id && (
-                <div className="buttonContainer">
-                  <div className="reviewButtons">
-                    <OpenModalButton
-                      buttonText="Edit"
-                      modalComponent={
-                        <EditReviewModal business_id={id} review={review} />
-                      }
-                    />
-                    <OpenModalButton
-                      buttonText="Delete"
-                      modalComponent={
-                        <DeleteReviewModal id={id} review={review.id} />
-                      }
-                    />
-                  </div>
+                <div className="reviewButtons">
+                  <OpenModalButton
+                    buttonText="Edit"
+                    modalComponent={
+                      <EditReviewModal business_id={id} review={review} />
+                    }
+                    id={"review-edit-button"}
+                  />
+                  <OpenModalButton
+                    buttonText="Delete"
+                    modalComponent={
+                      <DeleteReviewModal id={id} review={review.id} />
+                    }
+                    id={"review-delete-button"}
+                  />
                 </div>
               )}
             </div>

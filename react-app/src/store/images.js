@@ -34,6 +34,18 @@ export const images = (busId) => async (dispatch) => {
     }
 }
 
+export const getImageData = (busId) => async (dispatch) => {
+    const response = await fetch(`/api/business/${busId}/images`)
+    if (response.ok) {
+        const data = await response.json()
+        return data.images
+    }
+    else {
+        const data = await response.json()
+        return (data.error)
+    }
+}
+
 export const createImage = (bus_id, imageData) => async (dispatch) => {
     const response = await fetch(`/api/business/${bus_id}/images`, {
         method: "POST",

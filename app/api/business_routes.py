@@ -14,12 +14,29 @@ business_routes = Blueprint('businesses', __name__)
 def search_business():
     form = SearchForm()
     form['csrf_token'].data = request.cookies['csrf_token']
-    #business_list =[]
+    business_list =[]
+
     if form.validate():
         searchTerm = form.search.data
         businesses = Business.query.filter(Business.name.ilike(f'%{searchTerm}%')).all()
-        business_list = [business.to_dict() for business in businesses]
+        business_list = []
+        for business in businesses:
+            business_dict = business.to_dict()
+            reviews = business.reviews
+            ratings = [review.rating for review in reviews]
+            imgs_list = []
+            images = BusinessImage.query.filter_by(business_id = business.id).all()
+            for image in images:
+                img_dic = image.to_dict()
+                imgs_list.append(img_dic)
 
+            avg_rating = sum(ratings) / len(ratings) if ratings else 0
+            business_dict['avg_rating'] = round(avg_rating, 2)
+            business_dict['images'] = imgs_list
+            business_dict['category'] = business.category.name if business.category else None
+            
+
+            business_list.append(business_dict)
     return {"queried businesses": business_list}
 
 

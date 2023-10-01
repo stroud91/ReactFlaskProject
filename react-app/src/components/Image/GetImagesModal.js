@@ -58,7 +58,7 @@ function ImagesModal({ bus_data }) {
                             buttonText="Add Image"
                             modalComponent={<NewImageModal
                                 bus_id={bus_data.id} />}
-                            id={'button'}
+                            id={'add-image-button'}
                         />
 
                     </span>}
@@ -68,7 +68,7 @@ function ImagesModal({ bus_data }) {
                                 buttonText="Delete Image"
                                 modalComponent={<DeleteImageModal
                                     id={+imgId} />}
-
+                                id={'add-image-button'}
                             />
                             </span>))
                     }
