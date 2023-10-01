@@ -18,6 +18,7 @@ function OwnedBusinesses() {
         business => business.owner_id === currentUser.id
     );
 
+
     if(ownedBusinesses.length === 0){
         return <div>Currently you have no businesses created. Will you want to create one?</div>
     }
