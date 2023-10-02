@@ -29,6 +29,7 @@ function BusinessDetail() {
   // const { setModalContent, closeModal } = useModal();
   // const [showConfirmModal, setShowConfirmModal] = useState(false);
   console.log("THIS IS BUSINESS", business);
+  console.log("THIS IS images", normalizedImages);
   // console.log("THIS IS USER", user);
   // console.log("THIS IS REVIEWS", reviews);
 
