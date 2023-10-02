@@ -156,7 +156,7 @@ function BusinessDetail() {
             //   <div className="reviewDescription">{review.review_body}</div>
             <div key={review.id} className="individualReview">
               <p className="user-individual-review">
-                
+
                 {review.user_first_name} {review.user_last_name} posted on {changeDate(review.created_at)}:
               </p>
               <p>{review.review_body}</p>
