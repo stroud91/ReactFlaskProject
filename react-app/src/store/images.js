@@ -25,6 +25,7 @@ export const images = (busId) => async (dispatch) => {
     const response = await fetch(`/api/business/${busId}/images`)
     if (response.ok) {
         const data = await response.json()
+        console.log("these are the images from the images thunk", data)
         dispatch(getImage(data))
         return data.images
     }

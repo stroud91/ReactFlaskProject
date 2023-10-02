@@ -19,24 +19,25 @@ function BusinessDetail() {
   const history = useHistory();
   const dispatch = useDispatch();
 
-  const { id } = useParams();
+  let { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
+  console.log("this is business id from business 🤪🤪🤪🤪🤪", id)
   const bus_images = useSelector((state) => state.bus_images.images);
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
-  const normalizedImages = Object.values(bus_images);
+  const normalizedImages = bus_images && Object.values(bus_images);
   // const { setModalContent, closeModal } = useModal();
   // const [showConfirmModal, setShowConfirmModal] = useState(false);
   console.log("THIS IS BUSINESS", business);
   console.log("THIS IS images", normalizedImages);
   // console.log("THIS IS USER", user);
-  // console.log("THIS IS REVIEWS", reviews);
+  console.log("THIS IS REVIEWS", reviews)
 
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
-    dispatch(allReviewsThunk());
+    // dispatch(allReviewsThunk());
     dispatch(imageActions.images(id));
   }, [dispatch, id]);
 
@@ -44,6 +45,7 @@ function BusinessDetail() {
   if (!reviews) {
     return <div>Loading Reviews...</div>;
   }
+
 
   // const handleDelete = () => {
   //   setShowConfirmModal(true);
@@ -148,8 +150,7 @@ function BusinessDetail() {
       </div>
 
       {reviews &&
-        reviews.restaurant_reviews
-          .map((review) => (
+        reviews.restaurant_reviews.map((review) => (
             // <div className="individualReview" key={`review-${review.id}`}>
             //   {/* <div className="reviewUser">{review.User?.firstName}</div> */}
             //   <div className="createdAt">{(review.created_At)}</div>

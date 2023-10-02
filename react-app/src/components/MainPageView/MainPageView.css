@@ -2,6 +2,7 @@
     width: 100%;
     height: 400px;
     object-fit: cover;
+    cursor: pointer;
 }
 
 .main-page-container {
@@ -28,4 +29,5 @@ height: auto;
     0 0.07em rgb(90, 90, 90),
     -0.07em 0 rgb(90, 90, 90),
     0 -0.07em rgb(90, 90, 90);
+    cursor: pointer;
 }

@@ -26,6 +26,7 @@
     width: 100%;
     border: none;
     /* border: none; */
+    position: relative
   }
   
   .search-button {
@@ -41,3 +42,32 @@
 .fa-search {
     font-size: 12pt;
 }
+
+.search-results-hidden{
+    display: none;
+    color: white;
+  }
+  
+  .search-results-view {
+    background-color: rgb(240, 240, 240);
+    position: absolute;
+    top: 70px;
+    display: flex;
+    flex-direction: column;
+    border-radius: 5px;
+    /* width: 465px; */
+    /* box-shadow: 1px 1px 7px 3px #CCCCCC; */
+    z-index: 900;
+  
+  }
+  .results-container-width {
+    width: calc(100% - 70px); /* Adjust the width as needed */
+  }
+  .search-business {
+    cursor: pointer;
+    padding: 5px
+  }
+  
+  .search-business:hover {
+    color: red
+  }
