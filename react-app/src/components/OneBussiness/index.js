@@ -10,10 +10,12 @@ import { fetchOneBusiness } from "../../store/business";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as imageActions from "../../store/images";
+import { images } from "../../store/images";
 import noImage from "../../images/no-image.png";
 import "./OneBussiness.css";
 import "../Image/ImagesForm.css";
 import DeleteModal from "../DeleteBusinessModal";
+import MapContainer from "../MapContainer";
 
 function BusinessDetail() {
   const history = useHistory();
@@ -21,8 +23,9 @@ function BusinessDetail() {
 
   let { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
-  console.log("this is business id from business 🤪🤪🤪🤪🤪", id)
+  console.log("this is business id from business 🤪🤪🤪🤪🤪",business)
   const bus_images = useSelector((state) => state.bus_images.images);
+  console.log("this is bus_images", bus_images)
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
@@ -38,7 +41,7 @@ function BusinessDetail() {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
     // dispatch(allReviewsThunk());
-    dispatch(imageActions.images(id));
+    dispatch(images(id));
   }, [dispatch, id]);
 
   if (!business) return <div>Loading...</div>;
@@ -59,7 +62,7 @@ function BusinessDetail() {
 
   // console.log("this is images on this part", business.images);
 
-  if (normalizedImages[0]) {
+  if (normalizedImages && normalizedImages.length > 0) {
     image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
       return (
@@ -84,15 +87,18 @@ function BusinessDetail() {
         <div className="scroll-container">{image_gallery}</div>
         <span className="see-images">
           <OpenModalButton
-            buttonText={`See all ${normalizedImages.length} photos`}
+            buttonText={`See all ${normalizedImages ? normalizedImages.length : 0} photos`}
             modalComponent={<ImagesModal bus_data={business} />}
             id={"see-img"}
           />
         </span>
       </div>
+
       <div className="business-detail-container">
         {/* Side Panel for Contact Info */}
         <div className="business-side-panel">
+
+
           <h2>Contact Information</h2>
           <p>Address: {business.address}</p>
           <p>Phone Number: {business.phone_number}</p>
@@ -113,6 +119,7 @@ function BusinessDetail() {
 
         {/* Main Business Info */}
         <div className="business-info">
+
           <h1>{business.name}</h1>
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
@@ -135,6 +142,9 @@ function BusinessDetail() {
           )}
         </div>
       </div>
+
+
+
       <div className="postYourReview">
         {user &&
           user.id !== business.owner_id &&
@@ -148,7 +158,10 @@ function BusinessDetail() {
             />
           )}
       </div>
-
+      {business && (
+         <MapContainer business={business} businessId={business.id}
+          />
+        )}
       {reviews &&
         reviews.restaurant_reviews.map((review) => (
             // <div className="individualReview" key={`review-${review.id}`}>

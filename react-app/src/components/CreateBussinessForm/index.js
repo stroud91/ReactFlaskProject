@@ -20,11 +20,29 @@ function AddBusiness() {
   const [website, setWebsite] = useState('');
   const [about, setAbout] = useState('');
   const [type, setType] = useState('');
+  const [isValidAddress, setIsValidAddress] = useState(true);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
   const currentUser = useSelector(state => state.session.user);
   const owner_id = currentUser ? currentUser.id : null;
+
+  const validateAddress = async () => {
+
+    const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
+    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+      console.log("this is response from", response)
+      const data = await response.json();
+      return data.status === 'OK';
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  };
 
   const validate = () => {
     const errors = [];
@@ -33,7 +51,7 @@ function AddBusiness() {
       errors.push("Business name must be between 5 and 50 characters.");
     }
 
-    if (!address || address.length > 255) {
+    if (!address & validateAddress) {
       errors.push("Invalid address.");
     }
 
@@ -79,6 +97,15 @@ function AddBusiness() {
 
     if (errors.length > 0) return setValidationErrors(errors);
 
+
+    const isValid = await validateAddress();
+    setIsValidAddress(isValid);
+
+    if (!isValid) {
+    setValidationErrors([...errors, 'Invalid address. Please verify your address details.']);
+    return;
+    }
+
     const businessData = {
       name,
       address,
@@ -93,7 +120,7 @@ function AddBusiness() {
       about,
       type
     };
-    // console.log("This is Business Data:", businessData)
+
     await dispatch(businessActions.createNewBusiness(businessData));
 
     history.push(`/owned`);
@@ -139,6 +166,7 @@ function AddBusiness() {
               required
               placeholder='Enter the business address'
             />
+             {isValidAddress === false && <p className='error'>Invalid address. Please verify your address details.</p>}
           </div>
           <div className='form__input'>
             <label>City</label>
