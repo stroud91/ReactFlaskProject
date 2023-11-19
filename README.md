@@ -39,6 +39,65 @@ LIVE LINK DEMO ---> https://yelping.onrender.com
    flask run
    ```
 
-7. To run the React App in development, checkout the [README](./react-app/README.md) inside the `react-app` directory.
+--------------------------------------------------------------------------------------------------------------------------------------
+SITE VIEW 
+
+
+HOME PAGE 
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/05f2932b-cbc7-40e9-a454-9dc9b7eec48a)
+
+LOGIN PAGE
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/50ca01ab-3398-438d-8568-952b8f175fa6)
+
+
+SIGN UP PAGE
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/ce976831-292d-4de7-9017-7d3712bf3338)
+
+
+HOME PAGE AFTER LOG IN/SIGN UP
+
+
+
+CREATE A BUSINESS PAGE
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/3c76f7cf-5c77-41d7-9ca8-de0d3065bdf6)
+
+
+VIEW BUSINESS DETAIL 
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/7f56646f-ad6d-4300-9d89-a6b6490d7cfb)
+
+
+SEARCH OPTION
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/3ba14ca6-128a-4286-9bed-892aab9a807d)
+
+
+UPDATE BUSINESS FORM 
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/cf6e6fd3-85fd-4153-adff-17d439116ff2)
+
+
+VIEW IMAGES
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/6a8ca5b1-b26f-4ec5-a00a-2ff4145cbccb)
+
+
+ADD IMAGES
+
+
+
+LEAVE A REVIEW
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/2d603908-2c77-4354-8f95-0606c0748f62)
+
+
+UPDATE YOUR REVIEW
+
+![image](https://github.com/stroud91/ReactFlaskProject/assets/119982061/295e9521-a928-442d-adb8-7910a2ac2ab3)
+
 
 
