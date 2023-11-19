@@ -1,6 +1,6 @@
 # Flask React Project -- Yelping
-
-
+AUTHORS : LEDIAN FEKAJ ()    ENEA JORGJI ()   GAR HUNG ()
+LIVE LINK DEMO ---> https://yelping.onrender.com
 
 ## Getting started
 1. Clone this repository (only this branch)
