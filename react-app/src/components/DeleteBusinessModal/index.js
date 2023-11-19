@@ -6,7 +6,7 @@ import { deleteBusiness } from "../../store/business";
 import { useModal } from "../../context/Modal";
 
 export default function DeleteModal({ bus_data }) {
-  console.log("DeleteModal is rendered", bus_data.id);
+
   const id = bus_data.id
   const dispatch = useDispatch();
   const { closeModal } = useModal();
@@ -19,10 +19,7 @@ export default function DeleteModal({ bus_data }) {
       closeModal();
       history.push('/owned')
     });
-    // dispatch()
-    // alert("Delete button clicked");
-    // console.log('handleDelete is called');
-    // history.push('/business/all');
+
   };
 
   return (

@@ -139,7 +139,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 };
 
 export const deleteBusiness = (id) => async (dispatch) => {
-  console.log("id", id)
+
   const response = await fetch(`/api/business/${id}/delete`, {
     method: 'DELETE',
   });

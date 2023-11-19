@@ -35,7 +35,7 @@ function AddBusiness() {
 
     try {
       const response = await fetch(url);
-      console.log("this is response from", response)
+
       const data = await response.json();
       return data.status === 'OK';
     } catch (error) {

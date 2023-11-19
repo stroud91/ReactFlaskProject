@@ -14,7 +14,7 @@ function RecentActivity() {
   if (!reviews) return null;
 
   const last12Reviews = reviews["Reviews"].slice(-12);
-  console.log(last12Reviews);
+
 
   return (
     <div>
@@ -25,7 +25,7 @@ function RecentActivity() {
             <div className="review-item" key={review.id}>
               <div className="item-property">
                 <div className="user-info-review">
-                  <i className="far fa-user-circle" /> 
+                  <i className="far fa-user-circle" />
                   <div>{review.user_first_name}</div>
                 </div>
               </div>

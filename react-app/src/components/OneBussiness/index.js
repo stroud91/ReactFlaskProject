@@ -23,19 +23,16 @@ function BusinessDetail() {
 
   let { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
-  console.log("this is business id from business 🤪🤪🤪🤪🤪",business)
+
   const bus_images = useSelector((state) => state.bus_images.images);
-  console.log("this is bus_images", bus_images)
+
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
   const normalizedImages = bus_images && Object.values(bus_images);
   // const { setModalContent, closeModal } = useModal();
   // const [showConfirmModal, setShowConfirmModal] = useState(false);
-  console.log("THIS IS BUSINESS", business);
-  console.log("THIS IS images", normalizedImages);
-  // console.log("THIS IS USER", user);
-  console.log("THIS IS REVIEWS", reviews)
+
 
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
@@ -60,7 +57,7 @@ function BusinessDetail() {
 
   let image_gallery;
 
-  // console.log("this is images on this part", business.images);
+  
 
   if (normalizedImages && normalizedImages.length > 0) {
     image_gallery = normalizedImages.map((image) => {

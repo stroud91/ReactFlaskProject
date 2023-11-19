@@ -3,8 +3,7 @@ import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
 
-console.log("this is api key",API_KEY)
-console.log("this is env",process.env)
+
 
 export function MapContainer({ google, business }) {
 

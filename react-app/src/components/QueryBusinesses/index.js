@@ -13,7 +13,7 @@ function QueryBusiness() {
   let businesses = useSelector((state) => state.business.search);
 
   businesses = businesses["queried businesses"];
-  // console.log("This is the result of the search bar", businesses);
+  
 
   useEffect(() => {
     dispatch(searchBusinessByName());

@@ -49,10 +49,10 @@ export const allReviewsThunk = () => async dispatch => {
 
 export const oneBussinessReviewsThunk = (id) => async dispatch => {
     const response = await fetch(`/api/reviews/${id}/reviews`)
-    //console.log('THIS IS RESPONSE FROM THUNK', response)
+
     if (response.ok) {
         const reviews = await response.json()
-        // console.log ("THIS IS REVIEWS PRINTED FROM THUNK",reviews)
+
         dispatch(getSingleBusinessReviews(reviews))
         return reviews
     }
@@ -69,8 +69,7 @@ export const userReviewsThunk = () => async dispatch => {
 }
 
 export const createReviewThunk = (businessId, review) => async (dispatch) => {
-    //console.log('THIS IS BIZ ID',businessId)
-    // console.log(review)
+
     try {
         const res = await fetch(`/api/reviews/${businessId}/reviews`, {
             method: 'POST',
@@ -79,10 +78,10 @@ export const createReviewThunk = (businessId, review) => async (dispatch) => {
             },
             body: JSON.stringify(review)
         })
-        //console.log('this is res', res)
+
         if (res.ok) {
             const newReview = await res.json();
-            // console.log("Thiis is new review",newReview)
+
             dispatch(createReview(newReview))
             return newReview
         }
@@ -96,7 +95,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     const res = await fetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
-    // console.log("this is delete thunk res", res)
+
     if (res.ok) {
         dispatch(deleteReview(reviewId))
     } else {
@@ -105,20 +104,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     }
 }
 
-// export const editReviewThunk = (reviewId,editedReview) => async dispatch => {
-//     const response = await fetch(`/api/reviews/${reviewId}`, {
-//         method: 'PUT',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(editedReview)
-//       })
-// console.log("THIS IS EDIT REVIEW RES",response)
-//     if(response.ok){
-//         const editedReview = await response.json();
-//         console.log('Edited Review:', editedReview);
-//         dispatch(editReview(editedReview))
-//         return editedReview
-//     }
-// }
+
 
 export const editReviewThunk = (reviewId, editedReview) => async dispatch => {
     const res = await fetch(`/api/reviews/${reviewId}`, {
@@ -131,7 +117,7 @@ export const editReviewThunk = (reviewId, editedReview) => async dispatch => {
     })
     if (res.ok) {
         const editReviewRes = await res.json()
-        console.log("😅 THIS IS EDITED REVIEW FROM THUNK", editReviewRes)
+       
         dispatch(editReview(editReviewRes))
         return editReview
     } else {

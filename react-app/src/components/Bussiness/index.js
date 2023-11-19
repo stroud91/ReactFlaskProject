@@ -9,8 +9,7 @@ import './Business.css';
 function BusinessMainPage() {
     const dispatch = useDispatch();
     const businesses = useSelector(state => state.business.list);
-    // console.log("BUSSINES:", businesses)
-    // console.log(typeof businesses)
+
     useEffect(() => {
         dispatch(businessActions.getAllBusinesses());
     }, [dispatch]);

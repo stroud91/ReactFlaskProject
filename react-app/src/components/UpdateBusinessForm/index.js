@@ -9,7 +9,7 @@ function UpdateBusiness() {
   const history = useHistory();
   const { id } = useParams();
   const businesses = useSelector((state) => state.business.list)
-  //   console.log("😇", businesses)
+
   const business = useSelector(state =>
     state.business.list
       ? state.business.list.find(b => b.id === parseInt(id))
@@ -19,9 +19,7 @@ function UpdateBusiness() {
   useEffect(() => {
     dispatch(businessActions.getAllBusinesses());
   }, [dispatch]);
-  // const business = useSelector((state) => state.business.list[id])
 
-  //   console.log("🥰 this is the business that needs to be edited", business)
 
   const [name, setName] = useState(business ? business.name : '');
   const [address, setAddress] = useState(business ? business.address : '');
@@ -56,7 +54,7 @@ function UpdateBusiness() {
 
     try {
       const response = await fetch(url);
-      console.log("this is response from update ", response)
+   
       const data = await response.json();
       return data.status === 'OK';
     } catch (error) {
