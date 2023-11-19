@@ -1,5 +1,5 @@
 # Flask React Project -- Yelping
-AUTHORS : LEDIAN FEKAJ ()    ENEA JORGJI ()   GAR HUNG ()
+AUTHORS : LEDIAN FEKAJ (https://github.com/stroud91)    ENEA JORGJI (https://github.com/ejorgji1)   GAR HUNG (https://github.com/gjinhung)
 LIVE LINK DEMO ---> https://yelping.onrender.com
 
 ## Getting started
