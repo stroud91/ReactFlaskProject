@@ -97,25 +97,23 @@ function BusinessDetail() {
       <div className="business-detail-container">
         {/* Side Panel for Contact Info */}
         <div className="business-side-panel">
-
-
-          <h2>Contact Information</h2>
-          <p>Address: {business.address}</p>
-          <p>Phone Number: {business.phone_number}</p>
-          <p>
-            City: {business.city}, {business.state} {business.zip_code}
-          </p>
-          <p>
-            Website:{" "}
-            <a
-              href={business.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {business.website}
+        <div className="contact-container">
+        <h2>Contact Information</h2>
+        <p>Address: {business.address}</p>
+        <p>Phone Number: {business.phone_number}</p>
+        <p>City: {business.city}, {business.state} {business.zip_code}</p>
+        <p>Website:
+            <a href={business.website} target="_blank" rel="noopener noreferrer">
+                {business.website}
             </a>
-          </p>
+        </p>
         </div>
+        <div className="map-container">
+            {business && (
+                <MapContainer business={business} businessId={business.id} />
+            )}
+        </div>
+    </div>
 
         {/* Main Business Info */}
         <div className="business-info">
@@ -123,8 +121,10 @@ function BusinessDetail() {
           <h1>{business.name}</h1>
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
-          <p>About: {business.about}</p>
+
           <p>Average Rating: {business.avg_rating}</p>
+          <p className="bold-about">About</p>
+          <p>{business.about}</p>
           {currentUser && currentUser.id === business.owner_id && (
             <div className="business-buttons-conditional">
               <button
@@ -145,6 +145,7 @@ function BusinessDetail() {
 
 
 
+
       <div className="postYourReview">
         {user &&
           user.id !== business.owner_id &&
@@ -158,10 +159,7 @@ function BusinessDetail() {
             />
           )}
       </div>
-      {business && (
-         <MapContainer business={business} businessId={business.id}
-          />
-        )}
+
       {reviews &&
         reviews.restaurant_reviews.map((review) => (
             // <div className="individualReview" key={`review-${review.id}`}>

@@ -1,6 +1,6 @@
 /* General Styling */
 div {
-    margin: 8px;
+    
     transition: all 0.3s ease-in-out;
 }
 
@@ -32,16 +32,67 @@ a {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.business-info-map {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+}
+
+.map-container {
+    flex: 1;
+    width: 220px;
+    height: 230px;
+    padding-right: 0px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 0px;
+    padding-left: 0px;
+}
+.contact-container{
+    flex: 1;
+    margin-right: 16px;
+    margin: 1px;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 1px;
+}
+
+.business-detail-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .business-side-panel {
     flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
     padding: 16px;
-    border-left: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+/*
+.small-map-container {
+    height: 250px;
+    margin-top: 16px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+} */
 
 /* Button Styling */
 .business-buttons-conditional {

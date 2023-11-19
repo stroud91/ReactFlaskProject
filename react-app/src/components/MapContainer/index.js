@@ -1,14 +1,19 @@
 import React from 'react';
-import { Map, Marker, GoogleApiWrapper } from 'google-maps-react';
+import { Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY
+
+console.log("this is api key",API_KEY)
+console.log("this is env",process.env)
 
 export function MapContainer({ google, business }) {
-  console.log("THIS IS INFO PASSED FOR GOOGLE MAPS", google, business )
+
 
   const busId= business.id
-  
+
   const mapStyles = {
-    width: '400px',
-    height: '400px',
+    width: '300px',
+    height: '240px',
   };
 
   return (
@@ -25,5 +30,5 @@ export function MapContainer({ google, business }) {
 }
 
 export default GoogleApiWrapper({
-  apiKey: 'AIzaSyCRM7INOx0mR1yvgWECwy8rGbrJEV_pBEU'
+  apiKey: API_KEY
 })(MapContainer);
