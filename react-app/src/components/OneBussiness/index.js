@@ -16,6 +16,7 @@ import "./OneBussiness.css";
 import "../Image/ImagesForm.css";
 import DeleteModal from "../DeleteBusinessModal";
 import MapContainer from "../MapContainer";
+import LoadingAnimation from "../Loading";
 
 function BusinessDetail() {
   const history = useHistory();
@@ -41,7 +42,9 @@ function BusinessDetail() {
     dispatch(images(id));
   }, [dispatch, id]);
 
-  if (!business) return <div>Loading...</div>;
+  if(!business){
+    return <LoadingAnimation />
+  }
   if (!reviews) {
     return <div>Loading Reviews...</div>;
   }
@@ -57,7 +60,7 @@ function BusinessDetail() {
 
   let image_gallery;
 
-  
+
 
   if (normalizedImages && normalizedImages.length > 0) {
     image_gallery = normalizedImages.map((image) => {

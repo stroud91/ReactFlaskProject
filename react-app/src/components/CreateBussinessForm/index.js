@@ -44,6 +44,20 @@ function AddBusiness() {
     }
   };
 
+  const handleDemoData = () => {
+    setName('Demo Restaurant');
+    setAddress('123 Demo St');
+    setCity('Demo City');
+    setState('DC');
+    setZipCode('12345');
+    setPhoneNumber('1234567890');
+    setCategoryId(1); 
+    setWebsite('http://www.demorestaurant.com');
+    setAbout('This is a demo restaurant for showcasing purposes.');
+    setType('Demo Type');
+  };
+
+
   const validate = () => {
     const errors = [];
 
@@ -257,7 +271,9 @@ function AddBusiness() {
           </div>
         </div>
         <div className='form__input button__container'>
+          <button type="button" onClick={handleDemoData} className='demo-data-button'>Fill with Demo Data</button>
           <button className='form__button' type="submit">Add Business</button>
+
         </div>
       </form>
     </div>

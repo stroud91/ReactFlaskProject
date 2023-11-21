@@ -1,0 +1,28 @@
+.footer-container {
+    background-color: #f8f9fa;
+    color: #6c757d;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .footer-container h4 {
+    margin-bottom: 10px;
+  }
+
+  .footer-container ul {
+    list-style: none;
+    padding: 0;
+  }
+
+  .footer-container ul li {
+    margin-bottom: 5px;
+  }
+
+  .footer-container a {
+    color: #007bff;
+    text-decoration: none;
+  }
+
+  .footer-container a:hover {
+    text-decoration: underline;
+  }

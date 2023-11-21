@@ -10,8 +10,17 @@ import "./MainPageView.css";
 
 function MainPage() {
   const [search, setSearch] = useState("");
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [businesses, setBusinesses] = useState([]);
   const history = useHistory();
+
+
+  const imageUrls = [
+    yelgImg,
+    "https://plymold.com/wp-content/uploads/2022/11/chair-glides-banner.jpg",
+    "https://www.timewornusa.com/wp-content/uploads/2019/04/TimeWorn-Restaurant-Tabletops-banner-cropped.jpg",
+
+  ];
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -20,6 +29,16 @@ function MainPage() {
   const handleChange = (e) => {
     setSearch(e.target.value);
   };
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setCurrentImageIndex((currentImageIndex) =>
+        currentImageIndex === imageUrls.length - 1 ? 0 : currentImageIndex + 1
+      );
+    }, 3000);
+
+    return () => clearInterval(intervalId);
+  }, []);
 
   useEffect(() => {
     async function fetchData() {
@@ -37,7 +56,11 @@ function MainPage() {
         className="main-page-image-container"
         onClick={() => history.push("/business/all")}
       >
-        <img src={yelgImg}></img>
+         <img
+          src={imageUrls[currentImageIndex]}
+          alt="Featured restaurant"
+          className="fade-in"
+        />
         <div className="image-text">View all restaurants</div>
       </div>
       <RecentActivity />

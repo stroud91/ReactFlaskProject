@@ -7,13 +7,14 @@ import "../Bussiness/Business.css";
 import MainPage from "../MainPageView";
 import noImage from "../../images/no-image.png"
 import { searchBusinessByName } from "../../store/business";
+import LoadingAnimation from "../Loading";
 
 function QueryBusiness() {
   const dispatch = useDispatch();
   let businesses = useSelector((state) => state.business.search);
 
   businesses = businesses["queried businesses"];
-  
+
 
   useEffect(() => {
     dispatch(searchBusinessByName());
@@ -34,6 +35,10 @@ function QueryBusiness() {
     return res
   }
 
+
+  if(!businesses){
+    return <LoadingAnimation />
+  }
   return (
     <div>
       {businesses.length === 0 ? (
