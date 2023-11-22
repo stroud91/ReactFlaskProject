@@ -17,8 +17,8 @@ function MainPage() {
 
   const imageUrls = [
     yelgImg,
-    "https://plymold.com/wp-content/uploads/2022/11/chair-glides-banner.jpg",
-    "https://www.timewornusa.com/wp-content/uploads/2019/04/TimeWorn-Restaurant-Tabletops-banner-cropped.jpg",
+    "https://static.vecteezy.com/system/resources/previews/004/898/969/large_2x/closeup-view-of-delicious-grilled-beef-medallions-served-on-table-luxury-restaurant-food-on-white-setting-gourmet-meal-banner-view-photo.jpg",
+    "https://orangetourism.org/wp-content/uploads/2023/07/Farm-to-Table-OakReed-1315.jpg",
 
   ];
 

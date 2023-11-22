@@ -46,10 +46,10 @@ function AddBusiness() {
 
   const handleDemoData = () => {
     setName('Demo Restaurant');
-    setAddress('123 Demo St');
-    setCity('Demo City');
-    setState('DC');
-    setZipCode('12345');
+    setAddress('1111 N 9th Street');
+    setCity('Stroudsburg');
+    setState('PA');
+    setZipCode('18360');
     setPhoneNumber('1234567890');
     setCategoryId(1);
     setWebsite('http://www.demorestaurant.com');
@@ -153,9 +153,6 @@ function AddBusiness() {
   return (
     <div className='form__container business-edit__form'>
       <div className='business-error__container'>
-        {validationErrors.map((error, index) => (
-          <div className='error' key={index}>{error}</div>
-        ))}
       </div>
       <form onSubmit={handleSubmit}>
         <div className='input__container'>
@@ -292,7 +289,9 @@ function AddBusiness() {
           </div>
         </div>
         <div className='form__input button__container'>
-          <button type="button" onClick={handleDemoData} className='demo-data-button'>Fill with Demo Data</button>
+
+          <button type="form__button" onClick={handleDemoData} className='form__button'>Fill with Demo Data</button>
+
           <button className='form__button' type="submit">Add Business</button>
 
         </div>
