@@ -25,7 +25,7 @@ function RecentActivity() {
             <div className="review-item" key={review.id}>
               <div className="item-property">
                 <div className="user-info-review">
-                  <i className="far fa-user-circle" />
+                  <i className="far fa-user-circle"/>
                   <div>{review.user_first_name}</div>
                 </div>
               </div>
