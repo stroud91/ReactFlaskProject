@@ -64,9 +64,6 @@ function MainPage() {
         <div className="image-text">View all restaurants</div>
       </div>
       <RecentActivity />
-      <footer className="main-footer">
-        <p>&copy; 2023 Business Directory</p>
-      </footer>
     </div>
   ) : (
     <div>Loading...</div>

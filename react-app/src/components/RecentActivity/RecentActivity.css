@@ -3,26 +3,26 @@
     grid-template-columns: repeat(3, 1fr);
     grid-gap: 20px;
   }
-  
+
   .review-item {
     border: 1px solid #ccc;
     padding: 20px;
     margin-bottom: 20px;
   }
-  
+
   .review-item strong {
     font-weight: bold;
     margin-right: 5px;
   }
 
   .review-item .business-name {
-    color: #3498db; 
-    font-size: 1.2em; 
+    color: #3498db;
+    font-size: 1.2em;
   }
 
   .recent_title{
     text-align: center;
-    
+
   }
 
   .user-info-review {
@@ -34,4 +34,12 @@
 
 body {
     font-family: Arial, Helvetica, sans-serif;
+}
+
+.profile-pic {
+  width: 40px; 
+  height: 40px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
 }

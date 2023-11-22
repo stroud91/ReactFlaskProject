@@ -306,6 +306,7 @@ a {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 20px;
+
   }
 
   .editButton:hover {
@@ -365,6 +366,9 @@ a {
     font-size: small;
     font-family: sans-serif;
     cursor: pointer;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
 }
 
 .review-edit-button:hover, .review-delete-button:hover{
@@ -388,6 +392,9 @@ a {
     font-size: small;
     font-family: sans-serif;
     cursor: pointer;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
 }
 
 .edit-business-button:hover{
@@ -408,6 +415,9 @@ a {
     margin-right: 10px;
     font-size: small;
     font-family: sans-serif;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
 }
 
 .delete-business-button:hover{
