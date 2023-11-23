@@ -1,4 +1,4 @@
-// constants
+
 const GET_IMAGES = "images/GET_IMAGES";
 const NEW_IMAGE = 'images/NEW_IMAGE'
 const REMOVE_IMAGE = "images/REMOVE_IMAGE";
@@ -23,9 +23,28 @@ const removeImage = (img_id) => ({
 
 export const images = (busId) => async (dispatch) => {
     const response = await fetch(`/api/business/${busId}/images`)
-    const data = await response.json()
-    dispatch(getImage(data))
-    return data
+    if (response.ok) {
+        const data = await response.json()
+
+        dispatch(getImage(data))
+        return data.images
+    }
+    else {
+        const data = await response.json()
+        return (data.error)
+    }
+}
+
+export const getImageData = (busId) => async (dispatch) => {
+    const response = await fetch(`/api/business/${busId}/images`)
+    if (response.ok) {
+        const data = await response.json()
+        return data.images
+    }
+    else {
+        const data = await response.json()
+        return (data.error)
+    }
 }
 
 export const createImage = (bus_id, imageData) => async (dispatch) => {
@@ -57,7 +76,7 @@ export const deleteImage = (img_id) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(removeImage(img_id))
-        console.log("successfully deleted")
+
         return null
     }
     else {

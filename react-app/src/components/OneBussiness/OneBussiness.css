@@ -1,6 +1,6 @@
 /* General Styling */
 div {
-    margin: 8px;
+
     transition: all 0.3s ease-in-out;
 }
 
@@ -32,16 +32,67 @@ a {
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
     box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 15px;
+}
+
+.business-info-map {
+    position: relative;
+    height: 500px;
+    overflow: hidden;
+    background-color: rgba(255, 255, 255, 0.8);
+    border-radius: 15px;
+    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    padding: 20px;
+    margin: 20px 0;
+    border-radius: 15px;
+}
+
+.map-container {
+    flex: 1;
+    width: 220px;
+    height: 230px;
+    padding-right: 0px;
+    border-radius: 16px;
+    overflow: hidden;
+    margin-top: 0px;
+    padding-left: 0px;
+}
+.contact-container{
+    flex: 1;
+    margin-right: 16px;
+    margin: 1px;
+    height: 220px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    padding: 1px;
+}
+
+.business-detail-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
 }
 
 .business-side-panel {
     flex: 1;
+    display: flex;
+    flex-direction: row;
+    align-items: start;
+    justify-content: start;
     padding: 16px;
-    border-left: 1px solid #ccc;
     background-color: rgba(255, 255, 255, 0.8);
     border-radius: 15px;
-    box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.2);
 }
+/*
+.small-map-container {
+    height: 250px;
+    margin-top: 16px;
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+} */
 
 /* Button Styling */
 .business-buttons-conditional {
@@ -255,6 +306,7 @@ a {
     cursor: pointer;
     transition: background-color 0.3s ease;
     margin-right: 20px;
+
   }
 
   .editButton:hover {
@@ -289,138 +341,110 @@ a {
     transform: scale(1.05);
 }
 .reviewButtons{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 20px;
-}
-
-
-/* Business Info Styling */
-.info {
-    font-weight: 600;
-    font-size: 1.1rem;
-    color: #333;
-    margin-bottom: 10px;
-}
-
-/* Business Address, Website, Category, Type, City Styling */
-.address, .website, .category, .type, .city {
-    font-size: 1rem;
-    color: #555;
-    background: #f2f2f2;
-    padding: 8px 12px;
-    border-radius: 4px;
-    margin: 4px 0;
-}
-
-.website a {
-    color: #2B273C;
-}
-
-/* Average Rating Styling */
-.average-rating {
-    font-size: 1.2rem;
-    color: #fff;
-    background-color: #4CAF50;
-    padding: 10px;
-    border-radius: 6px;
-    margin-top: 10px;
-    width: fit-content;
-}
-
-/* Reviews Section Styling */
-.individualReview {
-    background-color: #f8f9fa;
-    border-radius: 10px;
-    padding: 20px;
-    margin-bottom: 20px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  }
-
-  .reviewUser, .createdAt, .reviewDescription, .user-id {
-    margin-bottom: 10px;
-  }
-
-  .reviewUser {
-    font-weight: bold;
-    font-size: 1.2rem;
-  }
-
-  .createdAt {
-    font-size: 0.8rem;
-    color: #555;
-  }
-
-  .reviewDescription {
-    font-size: 1rem;
-  }
-
-  /* Edit and Delete Button Styling */
-  .buttonContainer {
-    margin-top: 10px;
-  }
-
-  .editButtons, .deleteButtons {
-    background-color: #007BFF;
-    color: #fff;
-    padding: 8px 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 20px;
-  }
-
-  .editButton:hover {
-    background-color: #0056b3;
-  }
-
-  .deleteButton {
-    background-color: #dc3545;
-  }
-
-  .deleteButton:hover {
-    background-color: #c82333;
-  }
-
-
-  .business-buttons-conditional {
-    margin-top: 20px;
-}
-
-.general-button {
-    background-color: #2B273C;
-    color: white;
-    padding: 12px 24px;
-    margin-right: 8px;
-    border: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease, transform 0.3s ease;
-}
-
-.general-button:hover {
-    background-color: #565056;
-    transform: scale(1.05);
-}
-.reviewButtons{
-    padding: 5px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    margin-right: 20px;
-}
-
-.edit-delete-modals{
     margin-left: 0;
-    width: 120px;
-    display: flex;
-    justify-content: space-between;
+    padding: 5px;
+    padding-left: 0;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-right: 20px;
 }
 
-.scroll-gallery{
-    margin: 0;
+.review-edit-button, .review-delete-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+    cursor: pointer;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
+}
+
+.review-edit-button:hover, .review-delete-button:hover{
+    background-color: darkred;
+}
+
+
+
+.edit-business-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+    cursor: pointer;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
+}
+
+.edit-business-button:hover{
+    background-color: darkred;
+}
+
+.delete-business-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+    height: 30px;
+    width: 90px;
+    padding: 5px 10px;
+}
+
+.delete-business-button:hover{
+    background-color: darkred;
+}
+
+.post-review-button{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content;
+    padding: 10px;
+    margin-right: 10px;
+    font-size: small;
+    font-family: sans-serif;
+}
+
+.post-review-button:hover{
+    background-color: darkred;
+}
+
+.user-individual-review {
+    color: rgb(99, 99, 99);
+    font-size: 10pt;
 }

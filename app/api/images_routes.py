@@ -3,8 +3,8 @@ from ..models import BusinessImage, db, Business
 from flask_login import current_user, login_required
 from ..forms import NewImage
 from datetime import datetime
-from app.s3_helper import (
-    upload_file_to_s3, get_unique_filename)
+# from app.s3_helper import (
+#     upload_file_to_s3, get_unique_filename)
 
 images_routes = Blueprint('business', __name__)
 
@@ -14,12 +14,12 @@ ALLOWED_EXTENSIONS = {"pdf", "png", "jpg", "jpeg", "gif"}
 @images_routes.route('/<int:id>/images')
 def images(id):
     images = BusinessImage.query.filter_by(business_id=id)
-    
+
     # find business
     business = Business.query.get(id)
     if not business:
         return jsonify({"error": "Business not found"}), 404
-    
+
     images_data = []
 
     for image in images:
@@ -39,14 +39,14 @@ def images_post(id):
     business = Business.query.get(id)
     if not business:
         return jsonify({"error": "Business not found"}), 404
-    
+
     form['csrf_token'].data = request.cookies['csrf_token']
     # print(form.data)
     if form.validate_on_submit():
         data = form.data
-        
+
         # print(data)
-        # Update 
+        # Update
         if data['image_preview'] == "true":
             data['image_preview'] = True
         else:
@@ -88,7 +88,7 @@ def images_delete(id):
 #random person deleting image - pass
     if current_user.id != image.user_id and business.owner_id != current_user.id:
         return jsonify({"error": "Unauthorized to delete this image"}), 403
-    
+
 
     db.session.delete(image)
     db.session.commit()
@@ -142,7 +142,7 @@ def images_delete(id):
 #     if form.errors:
 #         print(form.errors)
 #         return render_template("post_form.html", form=form, errors=form.errors)
-    
+
 #     files = BusinessImage.query.all()
 
 #     return render_template("post_form.html", files=files, errors=None)

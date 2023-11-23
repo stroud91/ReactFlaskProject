@@ -16,7 +16,7 @@ function ImagesModal({ bus_data }) {
     const [imgId, setImgId] = useState(0)
 
     normalizedImages.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
-    // console.log(normalizedImages)
+
 
     const handleClick = (event, id) => {
         if (+id === +imgId) {
@@ -34,15 +34,16 @@ function ImagesModal({ bus_data }) {
         show = normalizedImages.map((image) => {
             const { id, image_url } = image
             return (
-                <>
 
+                <div className="image-box">
                     <img src={image_url}
                         className={(imgId === id && showDel) && currentUser ? "cursor business_images withBorder" : "cursor business_images noBorder"}
                         alt={`image_${id}`}
                         key={`bus-image-${id}`}
                         onClick={(e) => handleClick(e, id)}
                     />
-                </>
+                </div>
+
             )
         })
 
@@ -57,7 +58,7 @@ function ImagesModal({ bus_data }) {
                             buttonText="Add Image"
                             modalComponent={<NewImageModal
                                 bus_id={bus_data.id} />}
-                            id={'button'}
+                            id={'add-image-button'}
                         />
 
                     </span>}
@@ -67,7 +68,7 @@ function ImagesModal({ bus_data }) {
                                 buttonText="Delete Image"
                                 modalComponent={<DeleteImageModal
                                     id={+imgId} />}
-
+                                id={'add-image-button'}
                             />
                             </span>))
                     }

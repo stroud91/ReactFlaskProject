@@ -8,52 +8,52 @@ import { fetchOneBusiness } from '../../store/business';
 import { oneBussinessReviewsThunk } from '../../store/review';
 
 
-function DeleteReviewModal ({id, review}) {
-    const [errors, setErrors] = useState({});
-    const { closeModal } = useModal();
-    const dispatch = useDispatch();
-    const history = useHistory();
+function DeleteReviewModal({ id, review }) {
+  const [errors, setErrors] = useState({});
+  const { closeModal } = useModal();
+  const dispatch = useDispatch();
+  const history = useHistory();
 
-    const handleSubmit = (e) => {
-        e.preventDefault();
-        setErrors({});
-        return dispatch(deleteReviewThunk(review))
-        .then(() => {
-          closeModal();
-          dispatch(fetchOneBusiness(id))
-          dispatch(oneBussinessReviewsThunk(id));
-          })
-          .catch(async (res) => {
-            const data = await res.json();
-            if (data && data.errors) {
-              setErrors(data.errors);
-            }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    setErrors({});
+    return dispatch(deleteReviewThunk(review))
+      .then(() => {
+        closeModal();
+        dispatch(fetchOneBusiness(id))
+        dispatch(oneBussinessReviewsThunk(id));
+      })
+      .catch(async (res) => {
+        const data = await res.json();
+        if (data && data.errors) {
+          setErrors(data.errors);
         }
-          );
-      };
+      }
+      );
+  };
 
-    return (
-        <div className="deleteSpotContainer">
-            <div className="deleteHeader">Confirm Delete</div>
-            <div className="deleteText">Are you sure you want to delete this review?</div>
-            <div>
-                <button
-                id="yesDelete"
-                onClick={handleSubmit}
-                >
-                    Yes (Delete Review)
-                </button>
-                <button
-                id="noDelete"
-                onClick={((e) => {
-                  closeModal();
-                  })}
-                >
-                    No (Keep Review)
-                </button>
-            </div>
-        </div>
-    )
+  return (
+    <div className="deleteSpotContainer">
+      <div className="deleteHeader">Confirm Delete</div>
+      <div className="deleteText">Are you sure you want to delete this review?</div>
+      <div>
+        <button
+          onClick={handleSubmit}
+          className='confirm-yes'
+        >
+          Yes (Delete Review)
+        </button>
+        <button
+          onClick={((e) => {
+            closeModal();
+          })}
+          className='cancel'
+        >
+          No (Keep Review)
+        </button>
+      </div>
+    </div>
+  )
 }
 
 export default DeleteReviewModal;

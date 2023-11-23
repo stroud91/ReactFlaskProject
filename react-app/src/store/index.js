@@ -1,28 +1,17 @@
 import { createStore, combineReducers, applyMiddleware, compose } from 'redux';
 import thunk from 'redux-thunk';
 import session from './session'
-import businessReducer from './business'
-import reviewReducer from './review'
-import { persistStore, persistReducer } from 'redux-persist'
-import storage from 'redux-persist/lib/storage'
 import bus_images from './images';
+import business from './business'
+import reviews from './review'
+
 const rootReducer = combineReducers({
-  session, 
-  business: businessReducer,
-  reviews: reviewReducer,
-  bus_images
+  session,
+  business,
+  bus_images,
+  reviews
 });
 
-const persistConfig = {
-  key: 'root',
-  storage,
-};
-
-
-const persistedReducer = persistReducer(
-  persistConfig,
-  rootReducer
-);
 
 
 let enhancer;

@@ -36,7 +36,7 @@ class BusinessForm(FlaskForm):
     name = StringField('Business Name', validators=[
         Length(min=1, max=50),
         DataRequired(),
-        business_name_exists
+        # business_name_exists
     ])
 
     address = StringField('Address', validators=[
@@ -57,13 +57,13 @@ class BusinessForm(FlaskForm):
     zip_code = StringField('Zip Code', validators=[
         Length(min=1, max=10),
         DataRequired(),
-        valid_zip_code
+        # valid_zip_code
     ])
 
     phone_number = StringField('Phone Number', validators=[
         Length(min=1, max=30),
         DataRequired(),
-        valid_phone_number
+        # valid_phone_number
     ])
 
     category_id = IntegerField('Category ID', validators=[DataRequired()])

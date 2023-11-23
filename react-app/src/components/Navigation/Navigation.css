@@ -4,46 +4,103 @@ ul {
   padding: 0;
   margin: 0;
 }
-
 li {
   margin: 0 15px;
 }
-
-/* NavLink and Button Styling */
-.view-business-button, .logout-red-button {
+.view-login-container{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.log-in-button{
   width: calc(100% - 20px);
   background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
   color: white;
   padding: 8px 12px;
-  margin: 10px;
+  margin-bottom: 10px;
+  font-size: medium;
+  border: none;
   text-align: center;
   border-radius: 5px;
   transition: background-color 0.3s ease;
 }
-
-.view-business-button:hover, .logout-red-button:hover {
-  background-color: blue;
+.log-in-button:hover {
+  background-color: darkred;
 }
-
-/* Profile Button Styling */
-button, .logout-red-button, .button, .button.profile-button, .view-business-button {
-  background-color: transparent;
+.sign-up-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  padding: 8px 12px;
+  font-size: medium;
   border: none;
-  cursor: pointer;
-  padding: 10px;
+  text-align: center;
   border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
-
-.fas.fa-user-circle {
-  font-size: 1.5rem;
-  color: rgb(67, 67, 67)
+.sign-up-button:hover {
+  background-color: darkred;
 }
-
-.fas.fa-user-circle:hover {
-  font-size: 1.5rem;
-  color: darkred
+/* NavLink and Button Styling */
+.view-business-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  text-decoration: none;
+  font-size: medium;
+  padding: 8px 12px;  /* margin: 10px; */
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
 }
-
+.view-business-button:hover {
+  background-color: darkred;
+}
+.logout-red-button{
+  width: calc(100% - 20px);
+  background-color: red;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: white;
+  padding: 8px 12px;
+  font-size: medium;
+  border: none;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.logout-red-button:hover {
+  background-color: darkred;
+}
+.create-business-button {
+  width: calc(100% - 20px);
+  background-color: red;
+  color: white;
+  padding: 8px 12px;
+  text-decoration: none;
+  font-family: system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  font-size: medium;
+  margin-bottom: 0;
+  text-align: center;
+  border-radius: 5px;
+  transition: background-color 0.3s ease;
+}
+.create-business-button:hover {
+  background-color: darkred;
+}
+.profile-button{
+  border: 0;
+  background-color: transparent;
+  padding: 0;
+  border-radius: 10px;
+}
+.profile-button:hover {
+  border: 0;
+  background-color: #f2f2f2;
+}
 /* Profile Dropdown Menu Styling */
 .profile-dropdown {
   position: absolute;
@@ -55,150 +112,8 @@ button, .logout-red-button, .button, .button.profile-button, .view-business-butt
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
   width: fit-content;
   display: block;
+  z-index: 999;
 }
-
 .profile-dropdown.hidden {
   display: none;
 }
-
-.profile-dropdown li {
-  /* position: absolute; */
-  background-color: #f9f9f9;
-  min-width: 150px;
-  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
-  margin: 5px;
-  padding: 10px 5px;
-  z-index: 1;
-  flex-direction: column;
-  row-gap: 5px;
-  padding-top: 15px;
-  padding-left: 15px;
-  padding-bottom: 15px;
-  background-color: white;
-  border-radius: 5px;
-  font-size: small;
-  box-shadow: 0px 0px 10px lightgray;
-  top: 80px;
-  right: 8px;
-  /* transition: all 0.3s ease-out; */
-  /* transform: scaleY(0); */
-  transform-origin: top;
-  list-style-type: none;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.profile-dropdown li:last-child {
-  border-bottom: none;
-}
-
-.profile-dropdown button {
-  width: 100%;
-  text-align: center;
-  /* padding-left: 10px; */
-}
-
-/* Modal Button Styling */
-.open-modal-button {
-  background-color: #007bff;
-  color: white;
-  padding: 10px 15px;
-}
-
-.open-modal-button:hover {
-  background-color: #0056b3;
-}
-
-/* Navigation Container */
-.nav-container {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 5px;
-  background-color: #f9f9f9;
-  border-bottom: 1px solid #e1e1e1;
-}
-
-.nav-left {
-  display: flex;
-  align-items: center;
-}
-
-.small-logo {
-  height: 30px;
-  width: auto;
-  margin-right: 15px;
-}
-
-/* New Button Styling */
-.view-business-button, .logout-red-button {
-  background-color: red;
-  margin-right: 5px;
-  text-decoration: none;
-  margin-bottom: 5px;
-  width: 100%;
-}
-
-.view-business-button:hover {
-  background-color: darkred;
-  color: white;
-  border: none;
-  width: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-
-.create-business-button {
-  background-color: red;
-  color: white;
-  margin-right: 10px;
-  margin-left: 10px;
-  margin-top: 1px;
-  padding: 1px;
-  padding-top: 10px;
-}
-
-.create-business-button:hover {
-  background-color: darkred;
-  color: white;
-  border: none;
-  width: 10px;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.logout-red-button {
-  background-color: red;
-  color: white;
-  padding: 8px 12px;
-  border: none;
-  width: calc(100% - 20px)!important;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease-in-out;
-}
-
-.logout-red-button:hover {
-  background-color: darkred;
-}
-
-
-.button.profile-button:hover {
-  background-color: #f2f2f2;
-}
-
-.view-logout-container{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-/* Searchbar Style */
-.searchbar {
-  flex-grow: 1;
-  margin-top: -45px;
-  margin-bottom: -20px;
-}
-

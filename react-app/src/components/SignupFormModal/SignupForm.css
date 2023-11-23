@@ -17,6 +17,14 @@ margin-left: 10px;
 margin-right: 10px;
 }
 
+.login-form-container{
+display: flex;
+flex-direction: column;
+align-items: center;
+margin-left: 10px;
+margin-right: 10px;
+}
+
 .signup_title {
 font-family: Arial, Helvetica, sans-serif;
 margin-top: 20px
@@ -45,6 +53,47 @@ margin-top: 20px
 .signup__input{
     min-width: 200px;
     margin-bottom: 10px;
+}
+
+.empty-space{
+    height: 15px;
+    margin: 0
+}
+
+.post-review-errors{
+    margin: none;
+    padding: none;
+    color: red;
+    font-size: small;
+}
+
+.form-group input{
+    min-width: 200px;
+    margin-bottom: 10px;
+    width: 95%;
+    font-size: 14px;
+    color: #333;
+    margin: 5px 0;
+    padding: 5px
+}
+
+.btn-login, .btn-demo {
+    background-color: rgb(244, 7, 7);
+    color: white;
+    padding: 14px 20px;
+    margin: 15px 0;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+  }
+
+  .btn-login:hover, .btn-demo:hover {
+    background-color: rgb(201, 6, 6);
+  }
+
+.or{
+    margin: 0;
 }
 
 .signup__input label, .signup__input p {

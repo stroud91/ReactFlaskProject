@@ -1,10 +1,22 @@
 
-.button {
+/* .button {
     border: solid;
     border-color: rgb(224, 7, 7);
     background-color: rgb(224, 7, 7);
     text-align: center;
-    /* margin-top: 10px; */
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content
+} */
+
+.add-image-button {
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    padding: 10px;
+    background-color: rgb(224, 7, 7);
+    text-align: center;
     border-radius: 5px;
     font-family: 'Onest', sans-serif;
     color: rgb(255, 255, 255);
@@ -12,12 +24,23 @@
     width: fit-content
 }
 
-.button:hover {
+.delete-image-button {
     border: solid;
-    border-color: darkred;
-    background-color: darkred;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
     text-align: center;
-    /* margin-top: 10px; */
+    border-radius: 5px;
+    font-family: 'Onest', sans-serif;
+    color: rgb(255, 255, 255);
+    height: fit-content;
+    width: fit-content
+}
+
+.see-img{
+    border: solid;
+    border-color: rgb(224, 7, 7);
+    background-color: rgb(224, 7, 7);
+    text-align: center;
     border-radius: 5px;
     font-family: 'Onest', sans-serif;
     color: rgb(255, 255, 255);
@@ -66,9 +89,9 @@
 .images-container{
     display: grid;
     overflow: scroll;
-    height: 400px;
+    height: min-content;
     grid-template-columns: repeat(5, 1fr);
-    grid-gap: 5px;
+    grid-gap: 10px;
     margin-bottom: 5px;
     /* background-color: blueviolet; */
     /* margin-bottom: 50%; */
@@ -88,7 +111,7 @@
     aspect-ratio: 1/1;
     float: left;
     width: 100%;
-    /* border-radius: 5px; */
+    border-radius: 5px;
 }
 
 .withBorder {
@@ -181,6 +204,22 @@ div.scroll-container img {
     margin-bottom: 40px;
 }
 
+.confirm-yes {
+width: 100%;
+border: none;
+border-radius: 5px;
+padding-top: 10px;
+padding-bottom: 10px;
+margin-bottom: 20px;
+text-decoration: none;
+color: white;
+background-color: red;
+}
+
+.confirm-yes:hover {
+    background-color: darkred;
+}
+
 .cancel {
     width: 100%;
     color: black;
@@ -192,31 +231,9 @@ div.scroll-container img {
 }
 
 .cancel:hover {
-    width: 100%;
-    color: black;;
-    border: none;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-    background-color: rgb(142, 142, 142); ;
+    background-color: gray;
 }
 
 .delete-cancel {
     margin-bottom: 40px;
-}
-
-
-.upload {
-    width: 100%;
-    padding-top: 10px;
-    padding-bottom: 10px;
-    margin-bottom: 20px;
-}
-
-
-.upload:hover {
-width: 100%;
-padding-top: 10px;
-padding-bottom: 10px;
-margin-bottom: 20px;
 }

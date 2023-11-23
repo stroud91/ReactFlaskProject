@@ -13,6 +13,8 @@ import OwnedBusinesses from "./components/OwnedBusiness";
 import QueryBusiness from "./components/QueryBusinesses";
 import { ModalProvider } from "./context/Modal";
 import MainPage from "./components/MainPageView";
+import SearchBar from "./components/SearchBar";
+import Footer from "./components/Footer";
 
 function App() {
   const dispatch = useDispatch();
@@ -52,6 +54,7 @@ function App() {
           </Route>
            <Route path =''>
             <MainPage/>
+            <Footer />
           </Route>
 
         </Switch>

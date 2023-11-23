@@ -19,15 +19,17 @@
     align-items: center;
     margin: 20px;
   }
-
+/* Gar changes */
   .businessMain__image {
-    /* width: 100%; */
+    width: fit-content;
     height: 200px;
-    aspect-ratio: 1/1;
     background-color: #ccc; /* temporary */
     border-radius: 4px;
     margin-bottom: 10px;
+    display: flex;
+    justify-content: center;
   }
+
 
   .businessMain__item p {
     margin: 5px 0;
@@ -47,13 +49,29 @@
   .businessMain__item a:hover {
     background-color: #0056b3;
   }
-
+  /* Gar changes */
 .busImg{
     object-fit: cover;
     object-position: center;
     aspect-ratio: 1/1;
     height: 100%;
-    z-index: 0;
     grid-area:header;
-    border-radius: 4px;
+}
+  /* Gar changes */
+.businessMain_name {
+  font-weight: bold;
+}
+
+.noResultButton{
+  border: solid;
+  border-color: rgb(224, 7, 7);
+  padding: 10px;
+  background-color: rgb(224, 7, 7);
+  text-align: center;
+  border-radius: 5px;
+  font-family: 'Onest', sans-serif;
+  color: rgb(255, 255, 255);
+  height: fit-content;
+  width: fit-content;
+  cursor: pointer;
 }

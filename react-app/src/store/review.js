@@ -4,7 +4,7 @@ const GET_CURRENT_USER_REVIEWS = 'businesses/review'
 const CREATE_REVIEW = 'businesses/review/create'
 const DELETE_REVIEW = 'businesses/review/delete'
 const EDIT_REVIEW = 'businessess/review/edit'
-const GET_SINGLE_BUSINESS_REVIEWS ='business/business_reviwes'
+const GET_SINGLE_BUSINESS_REVIEWS = 'business/business_reviwes'
 
 
 const getBusinessReviews = reviews => ({
@@ -40,7 +40,7 @@ const editReview = review => ({
 export const allReviewsThunk = () => async dispatch => {
     const response = await fetch(`/api/reviews`)
 
-    if(response.ok){
+    if (response.ok) {
         const reviews = await response.json()
         dispatch(getBusinessReviews(reviews))
         return reviews
@@ -49,10 +49,10 @@ export const allReviewsThunk = () => async dispatch => {
 
 export const oneBussinessReviewsThunk = (id) => async dispatch => {
     const response = await fetch(`/api/reviews/${id}/reviews`)
-    //console.log('THIS IS RESPONSE FROM THUNK', response)
-    if(response.ok){
+
+    if (response.ok) {
         const reviews = await response.json()
-       // console.log ("THIS IS REVIEWS PRINTED FROM THUNK",reviews)
+
         dispatch(getSingleBusinessReviews(reviews))
         return reviews
     }
@@ -61,7 +61,7 @@ export const oneBussinessReviewsThunk = (id) => async dispatch => {
 export const userReviewsThunk = () => async dispatch => {
     const response = await fetch(`/api/reviews/current`)
 
-    if(response.ok){
+    if (response.ok) {
         const reviews = await response.json()
         dispatch(getUserReviews(reviews))
         return reviews
@@ -69,8 +69,7 @@ export const userReviewsThunk = () => async dispatch => {
 }
 
 export const createReviewThunk = (businessId, review) => async (dispatch) => {
-    //console.log('THIS IS BIZ ID',businessId)
-    console.log(review)
+
     try {
         const res = await fetch(`/api/reviews/${businessId}/reviews`, {
             method: 'POST',
@@ -79,10 +78,10 @@ export const createReviewThunk = (businessId, review) => async (dispatch) => {
             },
             body: JSON.stringify(review)
         })
-        //console.log('this is res', res)
+
         if (res.ok) {
             const newReview = await res.json();
-           // console.log("Thiis is new review",newReview)
+
             dispatch(createReview(newReview))
             return newReview
         }
@@ -96,7 +95,7 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     const res = await fetch(`/api/reviews/${reviewId}`, {
         method: 'DELETE'
     })
-   // console.log("this is delete thunk res", res)
+
     if (res.ok) {
         dispatch(deleteReview(reviewId))
     } else {
@@ -105,25 +104,12 @@ export const deleteReviewThunk = (reviewId) => async (dispatch) => {
     }
 }
 
-// export const editReviewThunk = (reviewId,editedReview) => async dispatch => {
-//     const response = await fetch(`/api/reviews/${reviewId}`, {
-//         method: 'PUT',
-//         headers: {"Content-Type": "application/json"},
-//         body: JSON.stringify(editedReview)
-//       })
-// console.log("THIS IS EDIT REVIEW RES",response)
-//     if(response.ok){
-//         const editedReview = await response.json();
-//         console.log('Edited Review:', editedReview);
-//         dispatch(editReview(editedReview))
-//         return editedReview
-//     }
-// }
 
-export  const editReviewThunk =(reviewId, editedReview) => async dispatch => {
+
+export const editReviewThunk = (reviewId, editedReview) => async dispatch => {
     const res = await fetch(`/api/reviews/${reviewId}`, {
         method: 'PUT',
-        headers: {"Content-Type": "application/json"},
+        headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
             review_body: editedReview.comment,
             rating: editedReview.stars
@@ -131,7 +117,7 @@ export  const editReviewThunk =(reviewId, editedReview) => async dispatch => {
     })
     if (res.ok) {
         const editReviewRes = await res.json()
-        //console.log("😅 THIS IS EDITED REVIEW FROM THUNK", editReviewRes)
+
         dispatch(editReview(editReviewRes))
         return editReview
     } else {
@@ -146,29 +132,29 @@ const initialState = {
     currentBusinessReviews: null
     // selectedBusiness: null,
     // search: null
-  };
+};
 
-const reviewReducer = (state =  initialState, action) => {
+const reviewReducer = (state = initialState, action) => {
     let newState;
-    switch(action.type) {
+    switch (action.type) {
         case GET_ALL_BUSINESS_REVIEWS:
-            newState = {...state, all: action.reviews}
+            newState = { ...state, all: action.reviews }
             return newState
         case GET_SINGLE_BUSINESS_REVIEWS:
-            newState = {...state, currentBusinessReviews: action.reviews}
+            newState = { ...state, currentBusinessReviews: action.reviews }
             return newState
         case GET_CURRENT_USER_REVIEWS:
-            newState = {...state, currentUserReviews: action.reviews}
+            newState = { ...state, currentUserReviews: action.reviews }
             return newState
         case CREATE_REVIEW:
-            newState = {...state, review: action.reviews}
+            newState = { ...state, review: action.reviews }
             return newState
         case DELETE_REVIEW:
-            newState = {...state}
+            newState = { ...state }
             delete newState[action.reviewId];
             return newState
         case EDIT_REVIEW:
-            newState = {...state, review: action.review};
+            newState = { ...state, review: action.review };
             return newState
         default:
             return state

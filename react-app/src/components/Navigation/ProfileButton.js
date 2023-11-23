@@ -22,7 +22,7 @@ function ProfileButton({ user }) {
     if (!showMenu) return;
 
     const closeMenu = (e) => {
-      if (!ulRef.current.contains(e.target)) {
+      if (!ulRef.current || !ulRef.current.contains(e.target)) {
         setShowMenu(false);
       }
     };
@@ -43,9 +43,23 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className=" profile-button">
+      {/* <button onClick={openMenu} className="profile-button">
         <i className="fas fa-user-circle" />
-      </button>
+      </button> */}
+      {user ? (
+        <button onClick={openMenu} className="profile-button">
+          <img
+            src={user.profile_image_id}
+            alt={`${user.username}'s profile pic`}
+            onError={(e)=>{e.target.onerror = null; e.target.src="path_to_default_image.jpg"}}
+            className="profile-pic"
+          />
+        </button>
+      ) : (
+        <button onClick={openMenu} className="profile-button">
+          <i className="fas fa-user-circle" />
+        </button>
+      )}
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
@@ -53,30 +67,28 @@ function ProfileButton({ user }) {
             <li>{user.first_name} {user.last_name}</li>
             <li>{user.email}</li>
             <li className="view-logout-container">
-              <div>
-                <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
-              </div>
-              <div>
-                <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
-              </div>
-              <div>
-                <button onClick={handleLogout} className="logout-red-button">Log Out</button>
-              </div>
+              <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
+              <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
+              <button onClick={handleLogout} className="logout-red-button">Log Out</button>
             </li>
           </>
         ) : (
           <>
-            <OpenModalButton
-              buttonText="Log In"
-              onItemClick={closeMenu}
-              modalComponent={<LoginFormModal />}
-            />
+            <div className="view-logout-container">
+              <OpenModalButton
+                buttonText="Log In"
+                onItemClick={closeMenu}
+                modalComponent={<LoginFormModal />}
+                id={'log-in-button'}
+              />
 
-            <OpenModalButton
-              buttonText="Sign Up"
-              onItemClick={closeMenu}
-              modalComponent={<SignupFormModal />}
-            />
+              <OpenModalButton
+                buttonText="Sign Up"
+                onItemClick={closeMenu}
+                modalComponent={<SignupFormModal />}
+                id={'sign-up-button'}
+              />
+            </div>
           </>
         )}
       </ul>

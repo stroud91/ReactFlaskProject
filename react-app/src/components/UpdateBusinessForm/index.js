@@ -8,23 +8,31 @@ function UpdateBusiness() {
   const dispatch = useDispatch();
   const history = useHistory();
   const { id } = useParams();
+  const businesses = useSelector((state) => state.business.list)
+
   const business = useSelector(state =>
     state.business.list
       ? state.business.list.find(b => b.id === parseInt(id))
       : null
   );
 
+  useEffect(() => {
+    dispatch(businessActions.getAllBusinesses());
+  }, [dispatch]);
+
+
   const [name, setName] = useState(business ? business.name : '');
   const [address, setAddress] = useState(business ? business.address : '');
   const [city, setCity] = useState(business ? business.city : '');
   const [state, setState] = useState(business ? business.state : '');
-  const [zip_code, setZipCode] = useState(business ? business.zipCode : '');
-  const [phone_number, setPhoneNumber] = useState(business ? business.phoneNumber : '');
-  const [category_id, setCategoryId] = useState(business ? business.categoryId : '');
+  const [zip_code, setZipCode] = useState(business ? business.zip_code : '');
+  const [phone_number, setPhoneNumber] = useState(business ? business.phone_number : '');
+  const [category_id, setCategoryId] = useState(business ? business.category_id : '');
   const [website, setWebsite] = useState(business ? business.website : '');
   const [about, setAbout] = useState(business ? business.about : '');
   const [type, setType] = useState(business ? business.type : '');
   const [validationErrors, setValidationErrors] = useState([]);
+  const [isValidAddress, setIsValidAddress] = useState(true);
 
   const currentUser = useSelector(state => state.session.user);
   const owner_id = currentUser ? currentUser.id : null;
@@ -37,6 +45,24 @@ function UpdateBusiness() {
     { id: 5, name: 'American' }
   ];
 
+
+  const validateAddress = async () => {
+
+    const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
+    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+
+      const data = await response.json();
+      return data.status === 'OK';
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  };
+
   const validate = (values) => {
     const errors = [];
 
@@ -44,7 +70,7 @@ function UpdateBusiness() {
       errors.push("Invalid ZIP Code.");
     }
 
-    if (!values.phone_number || !/^\d{10}$/.test(values.phone_number)) {
+    if (!values.phone_number) {
       errors.push("Invalid phone number.");
     }
 
@@ -85,10 +111,11 @@ function UpdateBusiness() {
     }
 
     return errors;
-};
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const errors = validate({
       name,
       address,
@@ -105,7 +132,16 @@ function UpdateBusiness() {
 
     if (errors.length > 0) return setValidationErrors(errors);
 
+    const isValid = await validateAddress();
+    setIsValidAddress(isValid);
+
+    if (!isValid) {
+    setValidationErrors([...errors, 'Invalid address. Please verify your address details.']);
+    return;
+    }
+
     const businessData = {
+      id,
       name,
       address,
       city,
@@ -119,15 +155,12 @@ function UpdateBusiness() {
       type
     };
 
-    await dispatch(businessActions.editBusiness(id, businessData));
-    history.push(`/business/${id}`);
-  };
+      await dispatch(businessActions.editBusiness(id, businessData));
+      await dispatch(businessActions.getAllBusinesses())
+      await dispatch(businessActions.fetchOneBusiness(id));
 
-  useEffect(() => {
-    if (!business) {
-      dispatch(businessActions.fetchOneBusiness(id));
-    }
-  }, [dispatch, id, business]);
+      history.push(`/business/${id}`);
+  }
 
   return (
     <div className='form__container business-update__form'>
@@ -158,6 +191,7 @@ function UpdateBusiness() {
               required
               placeholder='Enter the business address'
             />
+              {isValidAddress === false && <p className='error'>Invalid address. Please verify your address details.</p>}
           </div>
           <div className='form__input'>
             <label>City</label>

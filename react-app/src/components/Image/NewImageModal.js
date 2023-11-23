@@ -76,7 +76,7 @@ function NewImageModal({ bus_id }) {
                         Main Image
                     </div>
                     <div className="upload-cancel">
-                        <button className='upload button cursor' type="submit">Upload Image</button>
+                        <button className='confirm-yes' type="submit">Upload Image</button>
                         <div>
                             <OpenModalButton
                                 buttonText="Cancel"
