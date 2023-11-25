@@ -22,10 +22,13 @@ const removeImage = (img_id) => ({
 
 
 export const images = (busId) => async (dispatch) => {
+
     const response = await fetch(`/api/business/${busId}/images`)
+
     const data = await response.json()
     dispatch(getImage(data))
     return data
+
 }
 
 export const createImage = (bus_id, imageData) => async (dispatch) => {
@@ -57,7 +60,7 @@ export const deleteImage = (img_id) => async (dispatch) => {
     })
     if (response.ok) {
         dispatch(removeImage(img_id))
-        // console.log("successfully deleted")
+        
         return null
     }
     else {

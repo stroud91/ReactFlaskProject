@@ -16,7 +16,7 @@ function ImagesModal({ bus_data }) {
     const [imgId, setImgId] = useState(0)
 
     normalizedImages.sort((a, b) => a.createdAt < b.createdAt ? 1 : -1)
-    // console.log(normalizedImages)
+
 
     const handleClick = (event, id) => {
         if (+id === +imgId) {

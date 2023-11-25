@@ -10,10 +10,13 @@ import { fetchOneBusiness } from "../../store/business";
 import { useParams, useHistory } from "react-router-dom";
 import { useModal } from "../../context/Modal";
 import * as imageActions from "../../store/images";
+import { images } from "../../store/images";
 import noImage from "../../images/no-image.png";
 import "./OneBussiness.css";
 import "../Image/ImagesForm.css";
 import DeleteModal from "../DeleteBusinessModal";
+import MapContainer from "../MapContainer";
+import LoadingAnimation from "../Loading";
 
 function BusinessDetail() {
   const history = useHistory();
@@ -21,27 +24,27 @@ function BusinessDetail() {
 
   let { id } = useParams();
   const business = useSelector((state) => state.business.selectedBusiness);
-  console.log("this is business id from business 🤪🤪🤪🤪🤪", id)
+
   const bus_images = useSelector((state) => state.bus_images.images);
+
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.currentBusinessReviews);
   const currentUser = useSelector((state) => state.session.user);
   const normalizedImages = bus_images && Object.values(bus_images);
   // const { setModalContent, closeModal } = useModal();
   // const [showConfirmModal, setShowConfirmModal] = useState(false);
-  console.log("THIS IS BUSINESS", business);
-  console.log("THIS IS images", normalizedImages);
-  // console.log("THIS IS USER", user);
-  console.log("THIS IS REVIEWS", reviews)
+
 
   useEffect(() => {
     dispatch(fetchOneBusiness(id));
     dispatch(oneBussinessReviewsThunk(id));
     // dispatch(allReviewsThunk());
-    dispatch(imageActions.images(id));
+    dispatch(images(id));
   }, [dispatch, id]);
 
-  if (!business) return <div>Loading...</div>;
+  if(!business){
+    return <LoadingAnimation />
+  }
   if (!reviews) {
     return <div>Loading Reviews...</div>;
   }
@@ -57,10 +60,9 @@ function BusinessDetail() {
 
   let image_gallery;
 
-  // console.log("this is images on this part", business.images);
 
-  // if (normalizedImages[0]) {
-    if (normalizedImages && normalizedImages.length > 0) {
+
+  if (normalizedImages && normalizedImages.length > 0) {
     image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
       return (
@@ -85,40 +87,44 @@ function BusinessDetail() {
         <div className="scroll-container">{image_gallery}</div>
         <span className="see-images">
           <OpenModalButton
-            buttonText={`See all ${normalizedImages ? normalizedImages.length : 0}photos`}
+            buttonText={`See all ${normalizedImages ? normalizedImages.length : 0} photos`}
             modalComponent={<ImagesModal bus_data={business} />}
             id={"see-img"}
           />
         </span>
       </div>
+
       <div className="business-detail-container">
         {/* Side Panel for Contact Info */}
         <div className="business-side-panel">
-          <h2>Contact Information</h2>
-          <p>Address: {business.address}</p>
-          <p>Phone Number: {business.phone_number}</p>
-          <p>
-            City: {business.city}, {business.state} {business.zip_code}
-          </p>
-          <p>
-            Website:{" "}
-            <a
-              href={business.website}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              {business.website}
+        <div className="contact-container">
+        <h2>Contact Information</h2>
+        <p>Address: {business.address}</p>
+        <p>Phone Number: {business.phone_number}</p>
+        <p>City: {business.city}, {business.state} {business.zip_code}</p>
+        <p>Website:
+            <a href={business.website} target="_blank" rel="noopener noreferrer">
+                {business.website}
             </a>
-          </p>
+        </p>
         </div>
+        <div className="map-container">
+            {business && (
+                <MapContainer business={business} businessId={business.id} />
+            )}
+        </div>
+    </div>
 
         {/* Main Business Info */}
         <div className="business-info">
+
           <h1>{business.name}</h1>
           <p>Category: {business.category}</p>
           <p>Type: {business.type}</p>
-          <p>About: {business.about}</p>
+
           <p>Average Rating: {business.avg_rating}</p>
+          <p className="bold-about">About</p>
+          <p>{business.about}</p>
           {currentUser && currentUser.id === business.owner_id && (
             <div className="business-buttons-conditional">
               <button
@@ -136,6 +142,10 @@ function BusinessDetail() {
           )}
         </div>
       </div>
+
+
+
+
       <div className="postYourReview">
         {user &&
           user.id !== business.owner_id &&

@@ -20,6 +20,8 @@ class Business(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), nullable=False)
     created_at = db.Column(db.DateTime, nullable=False)
     updated_at = db.Column(db.DateTime, nullable=False)
+    latitude = db.Column(db.Float, nullable=True)
+    longitude = db.Column(db.Float, nullable=True)
 
     user = db.relationship("User", back_populates="businesses")
     reviews = db.relationship("Review", back_populates="business_review")
@@ -41,5 +43,7 @@ class Business(db.Model):
             'category_id': self.category_id,
             'owner_id': self.owner_id,
             'created_at': self.created_at,
-            'updated_at': self.updated_at
+            'updated_at': self.updated_at,
+            'latitude': self.latitude,
+            'longitude': self.longitude
         }

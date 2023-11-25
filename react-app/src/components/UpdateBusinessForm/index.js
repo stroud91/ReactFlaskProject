@@ -9,7 +9,7 @@ function UpdateBusiness() {
   const history = useHistory();
   const { id } = useParams();
   const businesses = useSelector((state) => state.business.list)
-  //   console.log("😇", businesses)
+
   const business = useSelector(state =>
     state.business.list
       ? state.business.list.find(b => b.id === parseInt(id))
@@ -19,9 +19,7 @@ function UpdateBusiness() {
   useEffect(() => {
     dispatch(businessActions.getAllBusinesses());
   }, [dispatch]);
-  // const business = useSelector((state) => state.business.list[id])
 
-  //   console.log("🥰 this is the business that needs to be edited", business)
 
   const [name, setName] = useState(business ? business.name : '');
   const [address, setAddress] = useState(business ? business.address : '');
@@ -34,6 +32,7 @@ function UpdateBusiness() {
   const [about, setAbout] = useState(business ? business.about : '');
   const [type, setType] = useState(business ? business.type : '');
   const [validationErrors, setValidationErrors] = useState([]);
+  const [isValidAddress, setIsValidAddress] = useState(true);
 
   const currentUser = useSelector(state => state.session.user);
   const owner_id = currentUser ? currentUser.id : null;
@@ -45,6 +44,24 @@ function UpdateBusiness() {
     { id: 4, name: 'Japanese' },
     { id: 5, name: 'American' }
   ];
+
+
+  const validateAddress = async () => {
+
+    const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
+    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+   
+      const data = await response.json();
+      return data.status === 'OK';
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  };
 
   const validate = (values) => {
     const errors = [];
@@ -98,6 +115,7 @@ function UpdateBusiness() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
     const errors = validate({
       name,
       address,
@@ -114,6 +132,14 @@ function UpdateBusiness() {
 
     if (errors.length > 0) return setValidationErrors(errors);
 
+    const isValid = await validateAddress();
+    setIsValidAddress(isValid);
+
+    if (!isValid) {
+    setValidationErrors([...errors, 'Invalid address. Please verify your address details.']);
+    return;
+    }
+
     const businessData = {
       id,
       name,
@@ -128,17 +154,13 @@ function UpdateBusiness() {
       about,
       type
     };
-    // console.log("BUSSINESS DATA", businessData)
-    await dispatch(businessActions.editBusiness(id, businessData))
-    await dispatch(businessActions.fetchOneBusiness(id));
-    await dispatch(businessActions.getAllBusinesses())
-    await history.push(`/business/${id}`);
-  };
 
-  //   useEffect(() => {
-  //       dispatch(businessActions.fetchOneBusiness(id));
-  //       console.log("IDDDDDDD", id)
-  //   }, [dispatch, id]);
+      await dispatch(businessActions.editBusiness(id, businessData));
+      await dispatch(businessActions.getAllBusinesses())
+      await dispatch(businessActions.fetchOneBusiness(id));
+
+      history.push(`/business/${id}`);
+  }
 
   return (
     <div className='form__container business-update__form'>
@@ -169,6 +191,7 @@ function UpdateBusiness() {
               required
               placeholder='Enter the business address'
             />
+              {isValidAddress === false && <p className='error'>Invalid address. Please verify your address details.</p>}
           </div>
           <div className='form__input'>
             <label>City</label>

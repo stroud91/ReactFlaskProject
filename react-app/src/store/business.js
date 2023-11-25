@@ -1,4 +1,4 @@
-// Action Types
+
 const SET_BUSINESS = "business/SET_BUSINESS";
 const REMOVE_BUSINESS = "business/REMOVE_BUSINESS";
 const SET_ALL_BUSINESSES = "business/SET_ALL_BUSINESSES";
@@ -6,9 +6,9 @@ const SET_ONE_BUSINESS = "business/SET_ONE_BUSINESS";
 const UPDATE_BUSINESS = "business/UPDATE_BUSINESS";
 const ADD_BUSINESS = "business/ADD_BUSINESS";
 const SEARCH_BUSINESS = "business/search";
-// Initial State
 
-// Action Creators
+
+
 export const setBusiness = (business) => ({
   type: SET_BUSINESS,
   payload: business,
@@ -55,7 +55,7 @@ export const searchBusinessByName = (search) => async (dispatch) => {
   });
   if (response.ok) {
     const results = await response.json();
-    // console.log("YOOOO SEARCH THUNK ", results);
+
     dispatch(searchBusiness(results));
   } else {
     const errorData = await response.json();
@@ -75,10 +75,10 @@ export const getBusiness = (id) => async (dispatch) => {
 
 export const getAllBusinesses = () => async (dispatch) => {
   const response = await fetch(`/api/business`);
-  // console.log("response", response)
+
   if (response.ok) {
     const data = await response.json();
-    // console.log("data", data);
+
     dispatch(setAllBusinesses(data));
   } else {
     console.error("Thunk Error: Bad Req");
@@ -86,7 +86,7 @@ export const getAllBusinesses = () => async (dispatch) => {
 };
 
 export const createNewBusiness = (business) => async (dispatch) => {
-  // console.log("This is the create Bussiness:", business);
+
   const response = await fetch(`/api/business/new-business`, {
     method: "POST",
     headers: {
@@ -97,7 +97,7 @@ export const createNewBusiness = (business) => async (dispatch) => {
 
   if (response) {
     const data = await response.json();
-    // console.log("This is the data for create business:", data);
+
     dispatch(addBusiness(data));
     return data;
   } else {
@@ -119,8 +119,7 @@ export const fetchOneBusiness = (id) => async (dispatch) => {
 };
 
 export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
-  // console.log("This ID:", id)
-  // console.log('This is the update Bussiness:', updatedBusiness)
+
   const response = await fetch(`/api/business/${id}/edit`, {
     method: "POST",
     headers: {
@@ -131,7 +130,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 
   if (response.ok) {
     const data = await response.json();
-    // console.log("This is the updated data:", data)
+
     dispatch(updateBusiness(data));
     return data;
   } else {
@@ -140,7 +139,7 @@ export const editBusiness = (id, updatedBusiness) => async (dispatch) => {
 };
 
 export const deleteBusiness = (id) => async (dispatch) => {
-  console.log("id", id)
+
   const response = await fetch(`/api/business/${id}/delete`, {
     method: 'DELETE',
   });
@@ -162,7 +161,7 @@ const initialState = {
   search: null
 };
 
-// Reducer
+
 const businessReducer = (state = initialState, action) => {
   switch (action.type) {
     case SET_ALL_BUSINESSES:
@@ -190,10 +189,6 @@ const businessReducer = (state = initialState, action) => {
         list: state.list.map((business) =>
           business.id === action.payload.id ? action.payload : business
         ),
-        // current:
-        //   action.payload.id === state.current.id
-        //     ? action.payload
-        //     : state.current,
       };
     default:
       return state;

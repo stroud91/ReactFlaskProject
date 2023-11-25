@@ -1,16 +1,18 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from 'react-router-dom';
 import * as businessActions from '../../store/business';
 import noImage from "../../images/no-image.png"
 import './Business.css';
+import LoadingAnimation from "../Loading";
 
 
 function BusinessMainPage() {
     const dispatch = useDispatch();
     const businesses = useSelector(state => state.business.list);
-    // console.log("BUSSINES:", businesses)
-    // console.log(typeof businesses)
+
+
+
     useEffect(() => {
         dispatch(businessActions.getAllBusinesses());
     }, [dispatch]);
@@ -30,6 +32,9 @@ function BusinessMainPage() {
         return res
     }
 
+    if(!businesses){
+        return <LoadingAnimation />
+    }
 
     return (
         <div className='businessMain__grid'>

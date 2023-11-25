@@ -16,17 +16,14 @@ function EditReviewModal({ business_id, review }) {
   const business = useSelector((state) => state.business.selectedBusiness);
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
-  //  console.log('THIS IS THE REVIEW FROM EDIT REVIEW MODAL', reviews)
+
   const [errors, setErrors] = useState({});
   const [stars, setStars] = useState(review.rating);
   const [comment, setComment] = useState(review.review_body);
   const [formDisabled, setFormDisabled] = useState(true);
   const { closeModal } = useModal();
 
-  //   useEffect(() => {
-  //     //dispatch(fetchOneBusiness(id));
-  //     dispatch(oneBussinessReviewsThunk(business_id));
-  //   }, [dispatch, review_id]);
+
 
   useEffect(() => {
     const errors = {};
@@ -57,7 +54,7 @@ function EditReviewModal({ business_id, review }) {
     const userId = user ? user.id : null;
     //const reviewId = review ? review.id : null; // Check if review exists and has an id
     const editedReview = { comment, stars };
-    // console.log("THIS IS EDITED REVIEW",editedReview)
+  
 
     dispatch(editReviewThunk(review.id, editedReview))
       .then(() => {

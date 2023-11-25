@@ -20,53 +20,85 @@ function AddBusiness() {
   const [website, setWebsite] = useState('');
   const [about, setAbout] = useState('');
   const [type, setType] = useState('');
+  const [isValidAddress, setIsValidAddress] = useState(true);
 
   const [validationErrors, setValidationErrors] = useState([]);
 
   const currentUser = useSelector(state => state.session.user);
   const owner_id = currentUser ? currentUser.id : null;
 
+  const validateAddress = async () => {
+
+    const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
+    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
+
+    try {
+      const response = await fetch(url);
+
+      const data = await response.json();
+      return data.status === 'OK';
+    } catch (error) {
+      console.error('Error:', error);
+      return false;
+    }
+  };
+
+  const handleDemoData = () => {
+    setName('Demo Restaurant');
+    setAddress('1111 N 9th Street');
+    setCity('Stroudsburg');
+    setState('PA');
+    setZipCode('18360');
+    setPhoneNumber('1234567890');
+    setCategoryId(1);
+    setWebsite('http://www.demorestaurant.com');
+    setAbout('This is a demo restaurant for showcasing purposes.');
+    setType('Demo Type');
+  };
+
+
   const validate = () => {
-    const errors = [];
+    const errors = {};
 
     if (!name || name.length < 5 || name.length > 50)  {
-      errors.push("Business name must be between 5 and 50 characters.");
+      errors.name="Business name must be between 5 and 50 characters.";
     }
 
-    if (!address || address.length > 255) {
-      errors.push("Invalid address.");
+    if (!address & validateAddress) {
+      errors.address="Invalid address.";
     }
 
     if (!city || city.length > 50) {
-      errors.push("Invalid city.");
+      errors.city="Invalid city.";
     }
 
     if (!state || state.length != 2) {
-      errors.push("Invalid state.");
+      errors.state="Invalid state.";
     }
 
     if (!zip_code || !/^\d{5}$/.test(zip_code)) {
-      errors.push("Invalid ZIP Code.");
+      errors.zip_code="Invalid ZIP Code.";
     }
 
     if (!phone_number || !/^\d{10}$/.test(phone_number)) {
-      errors.push("Invalid phone number.");
+      errors.phone_number="Invalid phone number.";
     }
 
     if (!category_id) {
-      errors.push("Category is required.");
+      errors.category_id="Category is required.";
     }
 
     if (!website || website.length > 255) {
-      errors.push("Invalid website URL.");
+      errors.website="Invalid website URL.";
     }
 
     if (!about || about.length > 500) {
-      errors.push("Invalid about text.");
+      errors.about="Invalid about text.";
     }
 
     if (!type || type.length > 255) {
-      errors.push("Invalid type.");
+      errors.type="Invalid type.";
     }
 
     return errors;
@@ -77,7 +109,17 @@ function AddBusiness() {
     e.preventDefault();
     const errors = validate();
 
-    if (errors.length > 0) return setValidationErrors(errors);
+    if (Object.keys(errors).length > 0) {
+      setValidationErrors(errors);
+      return;
+  }
+    const isValid = await validateAddress();
+    setIsValidAddress(isValid);
+
+    if (!isValid) {
+    setValidationErrors([...errors, 'Invalid address. Please verify your address details.']);
+    return;
+    }
 
     const businessData = {
       name,
@@ -93,7 +135,7 @@ function AddBusiness() {
       about,
       type
     };
-    // console.log("This is Business Data:", businessData)
+
     await dispatch(businessActions.createNewBusiness(businessData));
 
     history.push(`/owned`);
@@ -111,15 +153,14 @@ function AddBusiness() {
   return (
     <div className='form__container business-edit__form'>
       <div className='business-error__container'>
-        {validationErrors.map((error, index) => (
-          <div className='error' key={index}>{error}</div>
-        ))}
       </div>
       <form onSubmit={handleSubmit}>
         <div className='input__container'>
           <h2>New Business</h2>
           <div className='form__input'>
-            <label>Name</label>
+            <label>Name
+            {validationErrors.name && <div className="error">{validationErrors.name}</div>}
+            </label>
             <p>This is the official name of your business as known by your customers.</p>
             <input
               type="text"
@@ -130,7 +171,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>Address</label>
+            <label>Address
+            {isValidAddress === false && <p className='error'>Invalid address. Please verify your address details.</p>}
+            </label>
             <p>This is the physical address where your business is located.</p>
             <input
               type="text"
@@ -139,9 +182,12 @@ function AddBusiness() {
               required
               placeholder='Enter the business address'
             />
+
           </div>
           <div className='form__input'>
-            <label>City</label>
+            <label>City
+            {validationErrors.city && <div className="error">{validationErrors.city}</div>}
+            </label>
             <p>The city where your business is based or operates from.</p>
             <input
               type="text"
@@ -152,7 +198,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>State</label>
+            <label>State
+            {validationErrors.state && <div className="error">{validationErrors.state}</div>}
+            </label>
             <p>The state where your business is located or registered.</p>
             <input
               type="text"
@@ -163,7 +211,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>ZIP Code</label>
+            <label>ZIP Code
+            {validationErrors.zip_code && <div className="error">{validationErrors.zip_code}</div>}
+            </label>
             <p>The postal code for the area where your business is located.</p>
             <input
               type="text"
@@ -174,7 +224,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>Phone Number</label>
+            <label>Phone Number
+            {validationErrors.phone_number && <div className="error">{validationErrors.phone_number}</div>}
+            </label>
             <p>This number will be used by customers to contact your business.</p>
             <input
               type="text"
@@ -185,7 +237,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>Category</label>
+            <label>Category
+            {validationErrors.category_id && <div className="error">{validationErrors.category_id}</div>}
+            </label>
             <p>Select the category that best describes the nature of your business.</p>
             <select value={category_id} onChange={(e) => setCategoryId(e.target.value)}>
               <option value={1}>Italian</option>
@@ -196,7 +250,9 @@ function AddBusiness() {
             </select>
           </div>
           <div className='form__input'>
-            <label>Website</label>
+            <label>Website
+            {validationErrors.website && <div className="error">{validationErrors.website}</div>}
+            </label>
             <p>If your business has a website, enter the URL here.</p>
             <input
               type="text"
@@ -207,7 +263,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>About</label>
+            <label>About
+            {validationErrors.about && <div className="error">{validationErrors.about}</div>}
+            </label>
             <p>Provide a brief description of your business.</p>
             <textarea
               value={about}
@@ -217,7 +275,9 @@ function AddBusiness() {
             />
           </div>
           <div className='form__input'>
-            <label>Type</label>
+            <label>Type
+            {validationErrors.type && <div className="error">{validationErrors.type}</div>}
+            </label>
             <p>Specify the type of your business (e.g., retail, service, etc.).</p>
             <input
               type="text"
@@ -229,7 +289,11 @@ function AddBusiness() {
           </div>
         </div>
         <div className='form__input button__container'>
+
+          <button type="form__button" onClick={handleDemoData} className='form__button'>Fill with Demo Data</button>
+
           <button className='form__button' type="submit">Add Business</button>
+
         </div>
       </form>
     </div>

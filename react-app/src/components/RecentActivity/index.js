@@ -14,7 +14,7 @@ function RecentActivity() {
   if (!reviews) return null;
 
   const last12Reviews = reviews["Reviews"].slice(-12);
-  console.log(last12Reviews);
+
 
   return (
     <div>
@@ -25,7 +25,16 @@ function RecentActivity() {
             <div className="review-item" key={review.id}>
               <div className="item-property">
                 <div className="user-info-review">
-                  <i className="far fa-user-circle" /> 
+                {review.profile_image_url ? (
+            <img
+              src={review.profile_image_url}
+              alt={`${review.user_first_name}'s profile pic`}
+              onError={(e)=>{e.target.onerror = null; e.target.src="path_to_default_image.jpg"}}
+              className="profile-pic"
+            />
+          ) : (
+            <i className="far fa-user-circle" />
+          )}
                   <div>{review.user_first_name}</div>
                 </div>
               </div>

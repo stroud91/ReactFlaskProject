@@ -43,9 +43,23 @@ function ProfileButton({ user }) {
 
   return (
     <>
-      <button onClick={openMenu} className="profile-button">
+      {/* <button onClick={openMenu} className="profile-button">
         <i className="fas fa-user-circle" />
-      </button>
+      </button> */}
+      {user ? (
+        <button onClick={openMenu} className="profile-button">
+          <img
+            src={user.profile_image_id}
+            alt={`${user.username}'s profile pic`}
+            onError={(e)=>{e.target.onerror = null; e.target.src="path_to_default_image.jpg"}}
+            className="profile-pic"
+          />
+        </button>
+      ) : (
+        <button onClick={openMenu} className="profile-button">
+          <i className="fas fa-user-circle" />
+        </button>
+      )}
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
