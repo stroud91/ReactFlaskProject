@@ -3,8 +3,9 @@ from ..models import BusinessImage, db, Business
 from flask_login import current_user, login_required
 from ..forms import NewImage
 from datetime import datetime
-# from app.s3_helper import (
-#     upload_file_to_s3, get_unique_filename)
+from .aws import get_unique_filename, upload_file_to_s3
+from .auth_routes import validation_errors_to_error_messages
+
 
 images_routes = Blueprint('business', __name__)
 
@@ -35,41 +36,108 @@ def images(id):
 @login_required
 def images_post(id):
     form = NewImage()
-    # find business
     business = Business.query.get(id)
     if not business:
         return jsonify({"error": "Business not found"}), 404
     
     form['csrf_token'].data = request.cookies['csrf_token']
-    # print(form.data)
+
     if form.validate_on_submit():
-        data = form.data
+        try:
+        # Retrieving form data separately
+            image = form.data["image_url"]
+            image_preview = form.data["image_preview"]
+            image.filename = get_unique_filename(image.filename)
+            upload = upload_file_to_s3(image)
+            print (request.files)
+
+        # Printing filename and upload info for debugging
+            print(f"Filename: {image.filename}")
+            print('😇😇😇😇😇😇', upload)
+   
+
+
         
-        # print(data)
-        # Update 
-        if data['image_preview'] == "true":
-            data['image_preview'] = True
-        else:
-            data['image_preview'] = False
+        # Convert 'true' or 'false' string to boolean
+            if image_preview == "true":
+                image_preview = True
+            else:
+                image_preview = False
 
-        if data["image_preview"] == True:
-            images = db.session.query(BusinessImage).filter(BusinessImage.business_id == id).all()
-            for image in images:
-                image.image_preview=False
-                image.updated_at=datetime.utcnow()
+        # Update image previews for the business
 
-        new_image = BusinessImage(image_url=data["image_url"],
-                                  image_preview=data['image_preview'],
-                                  business_id=id,
-                                  user_id=current_user.id,
-                                  created_at=datetime.utcnow(),
-                                  updated_at=datetime.utcnow())
-        db.session.add(new_image)
-        db.session.commit()
+            images = BusinessImage.query.filter(BusinessImage.business_id == id).all()
+            if image_preview:
+                for img in images:
+                    img.image_preview = False
+                    img.updated_at = datetime.utcnow()
 
-        return new_image.to_dict(), 201
+        # Create a new BusinessImage instance
+            new_image = BusinessImage(
+            image_url=upload["url"],
+            image_preview=image_preview,
+            business_id=id,
+            user_id=current_user.id,
+            created_at=datetime.utcnow(),
+            updated_at=datetime.utcnow()
+        )
+        
+        # Add and commit changes to the database
+            db.session.add(new_image)
+            db.session.commit()
+
+            return new_image.to_dict(), 201
+
+        except Exception as e:
+            print(f"An error occurred: {e}")
+            return jsonify({"error": "An error occurred while uploading the image"}), 500
     else:
-        return jsonify({"errors": form.errors}), 400
+        print(form.errors) 
+        return jsonify({"errors": validation_errors_to_error_messages(form.errors)}), 400
+    # find business
+    # business = Business.query.get(id)
+    # print(business)
+    # if not business:
+    #     return jsonify({"error": "Business not found"}), 404
+    
+    # form['csrf_token'].data = request.cookies['csrf_token']
+    # # print(form.data)
+    # if form.validate_on_submit():
+    #     data = form.data
+    #     image = form.image_url.data
+    #     # image = form.data["image_url"]
+    #     image.filename = get_unique_filename(image.filename)
+    #     print(f"Filename: {filename}")
+    #     upload = upload_file_to_s3(image)
+    #     print(upload)
+
+    #     image_preview = form.image_preview.data 
+        
+    #     # print(data)
+    #     # Update 
+    #     if data['image_preview'] == "true":
+    #         data['image_preview'] = True
+    #     else:
+    #         data['image_preview'] = False
+
+    #     if data["image_preview"] == True:
+    #         images = db.session.query(BusinessImage).filter(BusinessImage.business_id == id).all()
+    #         for image in images:
+    #             image.image_preview=False
+    #             image.updated_at=datetime.utcnow()
+
+    #     new_image = BusinessImage(image_url=upload["url"],
+    #                               image_preview=data['image_preview'],
+    #                               business_id=id,
+    #                               user_id=current_user.id,
+    #                               created_at=datetime.utcnow(),
+    #                               updated_at=datetime.utcnow())
+    #     db.session.add(new_image)
+    #     db.session.commit()
+
+    #     return new_image.to_dict(), 201
+    # else:
+    #     return jsonify({"errors": validation_errors_to_error_messages(form.errors)}), 400
 
 
 @images_routes.route('/images/<int:id>', methods=["DELETE"])

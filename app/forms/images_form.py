@@ -13,6 +13,6 @@ def valid_image_url(form, field):
 
 class NewImage(FlaskForm):
     # image_url = FileField("Image File", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
-    image_url = StringField("image_url", validators=[DataRequired(), valid_image_url])
+    image_url = FileField("Item_url", validators=[FileRequired(), FileAllowed(list(ALLOWED_EXTENSIONS))])
     image_preview = StringField('image_preview', validators=[DataRequired()])
-    submit = SubmitField('submit')
+    # submit = SubmitField('submit')
