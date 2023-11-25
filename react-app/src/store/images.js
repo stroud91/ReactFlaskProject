@@ -48,13 +48,15 @@ export const getImageData = (busId) => async (dispatch) => {
 }
 
 export const createImage = (bus_id, imageData) => async (dispatch) => {
+
     const response = await fetch(`/api/business/${bus_id}/images`, {
         method: "POST",
-        headers: {
-            "Content-Type": "application/json"
-        },
-        body: JSON.stringify(imageData)
+        // headers: {
+        //     "Content-Type": "application/json"
+        // },
+        body: imageData,
     })
+    console.log(" THIS IS IMAGE DATA", imageData)
 
     if (response.ok) {
         const data = await response.json()

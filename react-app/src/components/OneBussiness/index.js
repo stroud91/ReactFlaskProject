@@ -59,7 +59,8 @@ function BusinessDetail() {
 
   // console.log("this is images on this part", business.images);
 
-  if (normalizedImages[0]) {
+  // if (normalizedImages[0]) {
+    if (normalizedImages && normalizedImages.length > 0) {
     image_gallery = normalizedImages.map((image) => {
       const { id, image_url } = image;
       return (
@@ -84,7 +85,7 @@ function BusinessDetail() {
         <div className="scroll-container">{image_gallery}</div>
         <span className="see-images">
           <OpenModalButton
-            buttonText={`See all ${normalizedImages.length} photos`}
+            buttonText={`See all ${normalizedImages ? normalizedImages.length : 0}photos`}
             modalComponent={<ImagesModal bus_data={business} />}
             id={"see-img"}
           />
