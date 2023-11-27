@@ -55,6 +55,7 @@
     margin-left: 5%;
     margin-right: 5%;
     margin-top: 2%;
+    z-index: 2;
     /* background-color: red; */
 
 }
