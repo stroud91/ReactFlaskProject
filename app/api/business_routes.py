@@ -24,7 +24,7 @@ def get_coordinates(address, city, state, zip_code):
 
     if response.status_code == 200:
         content = response.json()
-        print('Google Geocoding API response:', content)  # Debugging line
+        
         if content['status'] == 'OK':
             latitude = content['results'][0]['geometry']['location']['lat']
             longitude = content['results'][0]['geometry']['location']['lng']

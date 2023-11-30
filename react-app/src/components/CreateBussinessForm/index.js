@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import * as businessActions from '../../store/business';
 import './CreateBussinessForm.css';
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
 
 function AddBusiness() {
 
@@ -30,7 +31,7 @@ function AddBusiness() {
   const validateAddress = async () => {
 
     const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
-    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const apiKey = API_KEY;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
 
     try {

@@ -32,13 +32,14 @@ const Footer = () => {
         <h4>Check out our other projects</h4>
         <ul>
           <li>
-            <a href="https://github.com/ejorgji1/Capstone-Project" target="_blank" rel="noopener noreferrer">
-              Luxury Watches
+          <a href="https://github.com/stroud91/DietCrusherProject" target="_blank" rel="noopener noreferrer">
+              Diet Crusher
             </a>
+
           </li>
           <li>
-            <a href="https://github.com/stroud91/DietCrusherProject" target="_blank" rel="noopener noreferrer">
-              Diet Crusher
+          <a href="https://github.com/ejorgji1/Capstone-Project" target="_blank" rel="noopener noreferrer">
+              SplendidWatch
             </a>
           </li>
           <li>

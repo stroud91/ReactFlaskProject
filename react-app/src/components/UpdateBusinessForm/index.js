@@ -4,6 +4,8 @@ import { useHistory, useParams } from 'react-router-dom';
 import * as businessActions from '../../store/business';
 import './UpdateBusinessForm.css';
 
+const API_KEY = process.env.REACT_APP_GOOGLE_MAPS_API_KEY;
+
 function UpdateBusiness() {
   const dispatch = useDispatch();
   const history = useHistory();
@@ -49,12 +51,12 @@ function UpdateBusiness() {
   const validateAddress = async () => {
 
     const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
-    const apiKey = 'AIzaSyD3F3R77roIM00Av5ekpGLIqivQT_uPSJg';
+    const apiKey = API_KEY;
     const url = `https://maps.googleapis.com/maps/api/geocode/json?address=${encodeURIComponent(fullAddress)}&key=${apiKey}`;
 
     try {
       const response = await fetch(url);
-   
+
       const data = await response.json();
       return data.status === 'OK';
     } catch (error) {
