@@ -15,6 +15,7 @@ flex-direction: column;
 align-items: center;
 margin-left: 10px;
 margin-right: 10px;
+padding-right: 10px;
 }
 
 .login-form-container{
@@ -51,7 +52,7 @@ margin-top: 20px
 }
 
 .signup__input{
-    min-width: 200px;
+    min-width: 180px;
     margin-bottom: 10px;
 }
 

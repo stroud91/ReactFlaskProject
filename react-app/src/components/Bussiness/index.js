@@ -10,11 +10,16 @@ import LoadingAnimation from "../Loading";
 function BusinessMainPage() {
     const dispatch = useDispatch();
     const businesses = useSelector(state => state.business.list);
-
-
+    const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        dispatch(businessActions.getAllBusinesses());
+        
+        const loadingTimeout = setTimeout(() => {
+            setLoading(false);
+            dispatch(businessActions.getAllBusinesses());
+        }, 1000);
+
+        return () => clearTimeout(loadingTimeout);
     }, [dispatch]);
 
     let getPrev = (business) => {
@@ -32,8 +37,8 @@ function BusinessMainPage() {
         return res
     }
 
-    if(!businesses){
-        return <LoadingAnimation />
+    if (loading) {
+        return <LoadingAnimation />;
     }
 
     return (

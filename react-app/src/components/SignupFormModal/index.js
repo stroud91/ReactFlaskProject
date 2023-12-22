@@ -13,13 +13,14 @@ function SignupFormModal() {
 	const [first_name, setFirstName] = useState("");
 	const [last_name, setLastName] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
+	const [profile_image_id, setProfileImageId] = useState("");
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
 		if (password === confirmPassword) {
-			const data = await dispatch(signUp(username, email, password, first_name, last_name));
+			const data = await dispatch(signUp(username, email, password, first_name, last_name, profile_image_id));
 			if (data) {
 				setErrors(data);
 			} else {
@@ -85,6 +86,16 @@ function SignupFormModal() {
 							placeholder="Last Name"
 							value={last_name}
 							onChange={(e) => setLastName(e.target.value)}
+							required
+						/>
+					</div>
+					<div className='signup__input'>
+						{/* Profile Image */}
+						<input
+							type="text"
+							placeholder="Please provide a profile picture"
+							value={profile_image_id}
+							onChange={(e) => setProfileImageId(e.target.value)}
 							required
 						/>
 					</div>
