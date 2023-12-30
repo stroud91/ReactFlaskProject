@@ -13,14 +13,32 @@ function SignupFormModal() {
 	const [first_name, setFirstName] = useState("");
 	const [last_name, setLastName] = useState("");
 	const [confirmPassword, setConfirmPassword] = useState("");
-	const [profile_image_id, setProfileImageId] = useState("");
+	const [profile_image_id, setProfileImageId] = useState(null);
 	const [errors, setErrors] = useState([]);
 	const { closeModal } = useModal();
 
 	const handleSubmit = async (e) => {
 		e.preventDefault();
+		console.log("Username:", username);
+		console.log("Email:", email);
+		console.log("Password:", password);
+		console.log("First Name:", first_name);
+		console.log("Last Name:", last_name);
+		console.log("Profile Image ID:", profile_image_id);
 		if (password === confirmPassword) {
+			const formData = new FormData();
+
+			formData.append("username", username);
+			formData.append("email", email);
+			formData.append("password", password);
+			formData.append("first_name", first_name);
+			formData.append("last_name", last_name);
+			console.log("Profile Image ID (Before FormData):", profile_image_id);
+			formData.append("profile_image_id", profile_image_id);
+			console.log("AFTER Profile Image ID:", profile_image_id);
+
 			const data = await dispatch(signUp(username, email, password, first_name, last_name, profile_image_id));
+			console.log("THIS IS DATA:", data);
 			if (data) {
 				setErrors(data);
 			} else {
@@ -31,7 +49,7 @@ function SignupFormModal() {
 				"Passwords must match",
 			]);
 		}
-	};
+	}
 
 	return (
 		<>
@@ -92,11 +110,11 @@ function SignupFormModal() {
 					<div className='signup__input'>
 						{/* Profile Image */}
 						<input
-							type="text"
-							placeholder="Please provide a profile picture"
-							value={profile_image_id}
-							onChange={(e) => setProfileImageId(e.target.value)}
-							required
+                            type="file"
+                            placeholder="Please provide a profile picture"
+                            accept="image/*"
+                            onChange={(e) => setProfileImageId(e.target.files[0])}
+                            required
 						/>
 					</div>
 					<div className='signup__input'>
