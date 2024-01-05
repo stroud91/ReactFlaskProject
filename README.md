@@ -39,6 +39,8 @@ LIVE LINK DEMO ---> https://yelping.onrender.com
    flask run
    ```
 
+   From the root directory, cd into the react-app directory/folder Run "npm install" to install dependencies Run "npm start" to boot up the frontend server and open a browser tab to the landing page
+
 --------------------------------------------------------------------------------------------------------------------------------------
 SITE VIEW 
 
