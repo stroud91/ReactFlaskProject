@@ -120,8 +120,9 @@ li {
 /* Profile Dropdown Menu Styling */
 .profile-dropdown {
   position: absolute;
-  top: 92px;
-  right: 25px;
+  padding: 5px;
+  top: 6.5%;
+  right: 0.1%;
   background-color: white;
   border: 1px solid #ccc;
   border-radius: 10px;

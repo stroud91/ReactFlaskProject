@@ -13,11 +13,11 @@ function BusinessMainPage() {
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
-        
+
         const loadingTimeout = setTimeout(() => {
             setLoading(false);
             dispatch(businessActions.getAllBusinesses());
-        }, 1000);
+        }, 100);
 
         return () => clearTimeout(loadingTimeout);
     }, [dispatch]);
