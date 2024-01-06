@@ -28,6 +28,14 @@ function AddBusiness() {
   const currentUser = useSelector(state => state.session.user);
   const owner_id = currentUser ? currentUser.id : null;
 
+  const isValidURL = (str) => {
+
+    const urlPattern = /^(ftp|http|https):\/\/[^ "]+$/;
+
+
+    return urlPattern.test(str);
+  };
+
   const validateAddress = async () => {
 
     const fullAddress = `${address}, ${city}, ${state}, ${zip_code}`;
@@ -90,8 +98,8 @@ function AddBusiness() {
       errors.category_id="Category is required.";
     }
 
-    if (!website || website.length > 255) {
-      errors.website="Invalid website URL.";
+    if (!website || website.length > 255 || !isValidURL(website)) {
+      errors.website = "Invalid website URL.";
     }
 
     if (!about || about.length > 500) {
