@@ -2,72 +2,49 @@
     height: 40px;
     margin-top: 20px;
 }
-
 .icon-container {
     display: flex;
     justify-content: center;
     margin-top:20px;
 }
-
 .signup_container{
 display: flex;
 flex-direction: column;
 align-items: center;
 margin-left: 10px;
 margin-right: 10px;
-padding-right: 10px;
+padding: 0px 10px;
 }
-
 .login-form-container{
 display: flex;
 flex-direction: column;
 align-items: center;
-margin-left: 10px;
-margin-right: 10px;
+margin-left: 26px;
+margin-right: 26px;
 }
-
 .signup_title {
 font-family: Arial, Helvetica, sans-serif;
 margin-top: 20px
 }
-
-.signup__button {
-    background-color: rgb(244, 7, 7);
-    color: white;
-    padding: 14px 20px;
-    margin: 15px 0;
-    border: none;
-    border-radius: 4px;
-    cursor: pointer;
-    width: 100%;
-  }
-
-  .signup__button:hover {
-    background-color: rgb(201, 6, 6);
-  }
-
 .signup__input_button_container{
     display: flex;
+    flex-direction: row;
     justify-content: center;
 }
-
 .signup__input{
-    min-width: 180px;
+    width: 97%;
     margin-bottom: 10px;
 }
-
 .empty-space{
     height: 15px;
     margin: 0
 }
-
 .post-review-errors{
     margin: none;
     padding: none;
     color: red;
     font-size: small;
 }
-
 .form-group input{
     min-width: 200px;
     margin-bottom: 10px;
@@ -77,9 +54,8 @@ margin-top: 20px
     margin: 5px 0;
     padding: 5px
 }
-
-.btn-login, .btn-demo {
-    background-color: rgb(244, 7, 7);
+.btn-login, .btn-demo, .signup__button {
+    background-color: rgb(244, 7, 7, 1);
     color: white;
     padding: 14px 20px;
     margin: 15px 0;
@@ -87,23 +63,21 @@ margin-top: 20px
     border-radius: 4px;
     cursor: pointer;
     width: 100%;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
   }
-
-  .btn-login:hover, .btn-demo:hover {
+  .btn-login:hover, .btn-demo:hover, .signup__button:hover {
     background-color: rgb(201, 6, 6);
   }
-
 .or{
     margin: 0;
 }
-
 .signup__input label, .signup__input p {
     font-size: 14px;
     color: #333;
     margin: 5px 0;
 }
-
-.signup__input input, .signup__input textarea, .signup__input select {
+.signup__input textarea, .signup__input select {
     width: 100%;
     padding: 5px;
     border-radius: 5px;
@@ -111,7 +85,14 @@ margin-top: 20px
     outline: none;
     transition: border 0.3s ease;
 }
-
+.signup__input input {
+    width: 100%;
+    padding: 5px 0px 5px 5px;
+    border-radius: 5px;
+    border: 1px solid #ddd;
+    outline: none;
+    transition: border 0.3s ease;
+}
 .signup-error{
     font-size: small;
 }

@@ -37,6 +37,10 @@ height: auto;
     animation: fade-in 3s;
   }
 
+::-webkit-scrollbar {
+    display: none;
+}
+
   @keyframes fade-in {
     from {
       opacity: 0;
