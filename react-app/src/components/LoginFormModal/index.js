@@ -59,6 +59,7 @@ function LoginFormModal() {
           <div className="form-group">
             <input
               type="text"
+              className="login-email"
               value={email}
               placeholder="Email"
               onChange={(e) => setEmail(e.target.value)}

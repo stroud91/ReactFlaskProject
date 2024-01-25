@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
-import { useHistory } from "react-router-dom/cjs/react-router-dom.min";
+import { useHistory, useLocation } from "react-router-dom/cjs/react-router-dom.min";
 import { useDispatch } from "react-redux";
 import { logout } from "../../store/session";
 import OpenModalButton from "../OpenModalButton";
@@ -12,6 +12,7 @@ function ProfileButton({ user }) {
   const history = useHistory();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  const location = useLocation()
 
   const openMenu = () => {
     if (showMenu) return;
@@ -32,45 +33,103 @@ function ProfileButton({ user }) {
     return () => document.removeEventListener("click", closeMenu);
   }, [showMenu]);
 
+  const closeMenu = () => setShowMenu(false);
+
   const handleLogout = (e) => {
     e.preventDefault();
     dispatch(logout());
+    closeMenu()
     history.push('/')
   };
 
   const ulClassName = "profile-dropdown" + (showMenu ? "" : " hidden");
-  const closeMenu = () => setShowMenu(false);
+
 
   return (
     <>
-      {/* <button onClick={openMenu} className="profile-button">
-        <i className="fas fa-user-circle" />
-      </button> */}
       {user ? (
         <button onClick={openMenu} className="profile-button">
           <img
             src={user.profile_image_id}
             alt={`${user.username}'s profile pic`}
-            onError={(e)=>{e.target.onerror = null; e.target.src="path_to_default_image.jpg"}}
-            className="profile-pic"
+            onError={(e) => { e.target.onerror = null; e.target.src = "path_to_default_image.jpg" }}
+            className="profile-picture"
           />
         </button>
       ) : (
-        <button onClick={openMenu} className="profile-button">
-          <i className="fas fa-user-circle" />
-        </button>
+        <>
+          <div className="login_signup_container">
+            <OpenModalButton
+              buttonText="Log In"
+              onItemClick={closeMenu}
+              modalComponent={<LoginFormModal />}
+              id={location.pathname !== '/' ? ("login-button2") : ("login-button")}
+            />
+            <OpenModalButton
+              buttonText="Sign Up"
+              onItemClick={closeMenu}
+              modalComponent={<SignupFormModal />}
+              id={'signup-button'}
+            />
+          </div>
+        </>
       )}
       <ul className={ulClassName} ref={ulRef}>
         {user ? (
           <>
-            <li>Welcome, {user.username}</li>
-            <li>{user.first_name} {user.last_name}</li>
-            <li>{user.email}</li>
-            <li className="view-logout-container">
-              <NavLink exact to="/owned" className="view-business-button">View Business</NavLink>
-              <NavLink exact to="/business/create-new-business" className="create-business-button">Create a business</NavLink>
-              <button onClick={handleLogout} className="logout-red-button">Log Out</button>
-            </li>
+            <div className="profile-first-container">
+              <div className="profile-first">
+                <div className="profile_imgs">
+                  <i className="fa-solid fa-house"></i>
+                </div>
+                <div className="profile-first-name">Welcome, {user.username}</div>
+              </div>
+              <div className="profile-first">
+                <div className="profile_imgs">
+                  <i className="fa-solid fa-user"></i>
+                </div>
+                <div className="profile-first-name">{user.first_name} {user.last_name}</div>
+              </div>
+              <div className="profile-first">
+                <div className="profile_imgs">
+                  <i className="fa-solid fa-envelope"></i>
+                </div>
+                <div className="profile-first-name">{user.email}</div>
+              </div>
+            </div>
+            <div className="view-logout-container">
+              <NavLink exact to="/owned" className="view-business-button">
+                <div className="bus-buttons">
+                  <div className="profile_imgs">
+                    <i className="fa-solid fa-store"></i>
+                  </div>
+                  <div className="bus-button">
+                    View Business
+                  </div>
+                </div></NavLink>
+              <NavLink exact to="/business/create-new-business" className="create-business-button">
+                <div className="bus-buttons">
+                  <div className="profile_imgs">
+                    <i className="fa-solid fa-plus"></i>
+                  </div>
+                  <div className="bus-button">
+                    Create a business
+                  </div>
+                </div>
+              </NavLink>
+            </div>
+            <div className="logout-container">
+              <button onClick={handleLogout} className="logout-red-button">
+                <div className="bus-buttons">
+                  <div className="profile_imgs">
+                    <i className="fa-solid fa-right-from-bracket"></i>
+                  </div>
+                  <div className="bus-button">
+                    Log Out
+                  </div>
+                </div>
+              </button>
+            </div>
           </>
         ) : (
           <>
@@ -81,7 +140,6 @@ function ProfileButton({ user }) {
                 modalComponent={<LoginFormModal />}
                 id={'log-in-button'}
               />
-
               <OpenModalButton
                 buttonText="Sign Up"
                 onItemClick={closeMenu}
@@ -91,7 +149,7 @@ function ProfileButton({ user }) {
             </div>
           </>
         )}
-      </ul>
+      </ul >
     </>
   );
 }
